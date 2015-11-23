@@ -57,5 +57,19 @@ function onButtonClick() {
 }
 
 function onFormSubmission(event) {
-	alert("Ola");
+	if ($('#login').is(':checked'))
+		logIn();
+
+	else if ($('#register').is(':checked'))
+		register();
+}
+
+function logIn() {
+	alert("Logging in...");
+	//Access database and verify login username + password
+}
+
+function register() {
+	alert("Registering...");
+	//Create database entry if information is valid.
 }
