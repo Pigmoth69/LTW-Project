@@ -1,6 +1,22 @@
 $(document).ready(onReady);
 
-function changeLoginForm() {
+function onReady() {
+	updateLoginForm();
+	$('#login').click(updateLoginForm);
+	$('#register').click(updateLoginForm);
+
+	$('#submitLog').click(onButtonClick);
+	$('#submitReg').click(onButtonClick);
+
+	$('#validationForm').submit(
+		function(event) {
+		onFormSubmission(event);
+	}
+	);
+
+};
+
+function updateLoginForm() {
 	if ($('#login').is(':checked')){
 		$('#emailLabel').hide();
 		$('#emailLabel').next().hide();
@@ -36,12 +52,10 @@ function changeLoginForm() {
 	}
 }
 
-function onReady() {
-	changeLoginForm();
-	$('#login').click(changeLoginForm);
-	$('#register').click(changeLoginForm);
-};
+function onButtonClick() {
+	$('#validationForm').submit();
+}
 
-function onFormSubmit() {
-	
+function onFormSubmission(event) {
+	alert("Ola");
 }
