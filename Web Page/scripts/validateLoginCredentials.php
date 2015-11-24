@@ -1,5 +1,4 @@
  <?php
- 	echo "Hello";
     header('Content-Type: application/json');
 
     $response = array();
