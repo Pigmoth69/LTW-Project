@@ -81,7 +81,7 @@ function logIn() {
                 alert(data);
                 console.log(data);
     })
-    .fail(function(error) {
+    .fail(function (error) {
             alert("Sim");
             alert(error.html);
         });
