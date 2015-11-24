@@ -35,17 +35,17 @@ function updateLoginForm() {
 
 	 }
 	else if($('#register').is(':checked')){
+		$('#verPassLabel').show();
+		$('#verPassLabel').next().show();
+
+		$('#verifyPassword').show();
+		$('#verifyPassword').next().show();
+
 		$('#emailLabel').show();
 		$('#emailLabel').next().show();
 
 		$('#email').show();
 		$('#email').next().show();
-
-		$('#verEmailLabel').show();
-		$('#verEmailLabel').next().show();
-
-		$('#verifyEmail').show();
-		$('#verifyEmail').next().show();
 
 		$('#submitLog').hide();
 		$('#submitReg').show();
@@ -66,7 +66,24 @@ function onFormSubmission(event) {
 
 function logIn() {
 	alert("Logging in...");
-	//Access database and verify login username + password
+	var username = $('#')
+
+	jQuery.ajax({
+    type: "POST",
+    url: 'validateLoginCredentials.php',
+    dataType: 'json',
+    data: {functionname: 'login', arguments: [, 2]},
+
+    success: function (obj, textstatus) {
+                  if( !('error' in obj) ) {
+                      yourVariable = obj.result;
+                  }
+                  else {
+                      console.log(obj.error);
+                  }
+            }
+});
+
 }
 
 function register() {
