@@ -76,10 +76,9 @@ function logIn() {
 		'password': password
 	}, 
 	function (data) {
-				console.log("Hello2");
-                alert("Hello3");
-                alert(data);
-                console.log(data);
+				var username = data['username'];
+				var password = data['password'];
+                alert(username);
     })
     .fail(function (error) {
             alert("Sim");

@@ -21,40 +21,36 @@
 	    return;
 	}
 
-    if( !isset($response['error']) ) {
+  if( !isset($response['error']) ) {
 
-    	switch($_POST['functionname']) {
+   	switch($_POST['functionName']) {
+        $response['username'] = $_POST['username'];
+        $response['password'] = $_POST['password'];
+      case 'login':
+        break;
 
-            case 'login':
-            	if( !is_array($_POST['arguments']) || (count($_POST['arguments']) != 2) ) {
-                	$response['error'] = 'Error in arguments!';
-               	}
-               	else {
-                   	$response['username'] = $_POST['arguments'][0];
-                   	$response['password'] = $_POST['arguments'][1];
-               	}
-               	break;
+      case 'register':
+        if( !isset($_POST['verifyPassword']) ) {
+          $response['error'] = 'No verifyPassword argument!';
+          echo json_encode($response);
+          return;
+          }
 
-            case 'register':
-            	if( !is_array($_POST['arguments']) || (count($_POST['arguments']) != 4) ) {
-                	$response['error'] = 'Error in arguments! ';
-               	}
-               	else {
-                   	$response['username'] = $_POST['arguments'][0];
-                   	$response['password'] = $_POST['arguments'][1];
-                   	$response['verifyPassowrd'] = $_POST['arguments'][2];
-                   	$response['email'] = $_POST['arguments'][3];
-                   	}
-               	break;
+        if( !isset($_POST['email']) ) {
+          $response['error'] = 'No email argument!';
+          echo json_encode($response);
+          return;
+          }
 
-            default:
-               	$response['error'] = 'Could not find the function '.$_POST['functionname'].'!';
-               	break;
-        }
-
-    }
+        $response['verifyPassword'] = $_POST['verifyPassword'];
+        $response['email'] = $_POST['email'];
+        break;
+      
+      default:
+       	$response['error'] = 'Could not find the function '.$_POST['functionname'].'!';
+       	break;
+      }
+  }
 
     echo json_encode($response);
-
-
 ?>
