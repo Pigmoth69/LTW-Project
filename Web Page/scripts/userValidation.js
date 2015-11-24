@@ -18,17 +18,17 @@ function onReady() {
 
 function updateLoginForm() {
 	if ($('#login').is(':checked')){
+		$('#verPassLabel').hide();
+		$('#verPassLabel').next().hide();
+
+		$('#verifyPassword').hide();
+		$('#verifyPassword').next().hide();
+
 		$('#emailLabel').hide();
 		$('#emailLabel').next().hide();
 
 		$('#email').hide();
 		$('#email').next().hide();
-
-		$('#verEmailLabel').hide();
-		$('#verEmailLabel').next().hide();
-
-		$('#verifyEmail').hide();
-		$('#verifyEmail').next().hide();
 
 		$('#submitLog').show();
 		$('#submitReg').hide();
@@ -65,24 +65,26 @@ function onFormSubmission(event) {
 }
 
 function logIn() {
-	alert("Logging in...");
-	var username = $('#')
+	var username = $('#username').val();
+	var password = $('#password').val();
 
-	jQuery.ajax({
-    type: "POST",
-    url: 'validateLoginCredentials.php',
-    dataType: 'json',
-    data: {functionname: 'login', arguments: [, 2]},
-
-    success: function (obj, textstatus) {
-                  if( !('error' in obj) ) {
-                      yourVariable = obj.result;
-                  }
-                  else {
-                      console.log(obj.error);
-                  }
-            }
-});
+	$.post(
+    'scripts/validateLoginCredentials.php',
+	{
+		'functionName': 'login', 
+		'username': username,
+		'password': password
+	}, 
+	function (data) {
+				console.log("Hello2");
+                alert("Hello3");
+                alert(data);
+                console.log(data);
+    })
+    .fail(function(error) {
+            alert("Sim");
+            alert(error.html);
+        });
 
 }
 

@@ -1,11 +1,26 @@
  <?php
+ 	echo "Hello";
     header('Content-Type: application/json');
 
     $response = array();
 
-    if( !isset($_POST['functionname']) ) { $response['error'] = 'No function name!'; }
+    if( !isset($_POST['functionName']) ) {
+    	$response['error'] = 'No function name!';
+	    echo json_encode($response);
+	    return;
+	}
 
-    if( !isset($_POST['arguments']) ) { $response['error'] = 'No function arguments!'; }
+    if( !isset($_POST['username']) ) {
+    	$response['error'] = 'No username argument!';
+	    echo json_encode($response);
+	    return;
+	}
+
+    if( !isset($_POST['password']) ) {
+    	$response['error'] = 'No password argument!';
+	    echo json_encode($response);
+	    return;
+	}
 
     if( !isset($response['error']) ) {
 
@@ -34,7 +49,7 @@
                	break;
 
             default:
-               	$response['error'] = 'Not found function '.$_POST['functionname'].'!';
+               	$response['error'] = 'Could not find the function '.$_POST['functionname'].'!';
                	break;
         }
 
