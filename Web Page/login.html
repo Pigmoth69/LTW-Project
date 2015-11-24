@@ -4,9 +4,6 @@
 	<head>
 		<title>Login</title>
 
-		<script src="scripts/jquery-1.11.3.min.js"></script>
-		<script type="text/javascript" src="scripts/userValidation.js"></script>
-
 		<meta name="description" content="Login to Free Event Calendar">
 		<meta name="keywords" content="Free, Event, Events, Manager, LogIn, Personal, Account">
 		<meta name="author" content="Feup Students">
@@ -31,16 +28,18 @@
 			<br><label for="password">Password: </label>
 			<br><input type="password" id="password">
 
+			<br><label id="verPassLabel" for="verPassword">Verify Password: </label>
+			<br><input type="text" id="verifyPassword">
+
 			<br><label id="emailLabel" for="email">Email: </label>
 			<br><input type="text" id="email">
-
-			<br><label id="verEmailLabel" for="verifyEmail">Verify Email: </label>
-			<br><input type="text" id="verifyEmail">
 
 			<br>
 			<br><input type="button" id="submitLog" value="Log In">
 			<input type="button" id="submitReg" value="Register">
 		</form>
-		
+
+		<script src="scripts/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="scripts/userValidation.js"></script>
 	</body>
 </html>
