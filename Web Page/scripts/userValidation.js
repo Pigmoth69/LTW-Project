@@ -10,6 +10,7 @@ function onReady() {
 
 	$('#validationForm').submit(
 		function(event) {
+		event.preventDefault();
 		onFormSubmission(event);
 	}
 	);
@@ -66,25 +67,26 @@ function onFormSubmission(event) {
 
 function logIn() {
 	var username = $('#username').val();
+	console.log(username);
 	var password = $('#password').val();
+	console.log(password);
 
 	$.post(
-    'scripts/validateLoginCredentials.php',
+    'http://localhost/LTW/Projeto%20LTW/Web%20Page/scripts/validateLoginCredentials.php',
 	{
-		'functionName': 'login', 
-		'username': username,
-		'password': password
+		"functionName": 'login', 
+		"username": username,
+		"password": password
 	}, 
 	function (data) {
-				console.log("Hello2");
-                alert("Hello3");
-                alert(data);
-                console.log(data);
+		alert("Username: " + data['username']);
+		alert("Password: " + data['password']);
+		alert("Error: " + data['error']);		
     })
     .fail(function (error) {
-            alert("Sim");
-            alert(error.html);
-        });
+        alert("Sim");
+        alert(error);
+    });
 
 }
 
