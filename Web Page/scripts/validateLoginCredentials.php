@@ -20,13 +20,30 @@
 	    echo json_encode($response);
 	    return;
 	}
+  
+  switch($_POST['functionName']) {
+      $username = $_POST['username'];
+      $usernameLength = strlen($username);
 
-  if( !isset($response['error']) ) {
+      if($usernameLength < 4 || $usernameLength > 16){
+        $response['error'] = "Username is invalid. Minimum 4 characters, maximum 16";
+        echo json_encode($response);
+        return;
+      }
 
-   	switch($_POST['functionName']) {
+      $password = $_POST['password'];
+      $passwordLength = strlen($password);
+
+      if($passwordLength < 4 || $passwordLength > 16){
+        $response['error'] = "Password is invalid. Minimum 4 characters, maximum 16";
+        echo json_encode($response);
+        return;
+      }
+
+      $response['username'] = $username;
+      $response['password'] = $password;
+
       case 'login':
-        $response['username'] = $_POST['username'];
-        $response['password'] = $_POST['password'];
         break;
 
       case 'register':
@@ -42,12 +59,26 @@
           return;
           }
 
-        $response['username'] = $_POST['username'];
-        $response['password'] = $_POST['password'];
-        $response['verifyPassword'] = $_POST['verifyPassword'];
-        $response['email'] = $_POST['email'];
+        $verifyPassword =  $_POST['verifyPassword'];
+        if($verifyPassword != $password){
+          $response['error'] = 'Password mismatch!';
+          echo json_encode($response);
+          return;
+        }
+
+        $response['verifyPassword'] = $verifyPassword;
+        
+        $email = $_POST['email'];
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+          $response['error'] = "Invalid e-mail!";
+          echo json_encode($response);
+          return;
+        }
+        
+        $response['email'] = $email;
         break;
-      
+
       default:
        	$response['error'] = 'Could not find the function '.$_POST['functionName'].'!';
        	break;

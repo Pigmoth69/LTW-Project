@@ -67,12 +67,10 @@ function onFormSubmission(event) {
 
 function logIn() {
 	var username = $('#username').val();
-	console.log(username);
 	var password = $('#password').val();
-	console.log(password);
 
 	$.post(
-    'http://localhost/LTW/Projeto%20LTW/Web%20Page/scripts/validateLoginCredentials.php',
+    'scripts/validateLoginCredentials.php',
 	{
 		"functionName": 'login', 
 		"username": username,
@@ -84,7 +82,7 @@ function logIn() {
 		alert("Error: " + data['error']);		
     })
     .fail(function (error) {
-        alert("Sim");
+    	console.log("called");
         alert(error);
     });
 
