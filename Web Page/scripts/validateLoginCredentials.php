@@ -71,7 +71,7 @@
         
         $email = $_POST['email'];
 
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
           $response['error'] = 'Invalid e-mail!';
           echo json_encode($response);
           return;

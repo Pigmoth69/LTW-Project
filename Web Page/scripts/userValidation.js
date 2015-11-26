@@ -1,22 +1,19 @@
 $(document).ready(onReady);
 
-
 function onReady() {
 	startForms();
-	$('#LoginButton').click(switchLogin);
-	$('#RegisterButton').click(switchRegister);
-	/*updateLoginForm();
-	$('#LoginButton').click(updateLoginForm);
-	$('#RegisterButton').click(updateLoginForm);
-	$('#submitLog').click(onButtonClick);
-	$('#submitReg').click(onButtonClick);*/
+	$('#LoginButton').click(function() {switchPanel('login');});
+	$('#RegisterButton').click(function() {switchPanel('register'); });
 
-	/*$('#validationForm').submit(
+	$('#submitLog').click(function() {onButtonClick('login'); });
+	$('#submitReg').click(function() {onButtonClick('register'); });
+
+	$('#validationForm').submit(
 		function(event) {
 		event.preventDefault();
 		onFormSubmission(event); 
 	}
-	);*/
+	);
 
 };
 
@@ -34,36 +31,35 @@ function startForms(){
 	$('#submitReg').hide();
 }
 
-function switchLogin(){
-	$(this).css('background-color','green');
-	$('#RegisterButton').css('background-color','#76A9C5');
+function switchPanel(button){
+	if(button == 'login'){
+		$('#LoginButton').css('background-color','green');
+		$('#RegisterButton').css('background-color','#76A9C5');
 
-	$('#verifyPassword').hide();
-	$('#verifyPassword').next().hide();
+		$('#verifyPassword').hide();
+		$('#verifyPassword').next().hide();
 
-	$('#email').hide();
-	$('#email').next().hide();
+		$('#email').hide();
+		$('#email').next().hide();
 
-	$('#submitLog').show();
-	$('#submitReg').hide();
+		$('#submitLog').show();
+		$('#submitReg').hide();
+	}
+	else if (button == 'register'){
+		$('#RegisterButton').css('background-color','green');
+		$('#LoginButton').css('background-color','#76A9C5');
+
+		$('#verifyPassword').show();
+		$('#verifyPassword').next().show();
+
+		$('#email').show();
+		$('#email').next().show();
+
+		$('#submitLog').hide();
+		$('#submitReg').show();
+	}
+
 }
-
-function switchRegister(){
-	$(this).css('background-color','green');
-	$('#LoginButton').css('background-color','#76A9C5');
-
-	$('#verifyPassword').show();
-	$('#verifyPassword').next().show();
-
-	$('#email').show();
-	$('#email').next().show();
-
-	$('#submitLog').hide();
-	$('#submitReg').show();
-}
-
-
-
 
 function updateLoginForm() {
 	if ($('#LoginButton').is(':checked')){
@@ -101,15 +97,20 @@ function updateLoginForm() {
 	}
 }
 
-function onButtonClick() {
+function onButtonClick(button) {
+	if(button == 'login')
+		$('#acessType').val('login');
+	else if(button == 'register')
+		$('#acessType').val('register');
+
 	$('#validationForm').submit();
 }
 
 function onFormSubmission(event) {
-	if ($('#login').is(':checked'))
+	if ($('#acessType').val() == 'login')
 		logIn();
 
-	else if ($('#register').is(':checked'))
+	else if ($('#acessType').val() == 'register')
 		register();
 }
 
