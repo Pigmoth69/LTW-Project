@@ -126,12 +126,14 @@ function logIn() {
 		"password": password
 	}, 
 	function (data) {
-		alert("Username: " + data['username']);
-		alert("Password: " + data['password']);
-		alert("Error: " + data['error']);		
-    })
+		if(data['error'] != null)
+			console.log(data['error']);
+
+		for (var element in data){
+			console.log(data[element]);
+		}
+	})
     .fail(function (error) {
-    	console.log("called");
         alert(error);
     });
 
