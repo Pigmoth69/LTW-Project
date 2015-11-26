@@ -3,6 +3,11 @@
 
   $response = array();
 
+  /**
+   *	Verify valid POST arguments
+   */
+
+
   if( $_POST['functionName'] == "" ) {
   	$response['error'] = 'No function name!';
 	  echo json_encode($response);
@@ -39,18 +44,48 @@
     return;
   }
 
+
+  // Create arguments. Acess database for username
   $username = $_POST['username'];
   $password = $_POST['password'];
-  $db = new PDO('sqlite:Database/database.db');
-  $stmt = $db->prepare('SELECT name FROM User WHERE User.name == :username');
+
+  $db = new PDO('sqlite:../Database/database.db');
+  $stmt = $db->prepare('SELECT name FROM User WHERE name == :username');
   $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-  $stmt->execute();  
+  $stmt->execute();
   $usernames = $stmt->fetchAll();
+
   switch($_POST['functionName']) {
       case 'login':
+      	//Verify correct username
+      	if ($usernames == NULL){
+      		$response['error'] = 'No user with that username';
+      		echo json_encode($response);
+      		return;
+      	}
+      	//Verify Correct Password
+      	echo '1';
+
+      	$stmt = $db->prepare('SELECT * FROM User WHERE name == :username');
+		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+		/*$stmt->execute();
+		$users = $stmt->fetchAll();
+		if(!password_verify($password, $users['password']){
+			$response['error'] = 'Password invalid.';
+			echo json_encode($response);
+			return;
+		}*/
+
+		$response['username'] = $username;
+		$response['password'] = $password;
         break;
 
       case 'register':
+      	if($usernames != NULL){
+      		$response['error'] = 'Username taken. Please choose a different username.';
+      		echo json_encode($response);
+      	}
+
         if($_POST['verifyPassword'] == "") {
           $response['error'] = 'No verifyPassword argument!';
           echo json_encode($response);
