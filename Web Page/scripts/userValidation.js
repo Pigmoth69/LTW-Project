@@ -128,6 +128,10 @@ function logIn() {
 	function (data) {
 		if(data['error'] != null)
 			console.log(data['error']);
+
+		for (var element in data){
+			console.log(data[element]);
+		}
 	})
     .fail(function (error) {
         alert(error);

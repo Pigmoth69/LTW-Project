@@ -50,27 +50,27 @@
   $password = $_POST['password'];
 
   $db = new PDO('sqlite:../Database/database.db');
-  $stmt = $db->prepare('SELECT name FROM User WHERE name == :username');
+  $stmt = $db->prepare('SELECT * FROM User WHERE name == :username');
   $stmt->bindParam(':username', $username, PDO::PARAM_STR);
   $stmt->execute();
-  $usernames = $stmt->fetchAll();
+  $users = $stmt->fetchAll(); //Hopefully there is only one user.
 
   switch($_POST['functionName']) {
       case 'login':
       	//Verify correct username
-      	if ($usernames == NULL){
+      	if ($users == NULL){
       		$response['error'] = 'No user with that username';
       		echo json_encode($response);
       		return;
       	}
       	//Verify Correct Password
-      	echo '1';
+		if(!password_verify($password, $users['password'])){
+			$response['error'] = 'Password Invalid';
+			echo json_encode($response);
+			return;
+		}
 
-      	$stmt = $db->prepare('SELECT * FROM User WHERE name == :username');
-		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
-		/*$stmt->execute();
-		$users = $stmt->fetchAll();
-		if(!password_verify($password, $users['password']){
+		/*if(!password_verify($password, $users['password']){
 			$response['error'] = 'Password invalid.';
 			echo json_encode($response);
 			return;
@@ -81,7 +81,7 @@
         break;
 
       case 'register':
-      	if($usernames != NULL){
+      	if($users != NULL){
       		$response['error'] = 'Username taken. Please choose a different username.';
       		echo json_encode($response);
       	}
