@@ -29,11 +29,13 @@ body {
     margin-top: 0;
     margin-bottom: 2em;
 }
+/
 .login-block #FormType {
     width:100%;
 	display:inline-block;
 	text-align:auto;
    }
+
 
 .login-block #LoginButton {
     float:left;
@@ -41,6 +43,7 @@ body {
     width:50%;
 	text-align:auto;
 	width:14em;
+    border:0;
 }
  .login-block #RegisterButton{
     float:right;
@@ -48,6 +51,7 @@ body {
     width:50%;
     text-align:auto;
     width:14em;
+    border:0;
 }
 
 
@@ -117,7 +121,7 @@ body {
     background: #76A9C5;
     box-sizing: border-box;
     border-radius: 5px;
-    border: 1px solid #e15960;
+    border: 1px solid;
     color: #fff;
     font-weight: bold;
     text-transform: uppercase;
@@ -126,6 +130,11 @@ body {
     outline: none;
     cursor: pointer;
 }
-.login-block hover#submitLog, .login-block hover#submitReg {
-    background: #ff7b81;
+
+
+.login-block #LoginButton:active, .login-block #LoginButton:focus {
+    background-color:green;
+}
+.login-block #RegisterButton:active, .login-block #RegisterButton:focus {
+    background-color:green;
 }
