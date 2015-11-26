@@ -3,14 +3,11 @@
 
   $response = array();
 
-<<<<<<< HEAD
-=======
   /**
    *	Verify valid POST arguments
    */
 
 
->>>>>>> dataBaseAcess
   if( $_POST['functionName'] == "" ) {
   	$response['error'] = 'No function name!';
 	  echo json_encode($response);
@@ -40,14 +37,6 @@
 
 
   $passwordLength = strlen($_POST['password']);
-<<<<<<< HEAD
-
-  if($passwordLength < 4 || $passwordLength > 16){
-    $response['error'] = 'Password is invalid. Minimum 4 characters, maximum 16';
-    echo json_encode($response);
-    return;
-  }
-=======
 
   if($passwordLength < 4 || $passwordLength > 16){
     $response['error'] = 'Password is invalid. Minimum 4 characters, maximum 16';
@@ -65,11 +54,7 @@
   $stmt->bindParam(':username', $username, PDO::PARAM_STR);
   $stmt->execute();
   $users = $stmt->fetchAll(); //Hopefully there is only one user.
->>>>>>> dataBaseAcess
 
-  $username = $_POST['username'];
-  $password = $_POST['password'];
-  
   switch($_POST['functionName']) {
       case 'login':
       	//Verify correct username
@@ -85,25 +70,16 @@
 			return;
 		}
 
-		/*if(!password_verify($password, $users['password']){
-			$response['error'] = 'Password invalid.';
-			echo json_encode($response);
-			return;
-		}*/
-
 		$response['username'] = $username;
 		$response['password'] = $password;
         break;
 
       case 'register':
-<<<<<<< HEAD
-=======
       	if($users != NULL){
       		$response['error'] = 'Username taken. Please choose a different username.';
       		echo json_encode($response);
       	}
 
->>>>>>> dataBaseAcess
         if($_POST['verifyPassword'] == "") {
           $response['error'] = 'No verifyPassword argument!';
           echo json_encode($response);
