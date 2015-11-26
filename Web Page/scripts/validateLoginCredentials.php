@@ -70,6 +70,12 @@
 			return;
 		}
 
+		/*if(!password_verify($password, $users['password']){
+			$response['error'] = 'Password invalid.';
+			echo json_encode($response);
+			return;
+		}*/
+
 		$response['username'] = $username;
 		$response['password'] = $password;
         break;
