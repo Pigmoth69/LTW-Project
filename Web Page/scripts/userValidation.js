@@ -1,24 +1,72 @@
 $(document).ready(onReady);
 
+
 function onReady() {
-	updateLoginForm();
-	$('#login').click(updateLoginForm);
-	$('#register').click(updateLoginForm);
-
+	startForms();
+	$('#LoginButton').click(switchLogin);
+	$('#RegisterButton').click(switchRegister);
+	/*updateLoginForm();
+	$('#LoginButton').click(updateLoginForm);
+	$('#RegisterButton').click(updateLoginForm);
 	$('#submitLog').click(onButtonClick);
-	$('#submitReg').click(onButtonClick);
+	$('#submitReg').click(onButtonClick);*/
 
-	$('#validationForm').submit(
+	/*$('#validationForm').submit(
 		function(event) {
 		event.preventDefault();
-		onFormSubmission(event);
+		onFormSubmission(event); 
 	}
-	);
+	);*/
 
 };
 
+function startForms(){
+	$('#LoginButton').css('background-color','green');
+	$('#RegisterButton').css('background-color','#76A9C5');
+
+	$('#verifyPassword').hide();
+	$('#verifyPassword').next().hide();
+
+	$('#email').hide();
+	$('#email').next().hide();
+
+	$('#submitLog').show();
+	$('#submitReg').hide();
+}
+
+function switchLogin(){
+	$(this).css('background-color','green');
+	$('#RegisterButton').css('background-color','#76A9C5');
+
+	$('#verifyPassword').hide();
+	$('#verifyPassword').next().hide();
+
+	$('#email').hide();
+	$('#email').next().hide();
+
+	$('#submitLog').show();
+	$('#submitReg').hide();
+}
+
+function switchRegister(){
+	$(this).css('background-color','green');
+	$('#LoginButton').css('background-color','#76A9C5');
+
+	$('#verifyPassword').show();
+	$('#verifyPassword').next().show();
+
+	$('#email').show();
+	$('#email').next().show();
+
+	$('#submitLog').hide();
+	$('#submitReg').show();
+}
+
+
+
+
 function updateLoginForm() {
-	if ($('#login').is(':checked')){
+	if ($('#LoginButton').is(':checked')){
 		$('#verPassLabel').hide();
 		$('#verPassLabel').next().hide();
 
