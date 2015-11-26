@@ -1,64 +1,67 @@
  <?php
-    header('Content-Type: application/json');
+  header('Content-Type: application/json');
 
-    $response = array();
+  $response = array();
 
-    if( $_POST['functionName'] == "" ) {
-    	$response['error'] = 'No function name!';
-	    echo json_encode($response);
-	    return;
+  if( $_POST['functionName'] == "" ) {
+  	$response['error'] = 'No function name!';
+	  echo json_encode($response);
+	  return;
 	}
 
-    if( $_POST['username'] == "" ) {
-    	$response['error'] = 'No username argument!';
-	    echo json_encode($response);
-	    return;
+  if( $_POST['username'] == "" ) {
+  	$response['error'] = 'No username argument!';
+	  echo json_encode($response);
+	  return;
 	}
 
-    if( $_POST['password'] == "" ) {
-    	$response['error'] = 'No password argument!';
-	    echo json_encode($response);
-	    return;
+  if( $_POST['password'] == "" ) {
+  	$response['error'] = 'No password argument!';
+	  echo json_encode($response);
+	  return;
 	}
   
 
-    $username = $_POST['username'];
-    $usernameLength = strlen($username);
+  $usernameLength = strlen($_POST['username']);
 
-    if($usernameLength < 4 || $usernameLength > 16){
-      $response['error'] = 'Username is invalid. Minimum 4 characters, maximum 16';
-      echo json_encode($response);
-      return;
-    }
+  if($usernameLength < 4 || $usernameLength > 16){
+    $response['error'] = 'Username is invalid. Minimum 4 characters, maximum 16';
+    echo json_encode($response);
+    return;
+  }
 
-    $password = $_POST['password'];
-    $passwordLength = strlen($password);
 
-    if($passwordLength < 4 || $passwordLength > 16){
-      $response['error'] = 'Password is invalid. Minimum 4 characters, maximum 16';
-      echo json_encode($response);
-      return;
-    }
+  $passwordLength = strlen($_POST['password']);
 
-    $response['username'] = $username;
-    $response['password'] = $password;
+  if($passwordLength < 4 || $passwordLength > 16){
+    $response['error'] = 'Password is invalid. Minimum 4 characters, maximum 16';
+    echo json_encode($response);
+    return;
+  }
 
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+  $db = new PDO('sqlite:Database/database.db');
+  $stmt = $db->prepare('SELECT name FROM User WHERE User.name == :username');
+  $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+  $stmt->execute();  
+  $usernames = $stmt->fetchAll();
   switch($_POST['functionName']) {
       case 'login':
         break;
 
       case 'register':
-        if( !isset($_POST['verifyPassword']) ) {
+        if($_POST['verifyPassword'] == "") {
           $response['error'] = 'No verifyPassword argument!';
           echo json_encode($response);
           return;
-          }
+         }
 
-        if( !isset($_POST['email']) ) {
+        if($_POST['email'] == "") {
           $response['error'] = 'No email argument!';
           echo json_encode($response);
           return;
-          }
+        }
 
         $verifyPassword =  $_POST['verifyPassword'];
         if($verifyPassword != $password){

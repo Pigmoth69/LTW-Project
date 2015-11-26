@@ -131,7 +131,6 @@ function logIn() {
 		alert("Error: " + data['error']);		
     })
     .fail(function (error) {
-    	console.log("called");
         alert(error);
     });
 
