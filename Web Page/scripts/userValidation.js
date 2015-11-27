@@ -148,11 +148,11 @@ function register() {
 	$.post(
     'scripts/validateLoginCredentials.php',
 	{
-		"functionName": 'register', 
-		"username": username,
-		"password": password,
-		"verifyPassword": verifyPassword,
-		"email": email
+		'functionName': 'register', 
+		'username': username,
+		'password': password,
+		'verifyPassword': verifyPassword,
+		'email': email
 	}, 
 	function (data) {
 		if(data['error'] != null)

@@ -133,7 +133,6 @@
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':password', $dbPassword, PDO::PARAM_STR);
         $stmt->execute();
-        $users = $stmt->fetchAll();
 
         $response['message'] = 'Registered successfully';
 
