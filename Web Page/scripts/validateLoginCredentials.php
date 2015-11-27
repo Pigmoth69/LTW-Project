@@ -64,17 +64,12 @@
       		return;
       	}
       	//Verify Correct Password
-		if(!password_verify($password, $users['password'])){
+      	$dbPassword = password_hash($users[0][6], PASSWORD_BCRYPT);
+		if(!password_verify($password, $dbPassword)){
 			$response['error'] = 'Password Invalid';
 			echo json_encode($response);
 			return;
 		}
-
-		/*if(!password_verify($password, $users['password']){
-			$response['error'] = 'Password invalid.';
-			echo json_encode($response);
-			return;
-		}*/
 
 		$response['username'] = $username;
 		$response['password'] = $password;
