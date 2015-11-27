@@ -67,10 +67,7 @@
       	}
       	//Verify Correct Password
         $dbPassword = $users[0][3];
-		    if(password_verify($password, $dbPassword)) {
-            echo 'OK';
-		    }
-        else {
+		    if(!password_verify($password, $dbPassword)) {
             $response['error'] = 'Password Invalid';
             echo json_encode($response);
             return;
@@ -126,7 +123,7 @@
         }
 
         //All clear, creare new database Entry
-        $dbPassword = password_hash($users[0][3], PASSWORD_BCRYPT);
+        $dbPassword = password_hash($password, PASSWORD_BCRYPT);
 
         $stmt = $db->prepare('INSERT INTO User(username, email, password) VALUES (:username, :email, :password)');
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
