@@ -11,9 +11,9 @@ PRAGMA foreign_keys = ON;
 
 
 /*******INSERTS*********/
-INSERT INTO User(NAME, MAIL, VALIDATION, DATANASCIMENTO, USERNAME, PASSWORD) VALUES('Daniel Reis', 'pigmoth@gmail.com', 1, '1995-01-03', 'Pigmoth', 'qwerty');
-INSERT INTO User(NAME, MAIL, VALIDATION, DATANASCIMENTO, USERNAME, PASSWORD) VALUES('Guilherme Pinto', 'guilhermevpinto@gmail.com', 0, '1994-12-13', 'guilhermevpinto', '12345');
-INSERT INTO User(NAME, MAIL, VALIDATION, DATANASCIMENTO, USERNAME, PASSWORD) VALUES('Luis Figueiredo', 'luisfigueiredos@hotmail.com', 1, '1995-04-20', 'Nutil', 'asdasd');
+INSERT INTO User(USERNAME, EMAIL, PASSWORD, DATANASCIMENTO) VALUES('Pigmoth', 'pigmoth@gmail.com', 'qwerty', '1995-01-03');
+INSERT INTO User(USERNAME, EMAIL, PASSWORD, DATANASCIMENTO) VALUES('guilhermevpinto', 'guilhermevpinto@gmail.com', '12345', '1994-12-13');
+INSERT INTO User(USERNAME, EMAIL, PASSWORD, DATANASCIMENTO) VALUES('Nutil', 'luisfigueiredos@hotmail.com', 'asdasd', '1995-04-20');
 
 INSERT INTO EventPhoto(IDUSER, UPLOADDATE, DESCRIPTION) VALUES(1, '2015-11-17', 'Uma imagem fagoteira');
 INSERT INTO EventPhoto(IDUSER, UPLOADDATE, DESCRIPTION) VALUES(2, '2015-10-12', 'Imagem');

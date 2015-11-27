@@ -7,12 +7,10 @@ DROP TABLE IF EXISTS EventUser;
 
 CREATE TABLE User (
 	id				INTEGER	NOT NULL PRIMARY KEY AUTOINCREMENT,
-	name			VARCHAR(256) NOT NULL,
-	mail			VARCHAR(256) NOT NULL,
-	validation 		BOOLEAN NOT NULL,
-	datanascimento	DATE,
 	username		VARCHAR(64)	NOT NULL UNIQUE,
-	password		VARCHAR(64)	NOT NULL
+	email			VARCHAR(256) NOT NULL UNIQUE,
+	password		VARCHAR(64)	NOT NULL,
+	datanascimento	DATE
 );
 
 CREATE TABLE EventPhoto (

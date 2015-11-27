@@ -140,6 +140,29 @@ function logIn() {
 }
 
 function register() {
-	alert("Registering...");
-	//Create database entry if information is valid.
+	var username = $('#username').val();
+	var password = $('#password').val();
+	var verifyPassword = $('#verifyPassword').val();
+	var email = $('#email').val();
+
+	$.post(
+    'scripts/validateLoginCredentials.php',
+	{
+		"functionName": 'register', 
+		"username": username,
+		"password": password,
+		"verifyPassword": verifyPassword,
+		"email": email
+	}, 
+	function (data) {
+		if(data['error'] != null)
+			console.log(data['error']);
+
+		for (var element in data){
+			console.log(data[element]);
+		}
+	})
+    .fail(function (error) {
+        console.log("Error: " + error);
+    });
 }

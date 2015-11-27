@@ -1,4 +1,5 @@
  <?php
+
   header('Content-Type: application/json');
 
   $response = array();
@@ -45,15 +46,16 @@
   }
 
 
-  // Create arguments. Acess database for username
+  // Create arguments. Acess database to get the User.
   $username = $_POST['username'];
   $password = $_POST['password'];
 
+
   $db = new PDO('sqlite:../Database/database.db');
-  $stmt = $db->prepare('SELECT * FROM User WHERE name == :username');
+  $stmt = $db->prepare('SELECT * FROM User WHERE username = :username');
   $stmt->bindParam(':username', $username, PDO::PARAM_STR);
   $stmt->execute();
-  $users = $stmt->fetchAll(); //Hopefully there is only one user.
+  $users = $stmt->fetchAll();
 
   switch($_POST['functionName']) {
       case 'login':
@@ -64,15 +66,17 @@
       		return;
       	}
       	//Verify Correct Password
-      	$dbPassword = password_hash($users[0][6], PASSWORD_BCRYPT);
-		if(!password_verify($password, $dbPassword)){
-			$response['error'] = 'Password Invalid';
-			echo json_encode($response);
-			return;
-		}
+        $dbPassword = $users[0][3];
+		    if(password_verify($password, $dbPassword)) {
+            echo 'OK';
+		    }
+        else {
+            $response['error'] = 'Password Invalid';
+            echo json_encode($response);
+            return;
+        }
 
-		$response['username'] = $username;
-		$response['password'] = $password;
+		    $response['message'] = 'Logged in successfully';
         break;
 
       case 'register':
@@ -94,23 +98,45 @@
         }
 
         $verifyPassword =  $_POST['verifyPassword'];
+
         if($verifyPassword != $password){
           $response['error'] = 'Password mismatch!';
           echo json_encode($response);
           return;
         }
 
-        $response['verifyPassword'] = $verifyPassword;
         
         $email = $_POST['email'];
-
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
           $response['error'] = 'Invalid e-mail!';
           echo json_encode($response);
           return;
         }
-        
-        $response['email'] = $email;
+
+        //All inputs valid. Check if email is unique.
+        $stmt = $db->prepare('SELECT email FROM User Where email == :email');
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $duplicateEmails = $stmt->fetchAll();
+
+        if($duplicateEmails != NULL){
+          $response['error'] = 'Email taken. You may only have one account per e-mail.';
+          echo json_encode($response);
+          return;
+        }
+
+        //All clear, creare new database Entry
+        $dbPassword = password_hash($users[0][3], PASSWORD_BCRYPT);
+
+        $stmt = $db->prepare('INSERT INTO User(username, email, password) VALUES (:username, :email, :password)');
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':password', $dbPassword, PDO::PARAM_STR);
+        $stmt->execute();
+        $users = $stmt->fetchAll();
+
+        $response['message'] = 'Registered successfully';
+
         break;
 
       default:
