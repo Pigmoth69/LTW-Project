@@ -1,7 +1,7 @@
  <?php
 
   header('Content-Type: application/json');
-
+  $f = fopen('data.txt', 'w');
   $response = array();
 
   /**
@@ -67,6 +67,7 @@
       	}
       	//Verify Correct Password
         $dbPassword = $users[0][3];
+        
 		    if(!password_verify($password, $dbPassword)) {
             $response['error'] = 'Password Invalid';
             echo json_encode($response);
