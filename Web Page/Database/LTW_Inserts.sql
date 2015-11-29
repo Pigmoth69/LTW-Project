@@ -11,9 +11,10 @@ PRAGMA foreign_keys = ON;
 
 
 /*******INSERTS*********/
-INSERT INTO User(USERNAME, EMAIL, PASSWORD, DATANASCIMENTO) VALUES('Pigmoth', 'pigmoth@gmail.com', 'qwerty', '1995-01-03');
-INSERT INTO User(USERNAME, EMAIL, PASSWORD, DATANASCIMENTO) VALUES('guilhermevpinto', 'guilhermevpinto@gmail.com', '12345', '1994-12-13');
-INSERT INTO User(USERNAME, EMAIL, PASSWORD, DATANASCIMENTO) VALUES('Nutil', 'luisfigueiredos@hotmail.com', 'asdasd', '1995-04-20');
+/*passwords: qwerty, 12345, asdasd*/
+INSERT INTO User(USERNAME, EMAIL, PASSWORD, DATANASCIMENTO) VALUES('Pigmoth', 'pigmoth@gmail.com', '$2y$10$Pjnde6rRKvo4mDaQmWNYme1K6wqWbeoM/Asq6uGLMvqm4ms1eOqyq', '1995-01-03'); 
+INSERT INTO User(USERNAME, EMAIL, PASSWORD, DATANASCIMENTO) VALUES('guilhermevpinto', 'guilhermevpinto@gmail.com', '$2y$10$x7HX5nnwJaOhNfmEL5irx.dEnhmapRMzcS.76hC2H.dDTXmW8EpSG', '1994-12-13');
+INSERT INTO User(USERNAME, EMAIL, PASSWORD, DATANASCIMENTO) VALUES('Nutil', 'luisfigueiredos@hotmail.com', '$2y$10$ZOAtLO0TM04rgulbkuXcJO3AciQSc7blNs.ThNs81jUPm.uUuGNAu', '1995-04-20');
 
 INSERT INTO EventPhoto(IDUSER, UPLOADDATE, DESCRIPTION) VALUES(1, '2015-11-17', 'Uma imagem fagoteira');
 INSERT INTO EventPhoto(IDUSER, UPLOADDATE, DESCRIPTION) VALUES(2, '2015-10-12', 'Imagem');

@@ -128,7 +128,7 @@ function logIn() {
 	var password = $('#password').val();
 
 	$.post(
-    'scripts/validateLoginCredentials.php',
+    '../server/validateLoginCredentials.php',
 	{
 		"functionName": 'login', 
 		"username": username,
@@ -155,7 +155,7 @@ function register() {
 	var email = $('#email').val();
 
 	$.post(
-    'scripts/validateLoginCredentials.php',
+    '../server/validateLoginCredentials.php',
 	{
 		'functionName': 'register', 
 		'username': username,
