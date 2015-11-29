@@ -135,9 +135,6 @@ function logIn() {
 		"password": password
 	}, 
 	function (data) {
-		if(data['error'] != null)
-			console.log(data['error']);
-
 		for (var element in data){
 			console.log(data[element]);
 		}
@@ -164,9 +161,6 @@ function register() {
 		'email': email
 	}, 
 	function (data) {
-		if(data['error'] != null)
-			console.log(data['error']);
-
 		for (var element in data){
 			console.log(data[element]);
 		}
