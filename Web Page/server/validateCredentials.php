@@ -8,41 +8,31 @@
    *	Verify valid POST arguments
    */
   if( $_POST['functionName'] == "" ) {
-  	$response['error'] = 'No function name!';
-	  echo json_encode($response);
+  	printErrorMessage($response, 'No function name!');
 	  return;
 	}
 
   if( $_POST['username'] == "" ) {
-  	$response['error'] = 'No username argument!';
-	  echo json_encode($response);
+    printErrorMessage($response, 'No username argument!');
 	  return;
 	}
 
   if( $_POST['password'] == "" ) {
-  	$response['error'] = 'No password argument!';
-	  echo json_encode($response);
+    printErrorMessage($response, 'No password argument!');
 	  return;
 	}
   
-
   $usernameLength = strlen($_POST['username']);
-
   if($usernameLength < 4 || $usernameLength > 16){
-    $response['error'] = 'Username is invalid. Minimum 4 characters, maximum 16';
-    echo json_encode($response);
+    printErrorMessage($response, 'Username is invalid. Minimum 4 characters, maximum 16');
     return;
   }
-
 
   $passwordLength = strlen($_POST['password']);
-
-  if($passwordLength < 4 || $passwordLength > 16){
-    $response['error'] = 'Password is invalid. Minimum 4 characters, maximum 16';
-    echo json_encode($response);
+  if($passwordLength < 4 || $passwordLength > 32){
+    printErrorMessage($response, 'Password is invalid. Minimum 4 characters, maximum 32');
     return;
   }
-
   /**
    *  End verify valid POST arguments
    */
@@ -59,37 +49,37 @@
 
   switch($_POST['functionName']) {
     case 'login':
-    //Verify correct username
-    $loginStatus = $database->checkValidLogin($username,$password);
-    if ($loginStatus == false){
-      $response['error'] = 'Invalid username or password!';
-      echo json_encode($response);
-      return;
-    }
+      //Verify correct username
+      $loginStatus = $database->checkValidLogin($username,$password);
+      if ($loginStatus == false){
+        printErrorMessage($response, 'Invalid username or password!');
+        return;
+      }
 
-    $response['message'] = 'Logged in successfully';
-    break;
+      $response['message'] = 'Logged in successfully';
+      break;
 
     case 'register':
+      $verifyPassword = $_POST['verifyPassword'];
+      $email = $_POST['email'];
+      $registerStatus = $database->checkValidRegister($username,$password,$verifyPassword,$email);
 
-    $verifyPassword = $_POST['verifyPassword'];
-    $email = $_POST['email'];
-    $registerStatus = $database->checkValidRegister($username,$password,$verifyPassword,$email);
+      if(!is_bool($registerStatus)){
+        printErrorMessage($response, $registerStatus);
+        return;
+      }
 
-    if(!is_bool($registerStatus)){
-      $response['error'] = $registerStatus;
-      echo json_encode($response);
-      return;
+      $database->insertUser($username,$email,$password);
+      $response['message'] = 'Registered successfully';
+      break;
     }
 
-    $database->insertUser($username,$email,$password);
-    $response['message'] = 'Registered successfully';
-    break;
-
-    default:
-    $response['error'] = 'Could not find the function '.$_POST['functionName'].'!';
-    break;
-  }
-
   echo json_encode($response);
+
+
+  function printErrorMessage($responseArray, $message) {
+    $responseArray['error'] = $message;
+    echo json_encode($responseArray);
+    return;
+  }
   ?>

@@ -16,30 +16,30 @@ function makeSlide(){
 	
 	switch(this.counter){
 		case 0:
-		$('#slider5').css('display','none');
-		$('#slider1').css('display','block');
-		counter++;
-		break;
+			$('#slider5').css('display','none');
+			$('#slider1').css('display','block');
+			counter++;
+			break;
 		case 1:
-		$('#slider1').css('display','none');
-		$('#slider2').css('display','block');
-		counter++;
-		break;
+			$('#slider1').css('display','none');
+			$('#slider2').css('display','block');
+			counter++;
+			break;
 		case 2:
-		$('#slider2').css('display','none');
-		$('#slider3').css('display','block');
-		counter++;
-		break;
+			$('#slider2').css('display','none');
+			$('#slider3').css('display','block');
+			counter++;
+			break;
 		case 3:
-		$('#slider3').css('display','none');
-		$('#slider4').css('display','block');
-		counter++;
-		break;
+			$('#slider3').css('display','none');
+			$('#slider4').css('display','block');
+			counter++;
+			break;
 		case 4:
-		$('#slider4').css('display','none');
-		$('#slider5').css('display','block');
-		counter++;
-		break;
+			$('#slider4').css('display','none');
+			$('#slider5').css('display','block');
+			counter++;
+			break;
 		default:
 	}
 		/*var $target = $($(this).attr('href')),
