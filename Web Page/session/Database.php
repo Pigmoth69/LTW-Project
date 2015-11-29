@@ -1,9 +1,9 @@
 <?php
 
 class Database{
-	private database;
+	private $database;
 
-	public function __contructor(){
+	public function __contruct(){
 		try{
 			$this->database = new PDO('sqlite:../Database/database.db');
 		} catch (PDOException $e) {
@@ -30,7 +30,8 @@ class Database{
 			$stmt->bindParam(':email', $email, PDO::PARAM_STR);
 			$stmt->bindParam(':password', $dbPassword, PDO::PARAM_STR);
 			$stmt->execute();
-		}catch{
+		}
+		catch (Exception $e){
 			die($e->getMessage());
 		}
 	}

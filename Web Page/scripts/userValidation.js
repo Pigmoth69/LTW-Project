@@ -2,6 +2,7 @@ $(document).ready(onReady);
 
 function onReady() {
 	startForms();
+
 	$('#LoginButton').click(function() {switchPanel('login');});
 	$('#RegisterButton').click(function() {switchPanel('register'); });
 
@@ -36,6 +37,9 @@ function switchPanel(button){
 		$('#LoginButton').css('background-color','green');
 		$('#RegisterButton').css('background-color','#76A9C5');
 
+		$('input#username').val("");
+		$('input#password').val("");
+
 		$('#verifyPassword').hide();
 		$('#verifyPassword').next().hide();
 
@@ -48,10 +52,15 @@ function switchPanel(button){
 	else if (button == 'register'){
 		$('#RegisterButton').css('background-color','green');
 		$('#LoginButton').css('background-color','#76A9C5');
+		
+		$('input#username').val("");
+		$('input#password').val("");
 
+		$('#verifyPassword').val("");
 		$('#verifyPassword').show();
 		$('#verifyPassword').next().show();
 
+		$('#email').val("");
 		$('#email').show();
 		$('#email').next().show();
 

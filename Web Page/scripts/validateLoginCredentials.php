@@ -7,8 +7,6 @@
   /**
    *	Verify valid POST arguments
    */
-
-
   if( $_POST['functionName'] == "" ) {
   	$response['error'] = 'No function name!';
 	  echo json_encode($response);
