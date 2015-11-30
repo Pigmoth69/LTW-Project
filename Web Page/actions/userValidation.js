@@ -30,15 +30,21 @@ function startForms(){
 
 	$('#submitLog').show();
 	$('#submitReg').hide();
+
+	$('#message').hide();
 }
 
 function switchPanel(button){
+
+	$('input#username').val("");
+	$('input#password').val("");
+
+	$('#message').hide();
+
 	if(button == 'login'){
 		$('#LoginButton').css('background-color','green');
 		$('#RegisterButton').css('background-color','#76A9C5');
 
-		$('input#username').val("");
-		$('input#password').val("");
 
 		$('#verifyPassword').hide();
 		$('#verifyPassword').next().hide();
@@ -53,9 +59,6 @@ function switchPanel(button){
 		$('#RegisterButton').css('background-color','green');
 		$('#LoginButton').css('background-color','#76A9C5');
 		
-		$('input#username').val("");
-		$('input#password').val("");
-
 		$('#verifyPassword').val("");
 		$('#verifyPassword').show();
 		$('#verifyPassword').next().show();
@@ -70,43 +73,8 @@ function switchPanel(button){
 
 }
 
-function updateLoginForm() {
-	if ($('#LoginButton').is(':checked')){
-		$('#verPassLabel').hide();
-		$('#verPassLabel').next().hide();
-
-		$('#verifyPassword').hide();
-		$('#verifyPassword').next().hide();
-
-		$('#emailLabel').hide();
-		$('#emailLabel').next().hide();
-
-		$('#email').hide();
-		$('#email').next().hide();
-
-		$('#submitLog').show();
-		$('#submitReg').hide();
-
-	 }
-	else if($('#register').is(':checked')){
-		$('#verPassLabel').show();
-		$('#verPassLabel').next().show();
-
-		$('#verifyPassword').show();
-		$('#verifyPassword').next().show();
-
-		$('#emailLabel').show();
-		$('#emailLabel').next().show();
-
-		$('#email').show();
-		$('#email').next().show();
-
-		$('#submitLog').hide();
-		$('#submitReg').show();
-	}
-}
-
 function onButtonClick(button) {
+	/*que objetivo tem esta condiçao?*/
 	if(button == 'login')
 		$('#acessType').val('login');
 	else if(button == 'register')
@@ -135,8 +103,13 @@ function logIn() {
 		"password": password
 	}, 
 	function (data) {
-		for (var element in data){
-			console.log(data[element]);
+		if(data['error'] != null){
+			$('div#message').show();
+			$('div#message').html(data['error']);
+		}
+		else {
+			$('div#message').hide();
+			window.document.location.href = '../pages/mainPage.html';
 		}
 	})
     .fail(function (error) {
@@ -161,9 +134,8 @@ function register() {
 		'email': email
 	}, 
 	function (data) {
-		for (var element in data){
-			console.log(data[element]);
-		}
+		$('div#message').show();
+		$('div#message').html(data['error']);
 	})
     .fail(function (error) {
         console.log("Error: " + error);
