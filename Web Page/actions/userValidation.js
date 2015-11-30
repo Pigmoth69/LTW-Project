@@ -101,7 +101,7 @@ function logIn() {
 	function (data) {
 		showInputValidation(data);
 		if(data['error'] == null)
-			window.document.location.href = '../pages/mainPage.html';
+			window.document.location.href = '../pages/mainPage.php';
 	})
     .fail(function (error) {
         alert(error);

@@ -9,6 +9,8 @@
 <meta name="description" content="" />
 <link href="../styles/mainPageStyle.css" rel="stylesheet" type="text/css" media="all" />
 
+<?php include '../server/startSession.php'; ?>
+
 </head>
 <body>
 
@@ -127,6 +129,7 @@
 	<p>&copy; Wild Bird</p>
 	<p>	All rights reserved.</p>
 </div>
+
 <script src="../actions/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="../actions/slider.js"></script>
 <script type="text/javascript" src="../actions/acessSession.js"></script>
