@@ -74,11 +74,7 @@ function switchPanel(button){
 }
 
 function onButtonClick(button) {
-	/*que objetivo tem esta condiçao?*/
-	if(button == 'login')
-		$('#acessType').val('login');
-	else if(button == 'register')
-		$('#acessType').val('register');
+	$('#acessType').val(button);
 
 	$('#validationForm').submit();
 }
@@ -103,14 +99,7 @@ function logIn() {
 		"password": password
 	}, 
 	function (data) {
-		if(data['error'] != null){
-			$('div#message').show();
-			$('div#message').html(data['error']);
-		}
-		else {
-			$('div#message').hide();
-			window.document.location.href = '../pages/mainPage.html';
-		}
+		showInputValidation(data);
 	})
     .fail(function (error) {
         alert(error);
@@ -134,10 +123,20 @@ function register() {
 		'email': email
 	}, 
 	function (data) {
-		$('div#message').show();
-		$('div#message').html(data['error']);
+		showInputValidation(data);
 	})
     .fail(function (error) {
         console.log("Error: " + error);
     });
+}
+
+function showInputValidation(data) {
+	if(data['error'] != null){
+		$('#message').show();
+		$('#message').html(data['error']);
+	}
+	else {
+		$('#message').hide();
+		window.document.location.href = '../pages/mainPage.html';
+	}
 }
