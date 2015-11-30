@@ -11,7 +11,7 @@ function onReady() {
 
 
 function makeSlide(){
-	if(this.counter > 4 || this.counter <-1)
+	if(this.counter > 3 || this.counter <-1)
 		this.counter=0;
 	
 	switch(this.counter){
@@ -33,11 +33,6 @@ function makeSlide(){
 		case 3:
 			$('#slider3').css('display','none');
 			$('#slider4').css('display','block');
-			counter++;
-			break;
-		case 4:
-			$('#slider4').css('display','none');
-			$('#slider5').css('display','block');
 			counter++;
 			break;
 		default:

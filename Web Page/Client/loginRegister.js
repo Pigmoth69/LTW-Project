@@ -82,9 +82,8 @@ function onButtonClick(button) {
 }
 
 function onKeyPressed(event) {
-	if ( event.which == 13 ) {
+	if ( event.which == 13 ) 
 		$('#validationForm').submit();
-  }
 }
 
 function onFormSubmission(event) {

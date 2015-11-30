@@ -1,132 +1,98 @@
 <!DOCTYPE html>
 
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Wild Bird</title>
+<title></title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<link href="../Styles/mainPageStyle.css" rel="stylesheet" type="text/css" media="all" />
-
+<link href="../styles/mainPageStyle.css" rel="stylesheet" type="text/css" media="all" />
 <?php include '../Server/startSession.php'; ?>
 
 </head>
 <body>
-
-<!--Isto é o body em si!-->
-<div id="wrapper">
-	<div id="menu-wrapper">
-	<div id="header-wrapper">
-		<div id="header" class="container">
-			<div id="logo">
-				<img id="logoImg" src="../Resources/Logos/logo.png" alt="companylogo">
-			</div>
-		</div>
-	</div>
-		<div id="menu" class="container">
-			<ul>
-				<li class="current_page_item"><a href="#">Homepage</a></li>
-				<li><a href="#">Events</a></li>
-				<li><a href="#">Search</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="#">Logout</a></li>
-			</ul>
-		</div> 
-	
-	</div>
-	<!-- Making a slider!-->
-	<div id="banner">
-		<div id="slider">
-				<div id="slider1"> </div>
-				<div id="slider2"> </div>
-				<div id="slider3"> </div>
-				<div id="slider4"> </div>
-				<div id="slider5"> </div>
-		</div>
-	</div>
-	<!-- End of slider -->
-	
-	<div id="page" class="container">
-		<div id="content">
-			<div class="title">
-				<h2>Integer sit amet aliquet</h2>
-				<span class="byline">Phasellus nec erat sit amet nibh pellentesque congue</span> </div>
-			<p>This is <strong>GrassyGreen</strong>, a free, fully standards-compliant CSS template designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :) </p>
-			<p>Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget, tempus et, tellus. Etiam neque. Vivamus consequat lorem at nisl. Nullam non wisi a sem semper eleifend. Donec mattis libero eget urna. Duis pretium velit ac mauris. Proin eu wisi suscipit nulla suscipit interdum. Aenean lectus lorem, imperdiet at, ultrices eget, ornare et, wisi. Pellentesque adipiscing purus ac magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.  Nullam non wisi a sem semper eleifend. Donec mattis libero eget urna. </p>
-		</div>
-		<div id="sidebar">
-			<div class="box2">
-				<div class="title">
-					<h2>Integer gravida</h2>
-				</div>
-				<ul class="style2">
-					<li><a href="#">Amet turpis, feugiat et sit amet</a></li>
-					<li><a href="#">Ornare in hendrerit in lectus</a></li>
-					<li><a href="#">Semper mod quis eget mi dolore</a></li>
-					<li><a href="#">Quam turpis feugiat sit dolor</a></li>
-					<li><a href="#">Amet ornare in hendrerit in lectus</a></li>
-					<li><a href="#">Quam turpis feugiat sit dolor</a></li>
-					<li><a href="#">Consequat etiam lorem phasellus</a></li>
+<div id="header-wrapper">
+	<div id="header" class="container">
+		<div id="logo">
+			<h1><a href="#">Blue Bird</a></h1>
+			<div id="menu">
+				<ul>
+					<li class="active"><a href="#" accesskey="1" title="">Homepage</a></li>
+					<li><a href="#" accesskey="2" title="">Our Clients</a></li>
+					<li><a href="#" accesskey="3" title="">About Us</a></li>
+					<li><a href="#" accesskey="4" title="">Careers</a></li>
+					<li><a href="#" accesskey="5" title="">Contact Us</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </div>
-	
-<!-- Isto é o footer!-->
-<div id="footer-wrapper">
-	<div id="footer" class="container">
-		<div id="box1">
-			<div class="title">
-				<h2>Latest Post</h2>
-			</div>
-			<ul class="style1">
-				<li><a href="#">Semper mod quis eget mi dolore</a></li>
-				<li><a href="#">Quam turpis feugiat sit dolor</a></li>
-				<li><a href="#">Amet ornare in hendrerit in lectus</a></li>
-				<li><a href="#">Consequat etiam lorem phasellus</a></li>
-				<li><a href="#">Amet turpis, feugiat et sit amet</a></li>
-				<li><a href="#">Semper mod quisturpis nisi</a></li>
-			</ul>
+<div id="page-wrapper">
+	<div id="welcome" class="container">
+		<div class="title">
+			<h2>Welcome to our website</h2>
 		</div>
-		<div id="box2">
+		<p>This is <strong>EarthyBlue</strong>, a free, fully standards-compliant CSS template designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :) </p>
+		<img src="../Resources/Images/banner.jpg" class="image image-full" alt="" />
+	</div>
+</div>
+<div class="wrapper">
+	<div id="three-column" class="container">
+		<div><span class="arrow-down"></span></div>
+		<div id="tbox1">
 			<div class="title">
-				<h2>Popular Links</h2>
+				<h2>Maecenas luctus</h2>
 			</div>
-			<ul class="style1">
-				<li><a href="#">Semper mod quis eget mi dolore</a></li>
-				<li><a href="#">Quam turpis feugiat sit dolor</a></li>
-				<li><a href="#">Amet ornare in hendrerit in lectus</a></li>
-				<li><a href="#">Consequat etiam lorem phasellus</a></li>
-				<li><a href="#">Amet turpis, feugiat et sit amet</a></li>
-				<li><a href="#">Semper mod quisturpis nisi</a></li>
-			</ul>
+			<p>Nullam non wisi a sem semper eleifend. Donec mattis libero eget urna. Duis pretium velit ac suscipit mauris. Proin eu wisi suscipit nulla suscipit interdum.</p>
+			<a href="#" class="button">Learn More</a> </div>
+		<div id="tbox2">
+			<div class="title">
+				<h2>Integer gravida</h2>
+			</div>
+			<p>Proin eu wisi suscipit nulla suscipit interdum. Nullam non wisi a sem semper suscipit eleifend. Donec mattis libero eget urna. Duis  velit ac mauris.</p>
+			<a href="#" class="button">Learn More</a> </div>
+		<div id="tbox3">
+			<div class="title">
+				<h2>Praesent mauris</h2>
+			</div>
+			<p>Donec mattis libero eget urna. Duis pretium velit ac mauris. Proin eu wisi suscipit nulla suscipit interdum. Nullam non wisi a sem suscipit  eleifend.</p>
+			<a href="#" class="button">Learn More</a> </div>
+	</div>
+	<div id="portfolio" class="container">
+		<div class="column1">
+			<div class="box"> <a href="#"><img src="../Resources/Images/scr01.jpg" alt="" class="image image-full" /></a>
+				<h3>Vestibulum venenatis</h3>
+				<p>Fermentum nibh augue praesent a lacus at urna congue rutrum.</p>
+				<a href="#" class="button button-small">Etiam posuere</a> </div>
 		</div>
-		
-		<div id="box3">
-			<div class="title">
-				<h2>Follow Us</h2>
-			</div>
-			<p>Proin eu wisi suscipit nulla suscipit interdum. Aenean lectus lorem, imperdiet magna.</p>
-			<ul class="contact">
-				<li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
-				<li><a href="#" class="icon icon-facebook"><span>Facebook</span></a></li>
-				<li><a href="#" class="icon icon-dribbble"><span>Dribbble</span></a></li>
-				<li><a href="#" class="icon icon-tumblr"><span>Tumblr</span></a></li>
-				<li><a href="#" class="icon icon-rss"><span>Pinterest</span></a></li>
-			</ul>
-				<a href="#" class="button">Read More</a> </div>
+		<div class="column2">
+			<div class="box"> <a href="#"><img src="../Resources/Images/scr02.jpg" alt="" class="image image-full" /></a>
+				<h3>Praesent scelerisque</h3>
+				<p>Vivamus fermentum nibh in augue praesent urna congue rutrum.</p>
+				<a href="#" class="button button-small">Etiam posuere</a> </div>
+		</div>
+		<div class="column3">
+			<div class="box"> <a href="#"><img src="../Resources/Images/scr03.jpg" alt="" class="image image-full" /></a>
+				<h3>Donec dictum metus</h3>
+				<p>Vivamus fermentum nibh in augue praesent urna congue rutrum.</p>
+				<a href="#" class="button button-small">Etiam posuere</a> </div>
+		</div>
+		<div class="column4">
+			<div class="box"> <a href="#"><img src="../Resources/Images/scr04.jpg" alt="" class="image image-full" /></a>
+				<h3>Mauris vulputate dolor</h3>
+				<p>Rutrum fermentum nibh in augue praesent urna congue rutrum.</p>
+				<a href="#" class="button button-small">Etiam posuere</a> </div>
 		</div>
 	</div>
 </div>
-
 <div id="copyright" class="container">
-	<p>&copy; Wild Bird</p>
-	<p>	All rights reserved.</p>
+	<p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+		<ul class="contact">
+			<li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
+			<li><a href="#" class="icon icon-facebook"><span></span></a></li>
+			<li><a href="#" class="icon icon-dribbble"><span>Pinterest</span></a></li>
+			<li><a href="#" class="icon icon-tumblr"><span>Google+</span></a></li>
+			<li><a href="#" class="icon icon-rss"><span>Pinterest</span></a></li>
+		</ul>
 </div>
-
-<script src="../Client/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="../Client/slider.js"></script>
 </body>
 </html>
