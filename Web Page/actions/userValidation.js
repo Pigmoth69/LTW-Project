@@ -136,7 +136,13 @@ function showInputValidation(data) {
 	$('#message').show();
 
 	if (data['error'] != null)
-		$('#message').html(data['error']);
+		{
+			$('#message').css('background-color','#ff6666');
+			$('#message').html(data['error']);
+		}
 	else
-		$('#message').html(data['message']);
+		{
+			$('#message').css('background-color','#99ff99');
+			$('#message').html(data['message']);
+		}
 }

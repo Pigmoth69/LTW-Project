@@ -13,6 +13,9 @@
 <body>
 
 <!--Isto é o body em si!-->
+<form id="testForm" action="../server/mainPage.php" method="POST">
+	<input type="button" id="testButton" value="test">
+</form>
 
 <div id="wrapper">
 	<div id="menu-wrapper">
@@ -126,5 +129,6 @@
 </div>
 <script src="../actions/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="../actions/slider.js"></script>
+<script type="text/javascript" src="../actions/acessSession.js"></script>
 </body>
 </html>

@@ -1,6 +1,10 @@
 <?php
 class SessionManager
 {
+   public function __construct($name){
+        sessionStart($name);
+   }
+
    static function sessionStart($name, $limit = 0, $path = '/', $domain = null, $secure = null)
    {
       // Set the cookie name before we start.

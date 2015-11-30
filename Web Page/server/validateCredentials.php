@@ -56,6 +56,12 @@
         return;
       }
 
+      // INITIALIZE USER SESSION
+      session_start();
+      $_SESSION['login'] = true;
+      $_SESSION['username'] = $username;
+      $_SESSION['id'] = 135;
+
       $response['message'] = 'Logged in successfully';
       break;
 
