@@ -7,24 +7,20 @@
 <title>Wild Bird</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<link href="../styles/mainPageStyle.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../Styles/mainPageStyle.css" rel="stylesheet" type="text/css" media="all" />
 
-<?php include '../server/startSession.php'; ?>
+<?php include '../Server/startSession.php'; ?>
 
 </head>
 <body>
 
 <!--Isto é o body em si!-->
-<form id="testForm" action="../server/mainPage.php" method="POST">
-	<input type="button" id="testButton" value="test">
-</form>
-
 <div id="wrapper">
 	<div id="menu-wrapper">
 	<div id="header-wrapper">
 		<div id="header" class="container">
 			<div id="logo">
-				<img id="logoImg" src="../resources/logos/logo.png" alt="companylogo">
+				<img id="logoImg" src="../Resources/Logos/logo.png" alt="companylogo">
 			</div>
 		</div>
 	</div>
@@ -130,8 +126,7 @@
 	<p>	All rights reserved.</p>
 </div>
 
-<script src="../actions/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="../actions/slider.js"></script>
-<script type="text/javascript" src="../actions/acessSession.js"></script>
+<script src="../Client/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../Client/slider.js"></script>
 </body>
 </html>

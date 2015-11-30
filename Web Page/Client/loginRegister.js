@@ -92,7 +92,7 @@ function logIn() {
 	var password = $('#password').val();
 
 	$.post(
-    '../server/validateCredentials.php',
+    '../Server/validateCredentials.php',
 	{
 		"functionName": 'login', 
 		"username": username,
@@ -101,7 +101,7 @@ function logIn() {
 	function (data) {
 		showInputValidation(data);
 		if(data['error'] == null)
-			window.document.location.href = '../pages/mainPage.php';
+			window.document.location.href = '../Pages/mainPage.php';
 	})
     .fail(function (error) {
         alert(error);
@@ -116,7 +116,7 @@ function register() {
 	var email = $('#email').val();
 
 	$.post(
-    '../server/validateCredentials.php',
+    '../Server/validateCredentials.php',
 	{
 		'functionName': 'register', 
 		'username': username,

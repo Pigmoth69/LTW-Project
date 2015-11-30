@@ -3,9 +3,9 @@
 	<meta name="description" content="Login to Free Event Calendar">
 	<meta name="keywords" content="Free, Event, Events, Manager, LogIn, Personal, Account">
 	<meta name="author" content="Feup Students">
-	<link rel="stylesheet" href="../styles/LoginRegisterPageStyle.css"/>
+	<link rel="stylesheet" href="../Styles/loginRegisterPageStyle.css"/>
 	<meta charset="UTF-8">
-	<link rel="icon" href="../resources/logos/icon.jpg"/>
+	<link rel="icon" href="../Resources/Logos/icon.jpg"/>
 	<title>Login/Register</title>
 </head>
 <body>
@@ -46,7 +46,7 @@
 		</form>
 </div>
 
-	<script src="../actions/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="../actions/userValidation.js"></script>
+	<script src="../Client/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../Client/loginRegister.js"></script>
 </body>
 </html>

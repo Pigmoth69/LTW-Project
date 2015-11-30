@@ -1,6 +1,6 @@
  <?php
   header('Content-Type: application/json');
-  include_once('Database.php');
+  include_once('database.php');
 
   $response = array();
 

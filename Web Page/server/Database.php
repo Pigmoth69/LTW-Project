@@ -6,7 +6,7 @@ class Database{
 
 	 public function __construct(){
 		try{
-			$this->database = new PDO('sqlite:../database/database.db');
+			$this->database = new PDO('sqlite:../Database/database.db');
 		} catch (PDOException $e) {
 			die($e->getMessage());
 		}
