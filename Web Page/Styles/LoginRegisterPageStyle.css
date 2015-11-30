@@ -111,7 +111,7 @@ body {
 }
 
 .login-block input:active, .login-block input:focus {
-    border: 1px solid #ff656c;
+    border: 1px solid #0085b3;
 }
 
 .login-block #submitLog, .login-block #submitReg {

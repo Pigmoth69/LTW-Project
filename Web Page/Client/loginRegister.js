@@ -9,6 +9,8 @@ function onReady() {
 	$('#submitLog').click(function() {onButtonClick('login'); });
 	$('#submitReg').click(function() {onButtonClick('register'); });
 
+	$('#validationForm').keypress(function( event ) {onKeyPressed(event) });
+
 	$('#validationForm').submit(
 		function(event) {
 		event.preventDefault();
@@ -77,6 +79,12 @@ function onButtonClick(button) {
 	$('#acessType').val(button);
 
 	$('#validationForm').submit();
+}
+
+function onKeyPressed(event) {
+	if ( event.which == 13 ) {
+		$('#validationForm').submit();
+  }
 }
 
 function onFormSubmission(event) {
