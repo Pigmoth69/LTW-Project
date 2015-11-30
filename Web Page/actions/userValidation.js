@@ -100,6 +100,8 @@ function logIn() {
 	}, 
 	function (data) {
 		showInputValidation(data);
+		if(data['error'] == null)
+			window.document.location.href = '../pages/mainPage.html';
 	})
     .fail(function (error) {
         alert(error);
@@ -131,12 +133,10 @@ function register() {
 }
 
 function showInputValidation(data) {
-	if(data['error'] != null){
-		$('#message').show();
+	$('#message').show();
+
+	if (data['error'] != null)
 		$('#message').html(data['error']);
-	}
-	else {
-		$('#message').hide();
-		window.document.location.href = '../pages/mainPage.html';
-	}
+	else
+		$('#message').html(data['message']);
 }
