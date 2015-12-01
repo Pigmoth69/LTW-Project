@@ -70,6 +70,14 @@ class Database{
 		return true;
 	}
 
+	//função de teste. Esta função tem de ser alterada conforme todas as restrições de private ou public
+	public function getAllEvents(){
+		$stmt = $this->database->prepare('SELECT * FROM Event');
+		$stmt->execute();
+		$events = $stmt->fetchAll();
+		return $events;
+	}
+
 }
 
 	//ifaz o check de valid email da google da think

@@ -16,8 +16,7 @@ CREATE TABLE User (
 CREATE TABLE EventPhoto (
 	id 			INTEGER	NOT NULL PRIMARY KEY AUTOINCREMENT,
 	idUser		INTEGER	REFERENCES User(id),
-	uploadDate	DATE NOT NULL,
-	description	TEXT
+	uploadDate	DATE NOT NULL
 );
 
 CREATE TABLE Location (
@@ -30,6 +29,7 @@ CREATE TABLE Location (
 CREATE TABLE Event (
 	id 			INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	idUser 		INTEGER NOT NULL REFERENCES User(id),
+	description	TEXT,
 	idPhoto 	INTEGER NOT NULL REFERENCES EventPhoto(id),
 	idLocation 	INTEGER NOT NULL REFERENCES Location(id),
 	private		BOOLEAN	NOT NULL,
