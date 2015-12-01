@@ -80,7 +80,7 @@ class Database{
 	//gets all events that the user has access to.
 	public function getUserEvents($userID) {
 		$stmt = $this->database->prepare('SELECT * FROM Event JOIN EventUser on EventUser.idEvent = Event.id WHERE EventUser.idUser = :userID');
-		$stmt->bindParam(':userID', $userID);
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
 		$stmt->execute();
 		$userEvents = $stmt->fetchAll();
 
@@ -88,15 +88,20 @@ class Database{
 	}
 
 	//checks if a user is the host of the event
-	public function isHost($userID, $eventID) {
-		$stmt = $this->database->prepare('SELECT idEvent FROM User JOIN Event on Event.idHost = :userID WHERE Event.id = :eventID');
-		$stmt->bindParam(':userID', $userID);
-		$stmt->bindParam(':eventID', $eventID);
+	public function isHost($hostID, $eventID) {
+		$stmt = $this->database->prepare('SELECT * FROM Event Where id = :eventID AND idHost = :hostID');
+		$stmt->bindParam(':hostID', $hostID, PDO::PARAM_INT);
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
 		$stmt->execute();
-		$hostedEvent = $stmt->fetch();
-		if(isset($hostedEvent))
+		$hostedEvent = $stmt->fetchAll();
+		if($hostedEvent != NULL){
+			//echo "true";
 			return true;
-		else return false;
+		}
+		else {
+			//echo "false";
+			return false;
+		}
 	}
 
 }

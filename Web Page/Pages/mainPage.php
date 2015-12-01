@@ -17,7 +17,7 @@
 			<div id="menu">
 				<ul>
 					<li class="active"><a href="#" accesskey="1" title="">Homepage</a></li>
-					<li><a href="EventsPage.php" accesskey="2" title="">Events</a></li>
+					<li><a href="SearchPage.php" accesskey="2" title="">Events</a></li>
 					<li><a href="#" accesskey="3" title="">Search</a></li>
 					<li><a href="#" accesskey="4" title="">Profile</a></li>
 					<li><a href="#" accesskey="5" title="">Logout</a></li>
