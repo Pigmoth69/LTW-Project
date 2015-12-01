@@ -89,16 +89,17 @@ class Database{
 
 	//checks if a user is the host of the event
 	public function isHost($hostID, $eventID) {
-		$stmt = $this->database->prepare('SELECT * FROM Event Where (id = :eventID) AND (idHost = :hostID)');
-		var_dump($hostedEvent);
+		$stmt = $this->database->prepare('SELECT * FROM Event Where id = :eventID AND idHost = :hostID');
 		$stmt->bindParam(':hostID', $hostID, PDO::PARAM_INT);
 		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
 		$stmt->execute();
 		$hostedEvent = $stmt->fetchAll();
-		if(isset($hostedEvent))
+		if($hostedEvent != NULL){
+			//echo "true";
 			return true;
+		}
 		else {
-			echo "false";
+			//echo "false";
 			return false;
 		}
 	}

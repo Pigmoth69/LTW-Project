@@ -10,7 +10,7 @@
 	include '../Server/startSession.php'; 
 	include '../Server/Database.php';
 	$database = new Database;
-	$events = $database->getUserEvents();
+	$events = $database->getAllEvents();
 ?>
 
 </head>
@@ -46,7 +46,8 @@
 	<div id="portfolio" class="container">
 			<?php
 				foreach($events as $row){
-					if($database->isHost(2, $row['id'])) {?>
+					if($database->isHost(2, $row['id'])) {
+						?>
 					<div id="column">
 						<div class="box"> <a href="#"><img src="../Resources/Images/scr01.jpg" alt="" class="image image-full" /></a>
 							<h3><?php echo $row['id']; ?></h3>
