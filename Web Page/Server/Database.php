@@ -95,13 +95,33 @@ class Database{
 		$stmt->execute();
 		$hostedEvent = $stmt->fetchAll();
 		if($hostedEvent != NULL){
-			//echo "true";
 			return true;
 		}
 		else {
-			//echo "false";
 			return false;
 		}
+	}
+
+	public function eventIsPrivate($eventID) {
+		$stmt = $this->database->prepare('SELECT * FROM Event WHERE id = :eventID');
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+		$events = $stmt->fetchAll();
+		if($events[0][5])
+			return true;
+		else return false;
+	}
+
+	//returns true if user is following the event
+	public function isFollowing($userID, $eventID) {
+		$stmt = $this->database->prepare('SELECT * FROM EventUser WHERE idUser = :userID AND idEvent = :eventID');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+		$eventUsers = $stmt->fetchAll();
+		if($eventUsers != NULL)
+			return true;
+		else return false;
 	}
 
 }
