@@ -70,12 +70,33 @@ class Database{
 		return true;
 	}
 
-	//função de teste. Esta função tem de ser alterada conforme todas as restrições de private ou public
 	public function getAllEvents(){
 		$stmt = $this->database->prepare('SELECT * FROM Event');
 		$stmt->execute();
 		$events = $stmt->fetchAll();
 		return $events;
+	}
+
+	//gets all events that the user has access to.
+	public function getUserEvents($userID) {
+		$stmt = $this->database->prepare('SELECT * FROM Event JOIN EventUser on EventUser.idEvent = Event.id WHERE EventUser.idUser = :userID');
+		$stmt->bindParam(':userID', $userID);
+		$stmt->execute();
+		$userEvents = $stmt->fetchAll();
+
+		return $userEvents;
+	}
+
+	//checks if a user is the host of the event
+	public function isHost($userID, $eventID) {
+		$stmt = $this->database->prepare('SELECT idEvent FROM User JOIN Event on Event.idHost = :userID WHERE Event.id = :eventID');
+		$stmt->bindParam(':userID', $userID);
+		$stmt->bindParam(':eventID', $eventID);
+		$stmt->execute();
+		$hostedEvent = $stmt->fetch();
+		if(isset($hostedEvent))
+			return true;
+		else return false;
 	}
 
 }

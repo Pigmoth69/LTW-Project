@@ -46,12 +46,12 @@
 	<div id="portfolio" class="container">
 			<?php
 				foreach($events as $row){?>
-				<div id="column">
-				<div class="box"> <a href="#"><img src="../Resources/Images/scr01.jpg" alt="" class="image image-full" /></a>
-				<h3><?php echo $row['id'] ?></h3>
-				<p><?php echo $row['description'] ?></p>
-				<a href="#" class="button button-small">Etiam posuere</a></div>
-				</div>
+					<div id="column">
+						<div class="box"> <a href="#"><img src="../Resources/Images/scr01.jpg" alt="" class="image image-full" /></a>
+							<h3><?php echo $row['id'] ?></h3>
+							<p><?php echo $row['description'] ?></p>
+						<a href="#" class="button button-small">Etiam posuere</a></div>
+					</div>
 				<?php } ?>
 	</div>
 </div>
