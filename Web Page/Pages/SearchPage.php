@@ -5,12 +5,12 @@
 <title></title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<link href="../styles/EventPageStyle.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../styles/SearchPageStyle.css" rel="stylesheet" type="text/css" media="all" />
 <?php
 	include '../Server/startSession.php'; 
 	include '../Server/Database.php';
 	$database = new Database;
-	$events = $database->getAllEvents();
+	$events = $database->getUserEvents();
 ?>
 
 </head>
@@ -45,14 +45,16 @@
 <div class="wrapper">
 	<div id="portfolio" class="container">
 			<?php
-				foreach($events as $row){?>
+				foreach($events as $row){
+					if($database->isHost(2, $row['id'])) {?>
 					<div id="column">
 						<div class="box"> <a href="#"><img src="../Resources/Images/scr01.jpg" alt="" class="image image-full" /></a>
-							<h3><?php echo $row['id'] ?></h3>
-							<p><?php echo $row['description'] ?></p>
+							<h3><?php echo $row['id']; ?></h3>
+							<p><?php echo $row['description']; ?></p>
+							<input <?php echo "id=\"Aderir" . $row['id'] . "\""; ?> type="button" <?php echo "value=\"Aderir\""; ?> />	
 						<a href="#" class="button button-small">Etiam posuere</a></div>
 					</div>
-				<?php } ?>
+				<?php } }?>
 	</div>
 </div>
 <div id="copyright" class="container">
