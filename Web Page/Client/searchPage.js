@@ -17,7 +17,7 @@ function onButtonClick(event) {
 	}, 
 	function (data) {
 		if(data['error'] != null){
-			console.log('Deu merda');
+			console.log(data['error']);
 			return;
 		}
 

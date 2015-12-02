@@ -19,9 +19,12 @@
   $userID = $_SESSION['userID'];
 
   $database = new Database;
-  $database->addUserToEvent($userID, $eventID);
+  if(!$database->addUserToEvent($userID, $eventID)){
+    printErrorMessage($response, 'User already signed in to the event!');
+    return;
+  }
   
-  $response['message'] = 'Top kek';
+  $response['message'] = 'Successfully signed in to the event';
   echo json_encode($response);
   
 

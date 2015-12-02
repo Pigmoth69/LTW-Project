@@ -136,10 +136,20 @@ class Database{
 	}
 
 	public function addUserToEvent($userID, $eventID){
+		//Verify if for some reason user already exists
+		$stmt = $this->database->prepare('SELECT * FROM EventUser Where idEvent = :eventID AND idUser = :userID');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+		$existingUserEvents = $stmt->fetchAll();
+		if(!empty($existingUserEvents))
+			return false;
+
 		$stmt = $this->database->prepare('INSERT INTO EventUser(idEvent, idUser) VALUES(:eventID, :userID)');
 		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
 		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
 		$stmt->execute();
+		return true;
 	}
 
 }
