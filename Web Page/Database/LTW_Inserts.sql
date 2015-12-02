@@ -15,13 +15,15 @@ CREATE TRIGGER connectEventUser
 	END;
 /*******INSERTS*********/
 /*passwords: qwerty, 12345, asdasd*/
-INSERT INTO User(USERNAME, EMAIL, PASSWORD, DATANASCIMENTO) VALUES('Pigmoth', 'pigmoth@gmail.com', '$2y$10$Pjnde6rRKvo4mDaQmWNYme1K6wqWbeoM/Asq6uGLMvqm4ms1eOqyq', '1995-01-03'); 
-INSERT INTO User(USERNAME, EMAIL, PASSWORD, DATANASCIMENTO) VALUES('guilhermevpinto', 'guilhermevpinto@gmail.com', '$2y$10$x7HX5nnwJaOhNfmEL5irx.dEnhmapRMzcS.76hC2H.dDTXmW8EpSG', '1994-12-13');
-INSERT INTO User(USERNAME, EMAIL, PASSWORD, DATANASCIMENTO) VALUES('Nutil', 'luisfigueiredos@hotmail.com', '$2y$10$ZOAtLO0TM04rgulbkuXcJO3AciQSc7blNs.ThNs81jUPm.uUuGNAu', '1995-04-20');
+INSERT INTO Photo(URL) VALUES('../Resources/ProfilePics/defaultProfilePic.png');
+INSERT INTO Photo(URL) VALUES('../Resources/ProfilePics/gustavo.jpg');
+INSERT INTO Photo(URL) VALUES('../Resources/ProfilePics/eunasciaqui.png');
+INSERT INTO Photo(URL) VALUES('../Resources/ProfilePics/carreira.png');
 
-INSERT INTO EventPhoto(IDUSER, UPLOADDATE) VALUES(1, '2015-11-17');
-INSERT INTO EventPhoto(IDUSER, UPLOADDATE) VALUES(2, '2015-10-12');
-INSERT INTO EventPhoto(IDUSER, UPLOADDATE) VALUES(3, '2015-10-17');
+/*passwords: qwerty, 12345, asdasd*/
+INSERT INTO User(USERNAME, EMAIL, PASSWORD, DATANASCIMENTO, IDPHOTO) VALUES('Pigmoth', 'pigmoth@gmail.com', '$2y$10$Pjnde6rRKvo4mDaQmWNYme1K6wqWbeoM/Asq6uGLMvqm4ms1eOqyq', '1995-01-03', 2); 
+INSERT INTO User(USERNAME, EMAIL, PASSWORD, DATANASCIMENTO, IDPHOTO) VALUES('guilhermevpinto', 'guilhermevpinto@gmail.com', '$2y$10$x7HX5nnwJaOhNfmEL5irx.dEnhmapRMzcS.76hC2H.dDTXmW8EpSG', '1994-12-13', 3);
+INSERT INTO User(USERNAME, EMAIL, PASSWORD, DATANASCIMENTO, IDPHOTO) VALUES('Nutil', 'luisfigueiredos@hotmail.com', '$2y$10$ZOAtLO0TM04rgulbkuXcJO3AciQSc7blNs.ThNs81jUPm.uUuGNAu', '1995-04-20', 4);
 
 INSERT INTO Location(NAME, ADDRESS, DESCRIPTION) VALUES('FEUP', 'Roberto Frias', 'FEUPCaffe Spot');
 INSERT INTO Location(NAME, ADDRESS, DESCRIPTION) VALUES('Estacao de Comboio S. Bento', 'Aliados', 'Pouca Terra');
