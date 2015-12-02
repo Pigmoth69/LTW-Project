@@ -1,32 +1,27 @@
  <?php
-  
-  require_once 'Database.php';
-  echo 'hello';
   header('Content-Type: application/json');
-  
-  
-
+  echo 'hello1';
+  include_once('database.php');
+  echo 'hello2';
   $response = array();
 
-
-
   /**
-   *	Verify valid POST arguments
+   *  Verify valid POST arguments
    */
   if( $_POST['functionName'] == "" ) {
-  	printErrorMessage($response, 'No function name!');
-	  return;
-	}
+    printErrorMessage($response, 'No function name!');
+    return;
+  }
 
   if( $_POST['username'] == "" ) {
     printErrorMessage($response, 'No username argument!');
-	  return;
-	}
+    return;
+  }
 
   if( $_POST['password'] == "" ) {
     printErrorMessage($response, 'No password argument!');
-	  return;
-	}
+    return;
+  }
   
   $usernameLength = strlen($_POST['username']);
   if($usernameLength < 4 || $usernameLength > 16){
