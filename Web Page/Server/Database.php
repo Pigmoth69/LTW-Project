@@ -124,6 +124,17 @@ class Database{
 		else return false;
 	}
 
+	public function getUserID($username) {
+		$stmt = $this->database->prepare('SELECT id FROM User WHERE username = :username');
+		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+		$stmt->execute();
+		$id = $stmt->fetchAll();
+		if(empty($id[0]))
+			return false;
+
+		return $id;
+	}
+
 }
 
 	//ifaz o check de valid email da google da think

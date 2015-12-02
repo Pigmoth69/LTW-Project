@@ -7,10 +7,19 @@
 <meta name="description" content="" />
 <link href="../styles/SearchPageStyle.css" rel="stylesheet" type="text/css" media="all" />
 <?php
-	include '../Server/startSession.php'; 
+	include '../Server/startSession.php';
 	include '../Server/Database.php';
+	include '../Server/session.php';
+	
 	$database = new Database;
 	$events = $database->getAllEvents();
+	try {
+		$session = new Session;
+	}
+	catch(Exception $e) {
+		die($e->getMessage());
+	}
+
 ?>
 
 </head>
@@ -46,12 +55,12 @@
 	<div id="portfolio" class="container">
 			<?php
 				foreach($events as $row){
-					if(!$database->userIsFollowing(1, $row['id']) && !$database->eventIsPrivate($row['id'])) {
+					if(!$database->userIsFollowing($session->getUserID(), $row['id']) && !$database->eventIsPrivate($row['id'])) {
 						?>
 					<div id="column">
 						<div class="box"> <a href="#"><img src="../Resources/Images/scr01.jpg" alt="" class="image image-full" /></a>
 							<p><?php echo $row['description']; ?></p>
-							<input <?php echo "id=\"Aderir" . $row['id'] . "\""; ?>class="button button-small" type="button" <?php echo "value=\"Aderir\""; ?> />	
+							<input id="Aderir<?php echo $row['id']; ?>" class="button button-small" type="button" value="Aderir" />	
 						<a href="#" class="button button-small">Etiam posuere</a></div>
 					</div>
 				<?php } }?>

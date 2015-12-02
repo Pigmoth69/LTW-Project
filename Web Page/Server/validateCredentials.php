@@ -58,9 +58,9 @@
 
       // INITIALIZE USER SESSION
       session_start();
-      $_SESSION['login'] = true;
+      $_SESSION['logged'] = true;
       $_SESSION['username'] = $username;
-      $_SESSION['id'] = 135;
+      $_SESSION['userID'] = $database->getUserID($username);
 
       $response['message'] = 'Logged in successfully';
       break;
