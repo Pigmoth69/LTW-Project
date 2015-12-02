@@ -34,7 +34,7 @@
 					<li><a href="#" accesskey="2" title="">Events</a></li>
 					<li><a href="#" accesskey="3" title="">Search</a></li>
 					<li><a href="#" accesskey="4" title="">Profile</a></li>
-					<li><a href="#" accesskey="5" title="">Logout</a></li>
+					<li><a href="../Server/logout.php" accesskey="5" title="">Logout</a></li>
 				</ul>
 			</div>
 		</div>
