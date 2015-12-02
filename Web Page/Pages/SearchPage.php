@@ -46,13 +46,12 @@
 	<div id="portfolio" class="container">
 			<?php
 				foreach($events as $row){
-					if(!$database->isFollowing(2, $row['id']) && !$database->eventIsPrivate($row['id'])) {
+					if(!$database->userIsFollowing(1, $row['id']) && !$database->eventIsPrivate($row['id'])) {
 						?>
 					<div id="column">
 						<div class="box"> <a href="#"><img src="../Resources/Images/scr01.jpg" alt="" class="image image-full" /></a>
-							<h3><?php echo $row['id']; ?></h3>
 							<p><?php echo $row['description']; ?></p>
-							<input <?php echo "id=\"Aderir" . $row['id'] . "\""; ?> type="button" <?php echo "value=\"Aderir\""; ?> />	
+							<input <?php echo "id=\"Aderir" . $row['id'] . "\""; ?>class="button button-small" type="button" <?php echo "value=\"Aderir\""; ?> />	
 						<a href="#" class="button button-small">Etiam posuere</a></div>
 					</div>
 				<?php } }?>
@@ -63,7 +62,8 @@
 		<ul class="contact">
 			<li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
 			<li><a href="#" class="icon icon-facebook"><span></span></a></li>
-			<li><a href="#" class="icon icon-dribbble"><span>Pinterest</span></a></li>
+			<li><a 
+			href="#" class="icon icon-dribbble"><span>Pinterest</span></a></li>
 			<li><a href="#" class="icon icon-tumblr"><span>Google+</span></a></li>
 			<li><a href="#" class="icon icon-rss"><span>Pinterest</span></a></li>
 		</ul>
