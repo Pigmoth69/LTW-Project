@@ -8,6 +8,7 @@
 <link href="../styles/profilePageStyle.css" rel="stylesheet" type="text/css" media="all" />
 
 <?php
+
 	include '../Server/startSession.php';
 	include_once('../Server/Database.php');
 	echo "merda";
@@ -46,9 +47,9 @@
 				</div>
 				<div id="profileDescription">
 					<p class="descriptionP">
-						<?php 
+						<!-- <?php 
 							echo $username;
-						?>
+						?> -->
 					</p>
 				</div>
 			</div>

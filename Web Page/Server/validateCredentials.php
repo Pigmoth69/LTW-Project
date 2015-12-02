@@ -1,8 +1,14 @@
  <?php
+  
+  require_once 'Database.php';
+  echo 'hello';
   header('Content-Type: application/json');
-  include_once('database.php');
+  
+  
 
   $response = array();
+
+
 
   /**
    *	Verify valid POST arguments

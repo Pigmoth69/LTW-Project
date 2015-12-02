@@ -1,6 +1,5 @@
 <?php
 
-
 class Database{
 	private $database;
 
@@ -161,12 +160,12 @@ class Database{
 
 }
 
-	//ifaz o check de valid email da google da think
-	function checkValidEmail($email){
-		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-          return true;
-        }else{
-        	return false;
-        }
-	}
+//ifaz o check de valid email da google da think
+function checkValidEmail($email){
+	if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return true;
+    }else{
+      	return false;
+    }
+}
 ?>
