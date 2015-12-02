@@ -135,6 +135,13 @@ class Database{
 		return intval($id[0][0]);
 	}
 
+	public function addUserToEvent($userID, $eventID){
+		$stmt = $this->database->prepare('INSERT INTO EventUser(idEvent, idUser) VALUES(:eventID, :userID)');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+	}
+
 }
 
 	//ifaz o check de valid email da google da think
