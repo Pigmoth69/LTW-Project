@@ -134,7 +134,6 @@ class Database{
 
 		return intval($id[0][0]);
 	}
-
 	
 	public function getPhotoURLFromUsername($username) {
 		$stmt = $this->database->prepare('SELECT url FROM Photo, User WHERE User.username = :username and User.idphoto = Photo.id');
@@ -142,6 +141,22 @@ class Database{
 		$stmt->execute();
 		$user = $stmt->fetchAll();
 		return $user[0][0];
+
+	public function addUserToEvent($userID, $eventID){
+		//Verify if for some reason user already exists
+		$stmt = $this->database->prepare('SELECT * FROM EventUser Where idEvent = :eventID AND idUser = :userID');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+		$existingUserEvents = $stmt->fetchAll();
+		if(!empty($existingUserEvents))
+			return false;
+
+		$stmt = $this->database->prepare('INSERT INTO EventUser(idEvent, idUser) VALUES(:eventID, :userID)');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+		return true;
 	}
 
 }
