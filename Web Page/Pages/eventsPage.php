@@ -48,7 +48,7 @@
 				foreach($events as $row){
 					if(!$database->isFollowing(2, $row['id']) && !$database->eventIsPrivate($row['id'])) {
 						?>
-					<div id="column">
+					<div class="column">
 						<div class="box"> <a href="#"><img src="../Resources/Images/scr01.jpg" alt="" class="image image-full" /></a>
 							<h3><?php echo $row['id']; ?></h3>
 							<p><?php echo $row['description']; ?></p>

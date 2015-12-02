@@ -2,22 +2,21 @@
 
 <html>
 <head>
-<title></title>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<link href="../styles/mainPageStyle.css" rel="stylesheet" type="text/css" media="all" />
-<?php include '../Server/startSession.php'; ?>
+	<?php 
+	include('head.php');
+	makeHeader("Main Page"); 
+	?>
 
 </head>
 <body>
-<div id="header-wrapper">
+	<div id="header-wrapper">
 	<div id="header" class="container">
 		<div id="logo">
 			<h1><a href="#">Blue Bird</a></h1>
 			<div id="menu">
 				<ul>
 					<li class="active"><a href="#" accesskey="1" title="">Homepage</a></li>
-					<li><a href="SearchPage.php" accesskey="2" title="">Events</a></li>
+					<li><a href="eventsPage.php" accesskey="2" title="">Events</a></li>
 					<li><a href="#" accesskey="3" title="">Search</a></li>
 					<li><a href="profilePage.php" accesskey="4" title="">Profile</a></li>
 					<li><a href="#" accesskey="5" title="">Logout</a></li>
@@ -26,6 +25,7 @@
 		</div>
 	</div>
 </div>
+
 <div id="page-wrapper">
 	<div id="welcome" class="container">
 		<div class="title">

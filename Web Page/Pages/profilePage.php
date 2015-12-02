@@ -12,10 +12,10 @@
 	include_once('../Server/Database.php');
 	echo "merda";
 	var_dump($_SESSION['username']);
-	/*if(isset($_SESSION['username'])){
+	if(!isset($_SESSION['username'])){
 		header("Location: LoginRegisterPage.php"); 
 		exit();
-	}*/
+	}
 	$username = $_SESSION['username'];
 	$database = new Database;
 	
@@ -31,7 +31,7 @@
 			<div id="menu">
 				<ul>
 					<li class="active"><a href="mainPage.php" accesskey="1">Homepage</a></li>
-					<li><a href="EventsPage.php" accesskey="2">Events</a></li>
+					<li><a href="eventsPage.php" accesskey="2">Events</a></li>
 					<li><a href="#" accesskey="3">Search</a></li>
 					<li><a href="#" accesskey="4">Profile</a></li>
 					<li><a href="logout.php" accesskey="5">Logout</a></li>
