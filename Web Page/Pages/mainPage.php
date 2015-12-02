@@ -13,7 +13,7 @@
 	<div id="header" class="container">
 		<div id="logo">
 			<h1><a href="#">Blue Bird</a></h1>
-			<div id="menu">
+			<div id="menu"> 
 				<ul>
 					<li class="active"><a href="#" accesskey="1" title="">Homepage</a></li>
 					<li><a href="eventsPage.php" accesskey="2" title="">Events</a></li>

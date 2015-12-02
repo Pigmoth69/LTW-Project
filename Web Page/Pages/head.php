@@ -6,4 +6,4 @@
 <link href="../styles/mainPageStyle.css" rel="stylesheet" type="text/css" media="all" />
 <?php include '../Server/startSession.php'; ?>
 
-<?php }?>
+<?php }?> 
