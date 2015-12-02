@@ -57,10 +57,11 @@
 				foreach($events as $row){
 					if(!$database->userIsFollowing($session->getUserID(), $row['id']) && !$database->eventIsPrivate($row['id'])) {
 						?>
-					<div id="column">
+					<div class="column">
 						<div class="box"> <a href="#"><img src="../Resources/Images/scr01.jpg" alt="" class="image image-full" /></a>
 							<p><?php echo $row['description']; ?></p>
 							<input id="Aderir<?php echo $row['id']; ?>" class="button button-small" type="button" value="Aderir" eventID="<?php echo $row['id'] ?>"/>	
+						</div>
 					</div>
 				<?php } }?>
 	</div>
