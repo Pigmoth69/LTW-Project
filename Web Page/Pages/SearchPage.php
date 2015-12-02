@@ -55,7 +55,7 @@
 	<div id="portfolio" class="container">
 			<?php
 				foreach($events as $row){
-					if(!$database->userIsFollowing($session->getUserID(), $row['id']) && !$database->eventIsPrivate($row['id'])) {
+					if(!$database->userIsFollowing($session->getUserID($session->getUsername()), $row['id']) && !$database->eventIsPrivate($row['id'])) {
 						?>
 					<div id="column">
 						<div class="box"> <a href="#"><img src="../Resources/Images/scr01.jpg" alt="" class="image image-full" /></a>

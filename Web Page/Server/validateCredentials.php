@@ -58,7 +58,7 @@
 
       // INITIALIZE USER SESSION
       session_start();
-      $_SESSION['logged'] = true;
+      $_SESSION['login'] = true;
       $_SESSION['username'] = $username;
       $_SESSION['userID'] = $database->getUserID($username);
 

@@ -132,7 +132,7 @@ class Database{
 		if(empty($id[0]))
 			return false;
 
-		return $id;
+		return intval($id[0][0]);
 	}
 
 }
