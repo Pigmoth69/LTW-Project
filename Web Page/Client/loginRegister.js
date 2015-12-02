@@ -108,7 +108,7 @@ function logIn() {
 	function (data) {
 		showInputValidation(data);
 		if(data['error'] == null)
-			window.document.location.href = '../Pages/mainPage.php';
+			window.document.location.href = '../Pages/SearchPage.php';
 	})
     .fail(function (error) {
         alert(error);

@@ -7,10 +7,19 @@
 <meta name="description" content="" />
 <link href="../styles/SearchPageStyle.css" rel="stylesheet" type="text/css" media="all" />
 <?php
-	include '../Server/startSession.php'; 
+	include '../Server/startSession.php';
 	include '../Server/Database.php';
+	include '../Server/session.php';
+	
 	$database = new Database;
 	$events = $database->getAllEvents();
+	try {
+		$session = new Session;
+	}
+	catch(Exception $e) {
+		die($e->getMessage());
+	}
+
 ?>
 
 </head>
@@ -24,8 +33,8 @@
 					<li class="active"><a href="#" accesskey="1" title="">Homepage</a></li>
 					<li><a href="#" accesskey="2" title="">Events</a></li>
 					<li><a href="#" accesskey="3" title="">Search</a></li>
-					<li><a href="profilePage.php" accesskey="4" title="">Profile</a></li>
-					<li><a href="#" accesskey="5" title="">Logout</a></li>
+					<li><a href="#" accesskey="4" title="">Profile</a></li>
+					<li><a href="../Server/logout.php" accesskey="5" title="">Logout</a></li>
 				</ul>
 			</div>
 		</div>
@@ -46,13 +55,12 @@
 	<div id="portfolio" class="container">
 			<?php
 				foreach($events as $row){
-					if(!$database->isFollowing(2, $row['id']) && !$database->eventIsPrivate($row['id'])) {
+					if(!$database->userIsFollowing($session->getUserID($session->getUsername()), $row['id']) && !$database->eventIsPrivate($row['id'])) {
 						?>
 					<div class="column">
 						<div class="box"> <a href="#"><img src="../Resources/Images/scr01.jpg" alt="" class="image image-full" /></a>
-							<h3><?php echo $row['id']; ?></h3>
 							<p><?php echo $row['description']; ?></p>
-							<input <?php echo "id=\"Aderir" . $row['id'] . "\""; ?> type="button" <?php echo "value=\"Aderir\""; ?> />	
+							<input id="Aderir<?php echo $row['id']; ?>" class="button button-small" type="button" value="Aderir" />	
 						<a href="#" class="button button-small">Etiam posuere</a></div>
 					</div>
 				<?php } }?>
@@ -63,7 +71,8 @@
 		<ul class="contact">
 			<li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
 			<li><a href="#" class="icon icon-facebook"><span></span></a></li>
-			<li><a href="#" class="icon icon-dribbble"><span>Pinterest</span></a></li>
+			<li><a 
+			href="#" class="icon icon-dribbble"><span>Pinterest</span></a></li>
 			<li><a href="#" class="icon icon-tumblr"><span>Google+</span></a></li>
 			<li><a href="#" class="icon icon-rss"><span>Pinterest</span></a></li>
 		</ul>

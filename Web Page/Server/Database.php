@@ -113,7 +113,7 @@ class Database{
 	}
 
 	//returns true if user is following the event
-	public function isFollowing($userID, $eventID) {
+	public function userIsFollowing($userID, $eventID) {
 		$stmt = $this->database->prepare('SELECT * FROM EventUser WHERE idUser = :userID AND idEvent = :eventID');
 		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
 		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
@@ -122,6 +122,17 @@ class Database{
 		if($eventUsers != NULL)
 			return true;
 		else return false;
+	}
+
+	public function getUserID($username) {
+		$stmt = $this->database->prepare('SELECT id FROM User WHERE username = :username');
+		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+		$stmt->execute();
+		$id = $stmt->fetchAll();
+		if(empty($id[0]))
+			return false;
+
+		return intval($id[0][0]);
 	}
 
 	
