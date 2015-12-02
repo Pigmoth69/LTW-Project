@@ -31,7 +31,7 @@ class Database{
 	public function insertUser($username,$email,$password){
 		try{
 			$dbPassword = password_hash($password, PASSWORD_BCRYPT);
-			$stmt = $this->database->prepare('INSERT INTO User(username, email, password) VALUES (:username, :email, :password)');
+			$stmt = $this->database->prepare('INSERT INTO User(username, email, password, idphoto) VALUES (:username, :email, :password, 1)');
 			$stmt->bindParam(':username', $username, PDO::PARAM_STR);
 			$stmt->bindParam(':email', $email, PDO::PARAM_STR);
 			$stmt->bindParam(':password', $dbPassword, PDO::PARAM_STR);
@@ -122,6 +122,15 @@ class Database{
 		if($eventUsers != NULL)
 			return true;
 		else return false;
+	}
+
+	
+	public function getPhotoURLFromUsername($username) {
+		$stmt = $this->database->prepare('SELECT url FROM Photo, User WHERE User.username = :username and User.idphoto = Photo.id');
+		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+		$stmt->execute();
+		$user = $stmt->fetchAll();
+		return $user[0][0];
 	}
 
 }
