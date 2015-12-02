@@ -5,7 +5,7 @@
 <title></title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<link href="../styles/SearchPageStyle.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../styles/eventsPageStyle.css" rel="stylesheet" type="text/css" media="all" />
 <?php
 	include '../Server/startSession.php';
 	include '../Server/Database.php';
@@ -33,7 +33,7 @@
 					<li class="active"><a href="#" accesskey="1" title="">Homepage</a></li>
 					<li><a href="#" accesskey="2" title="">Events</a></li>
 					<li><a href="#" accesskey="3" title="">Search</a></li>
-					<li><a href="#" accesskey="4" title="">Profile</a></li>
+					<li><a href="profilePage.php" accesskey="4" title="">Profile</a></li>
 					<li><a href="../Server/logout.php" accesskey="5" title="">Logout</a></li>
 				</ul>
 			</div>
@@ -57,7 +57,7 @@
 				foreach($events as $row){
 					if(!$database->userIsFollowing($session->getUserID($session->getUsername()), $row['id']) && !$database->eventIsPrivate($row['id'])) {
 						?>
-					<div id="column">
+					<div class="column">
 						<div class="box"> <a href="#"><img src="../Resources/Images/scr01.jpg" alt="" class="image image-full" /></a>
 							<p><?php echo $row['description']; ?></p>
 							<input id="Aderir<?php echo $row['id']; ?>" class="button button-small" type="button" value="Aderir" />	

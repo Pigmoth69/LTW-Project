@@ -133,6 +133,7 @@ class Database{
 			return false;
 
 		return intval($id[0][0]);
+	}
 
 	
 	public function getPhotoURLFromUsername($username) {

@@ -730,5 +730,31 @@
 		text-align: center;
 		color: #FFFFFF;
 	}
+
+/*
+.EventsShow{ 
+	background-color: blue;
+}
+
+
+.EventsShow a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    padding: 15px;
+    display:inline-block;
+}
+
+.EventsShow li {display: inline-block;}
+.EventsShow li:hover {background: #555;}
+.EventsShow li:hover{
+	display: block;
+}
+.EventsShow li  {
+  position: absolute;
+  width: 200px;
+  display: none;
+}
+
 	
-	
+	*/
