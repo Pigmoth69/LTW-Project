@@ -3,120 +3,119 @@
 /* Image Style                                                                   */
 /*********************************************************************************/
 
-	.image
-	{
-		display: inline-block;
-		border: 1px solid rgba(0,0,0,.1);
-	}
-	
-	.image img
-	{
-		display: block;
-		width: 100%;
-	}
-	
-	.image-full
-	{
-		display: block;
-		width: 100%;
-		margin: 0 0 3em 0;
-	}
-	
-	.image-left
-	{
-		float: left;
-		margin: 0 2em 2em 0;
-	}
-	
-	.image-centered
-	{
-		display: block;
-		margin: 0 0 2em 0;
-	}
-	
-	.image-centered img
-	{
-		margin: 0 auto;
-		width: auto;
-	}
+.image
+{
+	display: inline-block;
+	border: 1px solid rgba(0,0,0,.1);
+}
+
+.image img
+{
+	display: block;
+	width: 100%;
+}
+
+.image-full
+{
+	display: block;
+	width: 100%;
+	margin: 0 0 3em 0;
+}
+
+.image-left
+{
+	float: left;
+	margin: 0 2em 2em 0;
+}
+
+.image-centered
+{
+	display: block;
+	margin: 0 0 2em 0;
+}
+
+.image-centered img
+{
+	margin: 0 auto;
+	width: auto;
+}
 
 
 /*********************************************************************************/
 /* Heading Titles                                                                */
 /*********************************************************************************/
 
-	.title
-	{
-		margin-bottom: 3em;
-	}
-	
-	.title h2
-	{
-		font-size: 2.8em;
-		color: #FFF;
-	}
-	
-	.title .byline
-	{
-		font-size: 1.1em;
-		color: rgba(255,255,255,.5);
-	}
+.title
+{
+	margin-bottom: 3em;
+}
+
+.title h2
+{
+	font-size: 2.8em;
+	color: #FFF;
+}
+
+.title .byline
+{
+	font-size: 1.1em;
+	color: rgba(255,255,255,.5);
+}
 
 
 /*********************************************************************************/
 /* Wrapper                                                                       */
 /*********************************************************************************/
 
-
-	.wrapper
-	{
-		overflow: hidden;
-		padding: 0em 0em 5em 0em;
-	}
+.wrapper
+{
+	overflow: hidden;
+	padding: 0em 0em 5em 0em;
+}
 
 
 /*********************************************************************************/
 /* Welcome                                                                       */
 /*********************************************************************************/
 
-	#welcome
-	{
-		overflow: hidden;
-		width: 1200px;
-		padding: 2em 0px 0em 0px;
-		text-align: center;
-	}
-	
-	#welcome .content
-	{
-		padding: 0em 8em;
-	}
-	
-		#welcome .image
-		{
-			display: block;
-			padding-top: 3em;
-			border: none;
-		}
+#welcome
+{
+	overflow: hidden;
+	width: 1200px;
+	padding: 2em 0px 0em 0px;
+	text-align: center;
+}
 
-	#welcome .title h2
+#welcome .content
+{
+	padding: 0em 8em;
+}
+
+	#welcome .image
 	{
-		color: #FFF;
+		display: block;
+		padding-top: 3em;
+		border: none;
 	}
-	
-	#welcome a,
-	#welcome strong
-	{
-		color: #C6C2C4;
-	}
+
+#welcome .title h2
+{
+	color: #FFF;
+}
+
+#welcome a,
+#welcome strong
+{
+	color: #C6C2C4;
+}
 
 /*********************************************************************************/
 /* Page                                                                          */
 /*********************************************************************************/
 
-	#page-wrapper
-	{
-		overflow: hidden;
-		padding: 3em 0em 0em 0em;
-		text-align: center;
-	}
+#page-wrapper
+{
+	overflow: hidden;
+	padding: 3em 0em 0em 0em;
+	text-align: center;
+}
