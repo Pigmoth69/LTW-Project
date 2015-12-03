@@ -5,25 +5,12 @@
 	<?php 
 		include('head.php');
 		makeHeader("My Events Page"); 
+		$session = startSession();
+		$database = new Database;
+		$events = $database->getAllEvents();
 	?>
 
 <link href="../Styles/myEventsPageStyle.css" rel="stylesheet" type="text/css" media="all" />
-<?php
-	include '../Server/startSession.php';
-	include '../Server/Database.php';
-	include '../Server/session.php';
-	
-	$database = new Database;
-	$events = $database->getAllEvents();
-	try {
-		$session = new Session;
-	}
-	catch(Exception $e) {
-		die($e->getMessage());
-	}
-
-?>
-
 </head>
 
 <body>
