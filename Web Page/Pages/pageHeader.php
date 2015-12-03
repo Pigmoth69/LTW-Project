@@ -12,8 +12,7 @@
 							<ul> 
 								<li><a href='eventsPage.php'>View all Events</a></li> 
 								<li><a href='#'>Manage Events</a></li>
-								<li><a href='#'>Sub Link 3</a></li>
-								<li><a href='#'>Sub Link 4</a></li>
+								<li><a href='#'>Create New Event</a></li>
 							</ul>
 						</li>
 					<li><a href="#">Search</a></li>
@@ -22,7 +21,7 @@
 				</ul>
 		</div>
 	</div>
-</div
+</div>
 <?php }?> 
 
 

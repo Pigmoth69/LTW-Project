@@ -55,6 +55,11 @@
 			</div>
 		</div>
 	</div>
+
+	<?php
+		include('pageFooter.php');
+		displayFooter();
+	?>
 </div>
 
 
