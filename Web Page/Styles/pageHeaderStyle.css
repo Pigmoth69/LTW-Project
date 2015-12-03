@@ -190,6 +190,7 @@ ul.contact li a:before
 #menu{
 	text-decoration: none;
 	height: 30px;
+	padding-bottom: 2em;
 }
 
 #menu a {
