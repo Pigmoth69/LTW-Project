@@ -10,14 +10,14 @@
 
 	<?php
 		include('../Server/database.php');
-		if(!isset($_SESSION['username'])){
+		if(!isset($_SESSION['login'])){
 			header("Location: loginRegisterPage.php"); 
 			exit();
 		}
 
+		$database = new Database;
 
 		$username = $_SESSION['username'];
-		$database = new Database;
 		$id = $database->getUserID($username);
 		$fullname = $database->getFullnameFromUsername($username);
 		$photourl = $database->getPhotoURLFromUsername($username);
@@ -27,7 +27,7 @@
 		$ownedEvents = $database->getUserOwnedEvents($id);
 	?>
 </head>
-
+<body>
 	<?php 
 		include('pageHeader.php');
 		displayHeader(); 
