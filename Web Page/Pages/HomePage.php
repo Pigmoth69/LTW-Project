@@ -5,13 +5,8 @@
 <head>
 	<?php 
 		include('head.php');
-		makeHeader("Home Page"); 
-
-		include('../Server/database.php');
-		if(!isset($_SESSION['username'])){
-			header("Location: loginRegisterPage.php"); 
-			exit();
-		}
+		makeHeader("Home Page");
+		startSession();
 		$username = $_SESSION['username'];
 	?>
 	<link href="../Styles/homePageStyle.css" rel="stylesheet" type="text/css" media="all" />

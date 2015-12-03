@@ -10,11 +10,12 @@
 	overflow: hidden;
 	margin: 0px auto;
 	padding: 10px;
-	margin-bottom: 2.5%;
+	margin-bottom: 0px;
 }
 
 #profileInfo
-{	margin: 0px auto;
+{	
+	margin: 0px auto;
 	padding: 10px;
 	margin-bottom: 2.5%;
 }
@@ -51,4 +52,30 @@ a
 {
 	font-size: 125%;
 	font-weight: bold;
+}
+
+/******************************/
+/*******Edit Profile***********/
+/******************************/
+
+.editInfoDiv
+{
+	margin: 0 auto;
+    width: 5%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+.editInfoDiv #editInfo
+{	
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-family: Montserrat;
+    outline: none;
 }
