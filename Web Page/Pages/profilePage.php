@@ -18,50 +18,71 @@
 
 		$username = $_SESSION['username'];
 		$database = new Database;
+		$id = $database->getUserID($username);
+		$fullname = $database->getFullnameFromUsername($username);
 		$photourl = $database->getPhotoURLFromUsername($username);
-
+		$birth = $database->getBirthFromUsername($username);
+		$email = $database->getEmailFromUsername($username);
+		$joinedEvents = $database->getUserEvents($id);
+		$ownedEvents = $database->getUserOwnedEvents($id);
 	?>
 </head>
 
+	<?php 
+		include('pageHeader.php');
+		displayHeader(); 
+	?>
 
-<body>
-<div id="header-wrapper"> 
-	<div id="header" class="container">
-		<div id="logo">
-			<h1><a href="#">Blue Bird</a></h1>
-			<div id="menu">
-				<ul>
-					<li class="active"><a href="mainPage.php" accesskey="1">Homepage</a></li>
-					<li><a href="eventsPage.php" accesskey="2">Events</a></li>
-					<li><a href="#" accesskey="3">Search</a></li>
-					<li><a href="#" accesskey="4">Profile</a></li>
-					<li><a href="../Server/logout.php" accesskey="5">Logout</a></li>
-				</ul>
+	<div id="profile" class="container">
+		<div id="profileInfo">
+			<div id="profilePic">
+				<img src=<?php echo $photourl; ?> height="256" width="256">
 			</div>
-		</div>
-
-		<div id="profile" class="container">
-			<div id="profileInfo">
-				<div id="profilePic">
-					<img src=<?php echo $photourl; ?> height="256" width="256">
-				</div>
-				<div id="profileDescription">
-					<p class="descriptionP">
-						<?php 
-							echo $username;
-						?>
-					</p>
-				</div>
+			<div id="profileDescription">
+				<a class="descriptionP">
+					<?php 
+						echo $fullname;
+					?>
+				</a><br><br>
+				<a class="subTitle">Username: </a>
+				<a>
+					<?php 
+						echo $username;
+					?>
+				</a><br><br>
+				<a class="subTitle">Date of birth: </a>
+				<a>
+					<?php 
+						echo $birth;
+					?>
+				</a><br><br>
+				<a class="subTitle">Email: </a>
+				<a>
+					<?php 
+						echo $email;
+					?>
+				</a><br><br>
+				<a class="subTitle">Joined Events: </a>
+				<a>
+					<?php 
+						echo count($joinedEvents);
+					?>
+				</a><br><br>
+				<a class="subTitle">Owned Events: </a>
+				<a>
+					<?php 
+						echo count($ownedEvents);
+					?>
+				</a>
 			</div>
 		</div>
 	</div>
+
+
 
 	<?php
 		include('pageFooter.php');
 		displayFooter();
 	?>
-</div>
-
-
 </body>
 </html>

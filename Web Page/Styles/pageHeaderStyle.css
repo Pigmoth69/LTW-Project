@@ -37,10 +37,6 @@ p
 	line-height: 180%;
 }
 
-strong
-{
-}
-
 a
 {
 	color: #16A085;
@@ -59,46 +55,6 @@ a:hover
 }
 
 
-/*********************************************************************************/
-/* Social Icon Styles                                                            */
-/*********************************************************************************/
-
-ul.contact
-{
-	margin: 0;
-	padding: 2em 0em 0em 0em;
-	list-style: none;
-}
-
-ul.contact li
-{
-	display: inline-block;
-	padding: 0em 0.10em;
-	font-size: 1em;
-}
-
-ul.contact li span
-{
-	display: none;
-	margin: 0;
-	padding: 0;
-}
-
-ul.contact li a
-{
-	color: #FFF;
-}
-
-ul.contact li a:before
-{
-	display: inline-block;
-	background: #3E5A99;
-	width: 40px;
-	height: 40px;
-	line-height: 40px;
-	text-align: center;
-	color: rgba(255,255,255,.5);
-}
 
 
 /*********************************************************************************/
@@ -150,9 +106,6 @@ ul.contact li a:before
 /* Logo                                                                          */
 /*********************************************************************************/
 
-#logo
-{
-}
 
 #logo h1
 {
@@ -218,6 +171,7 @@ ul.contact li a:before
   background: #3E5A99;
   cursor: pointer;
 }
+
 #menu ul li:hover {
   background: #3E4399;
   color: #fff;
@@ -232,15 +186,18 @@ ul.contact li a:before
   opacity: 0;
   visibility: hidden;
 }
+
 #menu ul li ul li { 
   width:100%; 
   background: #3E5A99; 
   display: block; 
   color: #fff;
 }
+
 #menu ul li ul li:hover {
 	background: #3E4399; 	
 }
+
 #menu ul li:hover ul {
   display: block;
   opacity: 1;
