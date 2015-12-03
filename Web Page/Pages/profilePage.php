@@ -71,6 +71,8 @@
 		</div>
 	</div>
 
+	<div class="editInfoDiv"><input type="button" id="editInfo" value="Edit Profile"></div> 
+
 
 
 	<?php
