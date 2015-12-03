@@ -54,8 +54,11 @@
 				}?>
 			</div>
 
-			<input id="Leave" class="button button-small" type="button" value="Leave" eventID="<?php echo $eventInfo['id']; ?>"/>	
+			<input id="leave" class="button button-small" type="button" value="Leave" eventID="<?php echo $eventInfo['id']; ?>"/>	
 		</div>
 
 	</div>
+
+	<script src="../Client/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../Client/eventPage.js"></script>
 </body>
