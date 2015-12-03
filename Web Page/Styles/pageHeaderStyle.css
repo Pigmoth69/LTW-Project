@@ -135,9 +135,9 @@ ul.contact li a:before
 /* Header                                                                        */
 /*********************************************************************************/
 
-#header-wrapper
+#header-wrapper 
 {
-	overflow: hidden;
+	overflow: visible;
 	padding: 6em 0em 2em 0em;
 }
 
@@ -187,37 +187,62 @@ ul.contact li a:before
 /* Menu                                                                          */
 /*********************************************************************************/
 
-
-#menu ul
-{
-	display: inline-block;
-	padding: 0em 2em;
-	text-align: center;
-}
-
-#menu li
-{
-	display: inline-block;
-}
-
-#menu li a, #menu li span
-{
-	display: inline-block;
-	padding: 1.3em 1.5em;
+#menu{
 	text-decoration: none;
-	font-size: 0.90em;
-	font-weight: 600;
-	text-transform: uppercase;
-	outline: 0;
-	color: #FFF;
+	height: 30px;
 }
 
-#menu li:hover a, #menu li.active span
-{
-	background: #3E5A99;
+#menu a {
+	font-size: 1.5em;
+	text-decoration: none;
+	color: rgba(255,255,255,1);
+	margin-top: 40px;
 }
 
-#menu .current_page_item a
-{
-	color: #FFF;
+
+#menu ul {
+  margin-top:10px;
+  margin-bottom: 2%; 
+  display: inline;
+
 }
+
+#menu ul li {
+  border-style: solid;
+  border-color: black;
+  border-radius: 5%;
+  width:18%;
+  height: 114%;
+  display: inline-block;
+  background: #3E5A99;
+  cursor: pointer;
+}
+#menu ul li:hover {
+  background: #3E4399;
+  color: #fff;
+}
+
+#menu ul li ul {
+  padding: 0;
+  position: absolute;
+  width: 13%;
+  box-shadow: none;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
+#menu ul li ul li { 
+  width:100%; 
+  background: #3E5A99; 
+  display: block; 
+  color: #fff;
+}
+#menu ul li ul li:hover {
+	background: #3E4399; 	
+}
+#menu ul li:hover ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
