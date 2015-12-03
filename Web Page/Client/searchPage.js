@@ -7,7 +7,6 @@ function onReady() {
 
 function onButtonClick(event) {
 	var eventID = $(this).attr('eventID');
-	console.log()
 
 	$.post(
     '../Server/addUserToEvent.php',

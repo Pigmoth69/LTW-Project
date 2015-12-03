@@ -10,7 +10,7 @@
 					<li><a href="mainPage.php">Homepage</a></li>
 					<li><a href="#">Events</a>
 							<ul> 
-								<li><a href='eventsPage.php'>View all Events</a></li> 
+								<li><a href='myEventsPage.php'>View all Events</a></li> 
 								<li><a href='#'>Manage Events</a></li>
 								<li><a href='#'>Create New Event</a></li>
 							</ul>
