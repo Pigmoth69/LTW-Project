@@ -156,46 +156,82 @@ class Database {
 
 
 
-	/***********GET USERS INFO FROM USERNAME PARAM************/
-	public function getPhotoURLFromUsername($username) {
-		$stmt = $this->database->prepare('SELECT url FROM Photo, User WHERE User.username = :username and User.idphoto = Photo.id');
-		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+	/***********GET USERS INFO FROM ID PARAM************/
+	public function getPhotoURLFromUserID($userID) {
+		$stmt = $this->database->prepare('SELECT url FROM Photo, User WHERE User.id = :userID and User.idphoto = Photo.id');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
 		$stmt->execute();
 		$user = $stmt->fetchAll();
 		return $user[0][0];
 	}
 
-	public function getFullnameFromUsername($username) {
-		$stmt = $this->database->prepare('SELECT fullname FROM Photo, User WHERE User.username = :username');
-		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+	public function getUsernameFromUserID($userID) {
+		$stmt = $this->database->prepare('SELECT username FROM User WHERE id = :userID');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->execute();
+		$user = $stmt->fetchAll();
+		return $user[0]['username'];
+	}
+
+	public function getFullnameFromUserID($userID) {
+		$stmt = $this->database->prepare('SELECT fullname FROM User WHERE id = :userID');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
 		$stmt->execute();
 		$user = $stmt->fetchAll();
 		return $user[0][0];
 	}
 
-	public function getBirthFromUsername($username) {
-		$stmt = $this->database->prepare('SELECT datanascimento FROM Photo, User WHERE User.username = :username');
-		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+	public function getBirthFromUserID($userID) {
+		$stmt = $this->database->prepare('SELECT datanascimento FROM User WHERE id = :userID');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
 		$stmt->execute();
 		$user = $stmt->fetchAll();
 		return $user[0][0];
 	}
 
-	public function getEmailFromUsername($username) {
-		$stmt = $this->database->prepare('SELECT email FROM Photo, User WHERE User.username = :username');
-		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+	public function getEmailFromUserID($userID) {
+		$stmt = $this->database->prepare('SELECT email FROM User WHERE id = :userID');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
 		$stmt->execute();
 		$user = $stmt->fetchAll();
 		return $user[0][0];
 	}
 
 	public function getUserOwnedEvents($id) {
-		$stmt = $this->database->prepare('SELECT Event.id FROM Event WHERE Event.idHost = :id');
+		$stmt = $this->database->prepare('SELECT id FROM Event WHERE idHost = :id');
 		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
 		$stmt->execute();
 		$events = $stmt->fetchAll();
 		return $events;
 	}
+
+
+	// GET EVENT INFORMATION
+	public function getPhotoURLFromEventID($eventID) {
+		$stmt = $this->database->prepare('SELECT url FROM Photo, Event WHERE Event.id = :eventID AND Event.idPhoto = Photo.id');
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+		$event = $stmt->fetchAll();
+		return $event[0][0];
+	}
+
+	public function getEventFromEventID($eventID) {
+		$stmt = $this->database->prepare('SELECT * FROM Event WHERE Event.id = :eventID');
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+		$event = $stmt->fetchAll();
+		return $event[0];
+	}
+
+	public function getUsernamesInEventFromEventID($eventID) {
+		$stmt = $this->database->prepare('SELECT username FROM User JOIN EventUser on User.id = EventUser.idUser Where EventUser.idEvent = :eventID');
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+		$usernames = $stmt->fetchAll();
+		return $usernames;
+	}
+
+
 
 }
 

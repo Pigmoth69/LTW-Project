@@ -2,7 +2,7 @@
 
 
 class Session{
-	private $logged;
+	private $login;
 	private $userID;
 	private $username;
 
@@ -16,8 +16,8 @@ class Session{
       $this->userID = $_SESSION['userID'];
 	}
 
-	public function getLogged() {
-		return $this->logged;
+	public function getLogin() {
+		return $this->login;
 	}
 
 	public function getUserID() {

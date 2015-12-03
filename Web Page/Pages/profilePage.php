@@ -10,21 +10,22 @@
 
 	<?php
 		include('../Server/database.php');
-		if(!isset($_SESSION['username'])){
+		if(!isset($_SESSION['login'])){
 			header("Location: loginRegisterPage.php"); 
 			exit();
 		}
 
-
-		$username = $_SESSION['username'];
 		$database = new Database;
-		$id = $database->getUserID($username);
-		$fullname = $database->getFullnameFromUsername($username);
-		$photourl = $database->getPhotoURLFromUsername($username);
-		$birth = $database->getBirthFromUsername($username);
-		$email = $database->getEmailFromUsername($username);
-		$joinedEvents = $database->getUserEvents($id);
-		$ownedEvents = $database->getUserOwnedEvents($id);
+
+		$userID = intval($_SESSION['userID']);
+		$username = $database->getUsernameFromUserID($userID);
+
+		$fullname = $database->getFullnameFromUserID($userID);
+		$photourl = $database->getPhotoURLFromUserID($userID);
+		$birth = $database->getBirthFromUserID($userID);
+		$email = $database->getEmailFromUserID($userID);
+		$joinedEvents = $database->getUserEvents($userID);
+		$ownedEvents = $database->getUserOwnedEvents($userID);
 	?>
 </head>
 <body>
