@@ -8,30 +8,47 @@
 	background-color: #445a88;
 	border-radius: 20px;
 	overflow: hidden;
-	margin: 0px;
+	margin: 0px auto;
 	padding: 10px;
+	margin-bottom: 2.5%;
 }
 
 #profileInfo
-{
-	margin: 0px;
-	padding-top: 25px;
-	padding-bottom: 25px;
+{	margin: 0px auto;
+	padding: 10px;
+	margin-bottom: 2.5%;
 }
 
 #profilePic
 {
+	display: inline-block;
 	float:left;
 	padding-left:2%;
 }
 
 #profileDescription
 {
-	padding-right:50%;
+	margin: 0px auto;
+	padding: 0px;
+	padding-left: 2.5%;
+	display: inline-block;
+	float: left;
+}
+
+a
+{
+	color: white;
 }
 
 .descriptionP
 {
-	font-size: 150%;
+	font-size: 175%;
+	line-height: 120%;
 	font-weight: bolder;
+}
+
+.subTitle
+{
+	font-size: 125%;
+	font-weight: bold;
 }

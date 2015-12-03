@@ -31,7 +31,7 @@ class Database {
 	public function insertUser($username,$email,$password){
 		try{
 			$dbPassword = password_hash($password, PASSWORD_BCRYPT);
-			$stmt = $this->database->prepare('INSERT INTO User(username, email, password, idphoto) VALUES (:username, :email, :password, 1)');
+			$stmt = $this->database->prepare('INSERT INTO User(username, fullname, email, password, idphoto) VALUES (:username, " ",  :email, :password, 1)');
 			$stmt->bindParam(':username', $username, PDO::PARAM_STR);
 			$stmt->bindParam(':email', $email, PDO::PARAM_STR);
 			$stmt->bindParam(':password', $dbPassword, PDO::PARAM_STR);
@@ -134,14 +134,7 @@ class Database {
 		return intval($id[0][0]);
 	}
 	
-	public function getPhotoURLFromUsername($username) {
-		$stmt = $this->database->prepare('SELECT url FROM Photo, User WHERE User.username = :username and User.idphoto = Photo.id');
-		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
-		$stmt->execute();
-		$user = $stmt->fetchAll();
-		return $user[0][0];
-	}
-	
+
 	public function addUserToEvent($userID, $eventID){
 		//Verify if for some reason user already exists
 		$stmt = $this->database->prepare('SELECT * FROM EventUser Where idEvent = :eventID AND idUser = :userID');
@@ -157,6 +150,49 @@ class Database {
 		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
 		$stmt->execute();
 		return true;
+	}
+
+
+
+	/***********GET USERS INFO FROM USERNAME PARAM************/
+	public function getPhotoURLFromUsername($username) {
+		$stmt = $this->database->prepare('SELECT url FROM Photo, User WHERE User.username = :username and User.idphoto = Photo.id');
+		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+		$stmt->execute();
+		$user = $stmt->fetchAll();
+		return $user[0][0];
+	}
+
+	public function getFullnameFromUsername($username) {
+		$stmt = $this->database->prepare('SELECT fullname FROM Photo, User WHERE User.username = :username');
+		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+		$stmt->execute();
+		$user = $stmt->fetchAll();
+		return $user[0][0];
+	}
+
+	public function getBirthFromUsername($username) {
+		$stmt = $this->database->prepare('SELECT datanascimento FROM Photo, User WHERE User.username = :username');
+		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+		$stmt->execute();
+		$user = $stmt->fetchAll();
+		return $user[0][0];
+	}
+
+	public function getEmailFromUsername($username) {
+		$stmt = $this->database->prepare('SELECT email FROM Photo, User WHERE User.username = :username');
+		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+		$stmt->execute();
+		$user = $stmt->fetchAll();
+		return $user[0][0];
+	}
+
+	public function getUserOwnedEvents($id) {
+		$stmt = $this->database->prepare('SELECT Event.id FROM Event WHERE Event.idHost = :id');
+		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		$stmt->execute();
+		$events = $stmt->fetchAll();
+		return $events;
 	}
 
 }
