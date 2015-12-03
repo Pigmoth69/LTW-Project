@@ -30,7 +30,7 @@
 			<h1><a href="#">Blue Bird</a></h1>
 			<div id="menu">
 				<ul>
-					<li class="active"><a href="#" accesskey="1" title="">Homepage</a></li>
+					<li class="active"><a href="mainPage.php" accesskey="1" title="">Homepage</a></li>
 					<li><a href="#" accesskey="2" title="">Events</a></li>
 					<li><a href="#" accesskey="3" title="">Search</a></li>
 					<li><a href="profilePage.php" accesskey="4" title="">Profile</a></li>
@@ -41,7 +41,7 @@
 	</div>
 </div>
  
-<div id="page-wrapper">
+<!--<div id="page-wrapper">
 	<div id="welcome" class="container">
 		<div class="title">
 			<h2>Welcome to our Wild Bird!</h2>
@@ -49,7 +49,7 @@
 		<p>This is <strong>EarthyBlue</strong>, a free, fully standards-compliant CSS template designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :) </p>
 		<img src="../Resources/Images/banner.jpg" class="image image-full" alt="" />
 	</div>
-</div>
+</div>-->
 
 <div class="wrapper">
 	<div id="portfolio" class="container">

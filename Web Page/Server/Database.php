@@ -1,16 +1,17 @@
-<?php
+ <?php
 
-class Database{
+class Database {
 	private $database;
 
-	 public function __construct(){
+	public function __construct(){
 		try{
 			$this->database = new PDO('sqlite:../Database/database.db');
 		} catch (PDOException $e) {
 			die($e->getMessage());
 		}
 	}
-	//returns the user if exists
+
+
 	public function checkIfUserExists($username){
 		$stmt = $this->database->prepare('SELECT * FROM User WHERE username = :username');
 		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
@@ -40,7 +41,8 @@ class Database{
 			die($e->getMessage());
 		}
 	}
-	 public function checkValidLogin($username,$password){
+	
+	public function checkValidLogin($username,$password){
 		$user = $this->checkIfUserExists($username);
 		if($user!=null){
 			$dbPassword = $user[0][3];
@@ -51,8 +53,6 @@ class Database{
 		}else
 		return false; // invalid username
 	}
-
-
 
 	public function checkValidRegister($username,$password,$verifyPassword,$email){
 
@@ -140,7 +140,8 @@ class Database{
 		$stmt->execute();
 		$user = $stmt->fetchAll();
 		return $user[0][0];
-
+	}
+	
 	public function addUserToEvent($userID, $eventID){
 		//Verify if for some reason user already exists
 		$stmt = $this->database->prepare('SELECT * FROM EventUser Where idEvent = :eventID AND idUser = :userID');
