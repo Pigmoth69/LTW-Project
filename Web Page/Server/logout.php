@@ -2,5 +2,5 @@
 include('startSession.php');
 $_SESSION = array();
 session_destroy();
-include('../Pages/LoginRegisterPage.php');
+exec('../Pages/LoginRegisterPage.php');
 ?>

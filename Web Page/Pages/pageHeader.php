@@ -7,15 +7,15 @@
 		</div>
 			<div id="menu"> 
 				<ul>
-					<li><a href="mainPage.php">Homepage</a></li>
+					<li><a href="homePage.php">Homepage</a></li>
 					<li><a href="#">Events</a>
 							<ul> 
-								<li><a href='myEventsPage.php'>View all Events</a></li> 
-								<li><a href='#'>Manage Events</a></li>
-								<li><a href='#'>Create New Event</a></li>
+								<li><a href='myEventsPage.php'>View my Events</a></li> 
+								<li><a href='createEventPage.php'>Create New Event</a></li>
+								<li><a href='searchEventsPage.php'>Search For Events</a></li>
 							</ul>
 						</li>
-					<li><a href="#">Search</a></li>
+					<li><a href="usersPage.php">Users</a></li>
 					<li><a href="profilePage.php">Profile</a></li> 
 					<li><a href="../Server/logout.php">Logout</a></li> 
 				</ul>
