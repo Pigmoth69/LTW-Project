@@ -1,8 +1,24 @@
 <html>
 <head>
-	<meta name="description" content="Login to Free Event Calendar">
-	<meta name="keywords" content="Free, Event, Events, Manager, LogIn, Personal, Account">
-	<meta name="author" content="Feup Students">
+
+	<?php
+		include '../Server/startSession.php';
+		include '../Server/database.php';
+		include '../Server/session.php';
+
+		try {
+			$session = new Session;
+		}
+		catch(Exception $e) {
+			die($e->getMessage());
+		}
+
+		if($session->getLogin()){
+			header("Location: mainPage.php"); 
+			exit();
+		}
+		?>
+
 	<link rel="stylesheet" href="../Styles/loginRegisterPageStyle.css"/>
 	<meta charset="UTF-8">
 	<link rel="icon" href="../Resources/Logos/icon.jpg"/>

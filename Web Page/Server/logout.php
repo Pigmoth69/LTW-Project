@@ -1,6 +1,6 @@
 <?php
-include('startSession.php');
-$_SESSION = array();
-session_destroy();
-exec('../Pages/LoginRegisterPage.php');
+	session_start();
+	$_SESSION = array();	
+	header("Location: ../Pages/loginRegisterPage.php");
+	die();
 ?>
