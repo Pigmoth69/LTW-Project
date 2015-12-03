@@ -6,14 +6,7 @@
 		include '../Server/database.php';
 		include '../Server/session.php';
 
-		try {
-			$session = new Session;
-		}
-		catch(Exception $e) {
-			die($e->getMessage());
-		}
-
-		if($session->getLogin()){
+		if($_SESSION['login'] == true){
 			header("Location: mainPage.php"); 
 			exit();
 		}
