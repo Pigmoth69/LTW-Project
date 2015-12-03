@@ -4,10 +4,10 @@
 <head>
 	<?php 
 		include('head.php');
-		makeHeader("Main Page"); 
+		makeHeader("My Events Page"); 
 	?>
 
-<link href="../styles/myEventsPageStyle.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../Styles/myEventsPageStyle.css" rel="stylesheet" type="text/css" media="all" />
 <?php
 	include '../Server/startSession.php';
 	include '../Server/Database.php';

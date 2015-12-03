@@ -3,7 +3,7 @@
 <div id="header-wrapper">
 	<div id="header" class="container">
 		<div id="logo">
-			<h1><a href="#">Blue Bird</a></h1>
+			<h1><a href="#">Wild Bird</a></h1>
 		</div>
 			<div id="menu"> 
 				<ul>

@@ -1,25 +1,93 @@
-video#introVideo { 
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -100;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-    background: url('../Resources/Intro/intro.jpg') no-repeat;
-    background-size: cover; 
+
+/*********************************************************************************/
+/* Image Style                                                                   */
+/*********************************************************************************/
+
+.image-full
+{
+	display: block;
+	margin: 0 auto;
+	height: 480px;
+	width: 720px;
+	padding-bottom: 1em;
 }
 
-h1{
-    color: #76A9C5;
-    text-align: center;
-    font-family: "Mistral", Mistral, serif;
-    font-size:12em;
+
+/*********************************************************************************/
+/* Heading Titles                                                                */
+/*********************************************************************************/
+
+.title
+{
+	margin-bottom: 3em;
 }
 
-#mainPageButton{
-    text-align:  center;
+.title h2
+{
+	font-size: 2.8em;
+	color: #FFF;
+}
+
+.title .byline
+{
+	font-size: 1.1em;
+	color: rgba(255,255,255,.5);
+}
+
+
+/*********************************************************************************/
+/* Wrapper                                                                       */
+/*********************************************************************************/
+
+.wrapper
+{
+	overflow: hidden;
+	padding: 0em 0em 5em 0em;
+}
+
+
+/*********************************************************************************/
+/* Welcome                                                                       */
+/*********************************************************************************/
+
+#welcome
+{
+	overflow: hidden;
+	width: 1200px;
+	padding: 2em 0px 0em 0px;
+	text-align: center;
+}
+
+#welcome .content
+{
+	padding: 0em 8em;
+}
+
+	#welcome .image
+	{
+		display: block;
+		padding-top: 3em;
+		border: none;
+	}
+
+#welcome .title h2
+{
+	color: #FFF;
+}
+
+#welcome a,
+#welcome strong
+{
+	color: #C6C2C4;
+}
+
+/*********************************************************************************/
+/* Page                                                                          */
+/*********************************************************************************/
+
+#page-wrapper
+{
+	overflow: hidden;
+	padding: 3em 0em 0em 0em;
+	text-align: center;
 }

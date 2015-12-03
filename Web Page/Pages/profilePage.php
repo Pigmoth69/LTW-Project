@@ -4,9 +4,9 @@
 <head>
 	<?php 
 		include('head.php');
-		makeHeader("Main Page"); 
+		makeHeader("Profile Page"); 
 		?>
-		<link href="../styles/profilePageStyle.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../Styles/profilePageStyle.css" rel="stylesheet" type="text/css" media="all" />
 
 	<?php
 		include('../Server/database.php');
@@ -27,7 +27,7 @@
 		$ownedEvents = $database->getUserOwnedEvents($id);
 	?>
 </head>
-
+<body>
 	<?php 
 		include('pageHeader.php');
 		displayHeader(); 
