@@ -30,7 +30,7 @@
 			<h1><a href="#">Blue Bird</a></h1>
 			<div id="menu">
 				<ul>
-					<li class="active"><a href="#" accesskey="1" title="">Homepage</a></li>
+					<li class="active"><a href="mainPage.php" accesskey="1" title="">Homepage</a></li>
 					<li><a href="#" accesskey="2" title="">Events</a></li>
 					<li><a href="#" accesskey="3" title="">Search</a></li>
 					<li><a href="profilePage.php" accesskey="4" title="">Profile</a></li>

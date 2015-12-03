@@ -6,7 +6,7 @@
   $response = array();
 
   if($_POST['functionName'] == "" ) {
-  	printErrorMessage($response, 'No function name!');
+  	printErrorMessage($response, 'No fnction name!');
 	  return;
 	}
 

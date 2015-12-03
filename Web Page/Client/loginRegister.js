@@ -108,10 +108,10 @@ function logIn() {
 	function (data) {
 		showInputValidation(data);
 		if(data['error'] == null)
-			window.document.location.href = '../Pages/eventsPage.php';
+			window.document.location.href = '../Pages/mainPage.php';
 	})
     .fail(function (error) {
-        alert(error);
+        console.log("Error: " + error);
     });
 
 }
