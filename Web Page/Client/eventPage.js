@@ -6,7 +6,9 @@ function onReady() {
 };
 
 function onButtonClick(event) {
-	/*var eventID = $(this).attr('eventID');
-	if($(this).val() == 'Checkout')
-		window.document.location.href = '../Pages/eventPage.php?id=' + eventID; //Send GET request to page.*/
+	if(!confirm('Are you sure you wish to leave the event?') )
+		return;
+	
+	//window.document.location.href = '../Pages/eventPage.php?id=' + eventID; //Send GET request to page.
+	
 }
