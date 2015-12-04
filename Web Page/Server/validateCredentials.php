@@ -1,6 +1,9 @@
  <?php
   header('Content-Type: application/json');
-  include('database.php');
+  
+  include 'database.php';
+  include 'session.php';
+  
   $response = array();
 
   /**
@@ -49,17 +52,23 @@
   switch($_POST['functionName']) {
     case 'login':
       //Verify correct username
+
       $loginStatus = $database->checkValidLogin($username,$password);
       if ($loginStatus == false){
         printErrorMessage($response, 'Invalid username or password!');
         return;
       }
 
-      // INITIALIZE USER SESSION
+      // CLEAN USER SESSION
       session_start();
-      $_SESSION['login'] = true;
-      $_SESSION['username'] = $username;
-      $_SESSION['userID'] = $database->getUserID($username);
+      session_unset();
+      session_destroy();
+
+      //INITIALIZE NEW SESSION
+      $session = new Session;
+      
+      $userID = $database->getUserID($username);
+      $session->activateSession($userID, $username);
 
       $response['message'] = 'Logged in successfully';
       break;

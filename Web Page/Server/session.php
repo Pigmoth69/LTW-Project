@@ -7,17 +7,15 @@ class Session{
 	private $username;
 
 	public function __construct(){
-	  if($_SESSION['login'] == NULL){
-	  	throw new Exception('Not logged in.');
-	  }
-
-	  $this->login = $_SESSION['login'];
-      $this->username = $_SESSION['username'];
-      $this->userID = $_SESSION['userID'];
-	}
-
-	public function getLogin() {
-		return $this->login;
+		
+		session_start();
+		if(isset($_SESSION['login'])){
+			if($_SESSION['login'] == true){
+				$this->login = true;
+				$this->userID = $_SESSION['userID'];
+				$this->username = $_SESSION['username'];
+			}			
+		}		
 	}
 
 	public function getUserID() {
@@ -26,6 +24,27 @@ class Session{
 
 	public function getUsername() {
 		return $this->username;
+	}
+
+	public function isLoggedIn() {
+		return $this->login;
+	}
+
+	public function activateSession($userID, $username) {
+		$_SESSION['login'] = true;
+		$_SESSION['userID'] = $userID;
+		$_SESSION['username'] = $username;
+
+		$this->login = true;		
+		$this->userID = $_SESSION['userID'];
+		$this->username = $_SESSION['username'];
+
+	}
+
+	public function endSession() {
+		session_start(); //Just to make sure it is started
+		session_unset();
+		session_destroy();
 	}
 
 }

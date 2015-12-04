@@ -1,6 +1,6 @@
 <?php
-	session_start();
-	$_SESSION = array();	
+	$session = new Session;
+	$session->endSession();
 	header("Location: ../Pages/loginRegisterPage.php");
 	die();
 ?>

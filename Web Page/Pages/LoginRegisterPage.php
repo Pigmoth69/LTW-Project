@@ -1,8 +1,11 @@
 <html>
 <head>
 	<?php 
-		include('head.php');
-		makeHeader("Event Page");
+
+		include 'head.php';
+		makeHead("LoginRegister Page");
+		redirectToHomePageIfLoggedIn();
+		
 	?>
 	<link href="../Styles/loginRegisterPageStyle.css" rel="stylesheet" type="text/css" media="all" />
 </head>

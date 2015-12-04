@@ -4,9 +4,7 @@
 <head>
 	<?php 
 		include('head.php');
-		makeHeader("My Events Page"); 
-		$session = startSession();
-		$database = new Database;
+		makeHead("My Events Page"); 
 		$events = $database->getAllEvents();
 	?>
 

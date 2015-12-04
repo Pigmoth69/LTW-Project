@@ -4,9 +4,8 @@
 <head>
 	<?php 
 		include('head.php');
-		makeHeader("Profile Page");
+		makeHead("Profile Page");
 
-		$database = new Database;
 		$userID = intval($_SESSION['userID']);
 		$username = $database->getUsernameFromUserID($userID);
 		$fullname = $database->getFullnameFromUserID($userID);

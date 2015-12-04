@@ -1,13 +1,14 @@
 $(document).ready(onReady);
 
 function onReady() {
-	$('#leave').click(onButtonClick);
+	$('#leave').click(onLeaveClick);
 
 };
 
-function onButtonClick(event) {
+function onLeaveClick(event) {
 	if(!confirm('Are you sure you wish to leave the event?') )
 		return;
+	
 	
 	//window.document.location.href = '../Pages/eventPage.php?id=' + eventID; //Send GET request to page.
 	

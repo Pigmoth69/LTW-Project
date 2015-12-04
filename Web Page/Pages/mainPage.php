@@ -3,9 +3,12 @@
 <html>
 
 <head>
-	<meta charset="UTF-8"> 
-	<meta http-equiv="refresh" content="33; url=loginRegisterPage.php">
-	<meta name="description" content="Home page of a site of event managing"/>
+	<?php
+		include 'head.php';
+		makeHead("Main Page");
+		
+	?>
+
 	<link rel="stylesheet" href="../Styles/mainPageStyle.css"/>
 	<link rel="icon" href="../Resources/Logos/icon.jpg"/>
 	

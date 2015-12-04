@@ -5,7 +5,7 @@
 	<?php 
 		include('head.php');
 		makeHeader("Event Page");
-		$database = new Database;
+
 		$eventID = intval($_GET['id']);
 
 		$eventInfo = $database->getEventFromEventID($eventID);
@@ -18,7 +18,6 @@
 </head>
 <body>
 	<?php 
-		include('pageHeader.php');
 		displayHeader();
 	?>
 	<div id="portfolio" class="container">

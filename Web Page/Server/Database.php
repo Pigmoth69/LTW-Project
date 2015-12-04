@@ -47,7 +47,7 @@ class Database {
 	public function checkValidLogin($username,$password){
 		$user = $this->checkIfUserExists($username);
 		if($user!=null){
-			$dbPassword = $user[0][3];
+			$dbPassword = $user[0]['password'];
 			if(!password_verify($password, $dbPassword)) 
 				return false; // invalid password
 			else
@@ -229,6 +229,15 @@ class Database {
 		$stmt->execute();
 		$usernames = $stmt->fetchAll();
 		return $usernames;
+	}
+
+
+	//Remove User From Event
+	public function removeUserFromEvent($userID, $eventID){
+		$stmt = $this->database->prepare('DELETE FROM EventUser Where idEvent = :eventID AND idUser = :userID');
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->execute();
 	}
 
 

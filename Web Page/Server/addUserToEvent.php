@@ -1,14 +1,17 @@
  <?php
   header('Content-Type: application/json');
-  include '../Server/startSession.php';
-  include_once('database.php');
-
+  include('database.php');
+  include('session.php');
+  
+  $session = new Session;
+  if(!$session->isLoggedIn()){
+    $session->endSession();
+    printErrorMessage($response, 'Not logged in.');
+    return;
+  }
+  
   $response = array();
 
-  if($_POST['functionName'] == "" ) {
-  	printErrorMessage($response, 'No fnction name!');
-	  return;
-	}
 
   if($_POST['eventID'] == null || !is_string($_POST['eventID'])) {
     printErrorMessage($response, 'Event does not exist!');
