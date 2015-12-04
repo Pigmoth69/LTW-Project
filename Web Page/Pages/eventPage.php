@@ -4,7 +4,8 @@
 <head>
 	<?php 
 		include('head.php');
-		makeHeader("Event Page");
+		makeHead("Event Page");
+		redirectToLogInIfLoggedOut($session);
 
 		$eventID = intval($_GET['id']);
 
