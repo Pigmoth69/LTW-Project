@@ -15,7 +15,7 @@
 
 <body>
 	<?php
-		displayHeader(); 
+		displayHeader("Wild Bird"); 
 	?>
 
 	<div id="page-wrapper">

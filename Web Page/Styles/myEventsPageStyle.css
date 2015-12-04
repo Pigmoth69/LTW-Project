@@ -278,4 +278,65 @@
 	}
 
 
-	
+#addEvent{
+	width:50%;
+	margin-left: auto;
+	margin-right: auto;
+	display: none;
+
+}
+
+#addEvent h1{
+	padding-top: 2em;
+	color: white;
+}
+
+#CreateEvent{
+	margin-left: auto;
+	margin-right: auto;
+	width:50%;
+	height: 15%;
+	padding-bottom: 2em;
+	//display: none;
+}	
+#CreateEvent input#createButton{
+	font-size: 2em;
+	color:white;
+	border-style: solid;
+	background-color: #3E5A99;
+	border-color: black;
+	width:100%;
+	height: 100%;
+}
+
+#CreateEvent input#createButton:hover{
+	background-color: #3E4399;
+}
+
+#CancelEvent{
+	margin-left: auto;
+	margin-right: auto;
+	width:50%;
+	height: 15%;
+	padding-bottom: 2em;
+	display: none;
+}	
+#CancelEvent input#cancelButton  {
+	font-size: 2em;
+	color:white;
+	border-style: solid;
+	background-color: #3E5A99;
+	border-color: black;
+	width:100%;
+	height: 100%;
+}
+
+#CancelEvent  input#cancelButton:hover{
+	background-color: #3E4399;
+}
+
+#preview{
+	width:128px;
+	height: :128px;
+}
+

@@ -1,21 +1,18 @@
-<?php 
- 
-function displayHeader(){?>
-
+<?php
+ function displayHeader($pageName){?>
 <div id="header-wrapper">
 	<div id="header" class="container">
 		<div id="logo">	
-			<h1><a href="#">Wild Bird</a></h1>
+			<h1><a href="#"><?php echo $pageName ?></a></h1>
 		</div>
 			<div id="menu"> 
 				<ul>
 					<a href="homePage.php"><li>Homepage</li></a>
 					<li><a>Events</a>
 							<ul> 
-								<a href='myEventsPage.php'><li>View my Events</li></a>
-								<a href='createEventPage.php'><li>Create New Event</li></a>
+								<a href='myEventsPage.php'><li>Manage my Events</li></a>
 								<a href='searchEventsPage.php'><li>Search For Events</li></a>
-							</ul>
+							</ul> 
 						</li>
 					<a href="usersPage.php"><li>Users</li></a>
 					<a href="profilePage.php"><li>Profile</li></a> 
@@ -25,6 +22,3 @@ function displayHeader(){?>
 	</div>
 </div>
 <?php }?> 
-
-
-

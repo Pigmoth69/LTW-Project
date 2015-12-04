@@ -22,7 +22,7 @@
 
 <body>
 	<?php 
-		displayHeader(); 
+		displayHeader("Profile Page"); 
 	?>
 
 	<div id="profile" class="container">

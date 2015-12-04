@@ -19,7 +19,7 @@
 </head>
 <body>
 	<?php 
-		displayHeader();
+		displayHeader("Event");
 	?>
 	<div id="portfolio" class="container">
 
