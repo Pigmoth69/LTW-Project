@@ -4,27 +4,7 @@
 <head>
 	<?php 
 		include('head.php');
-		makeHeader("Main Page"); 
-		?>
-		<link href="../styles/myEventsPageStyle.css" rel="stylesheet" type="text/css" media="all" />
-
-	<?php
-		include '../Server/startSession.php';
-		include '../Server/database.php';
-		include '../Server/session.php';
-
-		try {
-			$session = new Session;
-		}
-		catch(Exception $e) {
-			die($e->getMessage());
-		}
-
-		if(!$session->getLogin()){
-			header("Location: loginRegisterPage.php"); 
-			exit();
-		}
-
+		makeHeader("Event Page");
 		$database = new Database;
 		$eventID = intval($_GET['id']);
 
@@ -33,6 +13,8 @@
 		$eventHostUsername = $database->getUsernameFromUserID($eventInfo['idHost']);
 		$participants = $database->getUsernamesInEventFromEventID($eventID);
 	?>
+		<link href="../styles/myEventsPageStyle.css" rel="stylesheet" type="text/css" media="all" />
+
 </head>
 <body>
 	<?php 

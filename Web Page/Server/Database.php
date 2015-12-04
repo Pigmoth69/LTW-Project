@@ -1,5 +1,7 @@
  <?php
 
+include('../lib/password.php');
+
 class Database {
 	private $database;
 

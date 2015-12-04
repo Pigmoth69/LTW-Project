@@ -4,30 +4,22 @@
 <head>
 	<?php 
 		include('head.php');
-		makeHeader("Main Page"); 
-		?>
-		<link href="../styles/profilePageStyle.css" rel="stylesheet" type="text/css" media="all" />
-
-	<?php
-		include('../Server/database.php');
-		if(!isset($_SESSION['login'])){
-			header("Location: loginRegisterPage.php"); 
-			exit();
-		}
+		makeHeader("Profile Page");
 
 		$database = new Database;
-
 		$userID = intval($_SESSION['userID']);
 		$username = $database->getUsernameFromUserID($userID);
-
 		$fullname = $database->getFullnameFromUserID($userID);
 		$photourl = $database->getPhotoURLFromUserID($userID);
 		$birth = $database->getBirthFromUserID($userID);
 		$email = $database->getEmailFromUserID($userID);
 		$joinedEvents = $database->getUserEvents($userID);
 		$ownedEvents = $database->getUserOwnedEvents($userID);
-	?>
+		?>
+		<link href="../Styles/profilePageStyle.css" rel="stylesheet" type="text/css" media="all" />
+
 </head>
+
 <body>
 	<?php 
 		include('pageHeader.php');
@@ -78,6 +70,8 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="editInfoDiv"><input type="button" id="editInfo" value="Edit Profile"></div> 
 
 
 

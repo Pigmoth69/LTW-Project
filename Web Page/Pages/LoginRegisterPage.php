@@ -1,24 +1,13 @@
 <html>
 <head>
-
-	<?php
-		include '../Server/startSession.php';
-		include '../Server/database.php';
-		include '../Server/session.php';
-
-		if($_SESSION['login'] == true){
-			header("Location: mainPage.php"); 
-			exit();
-		}
-		?>
-
-	<link rel="stylesheet" href="../Styles/loginRegisterPageStyle.css"/>
-	<meta charset="UTF-8">
-	<link rel="icon" href="../Resources/Logos/icon.jpg"/>
-	<title>Login/Register</title>
+	<?php 
+		include('head.php');
+		makeHeader("Event Page");
+	?>
+	<link href="../Styles/loginRegisterPageStyle.css" rel="stylesheet" type="text/css" media="all" />
 </head>
-<body>
 
+<body>
 <div class="logo">
 </div>
 <div class="login-block">
