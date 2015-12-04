@@ -4,8 +4,8 @@
 
 		include 'head.php';
 		makeHead("LoginRegister Page");
-		redirectToHomePageIfLoggedIn();
-		
+		redirectToHomePageIfLoggedIn($session);
+
 	?>
 	<link href="../Styles/loginRegisterPageStyle.css" rel="stylesheet" type="text/css" media="all" />
 </head>

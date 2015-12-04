@@ -5,6 +5,7 @@
 	<?php 
 		include('head.php');
 		makeHead("Profile Page");
+		redirectToLogInIfLoggedOut($session);
 
 		$userID = intval($_SESSION['userID']);
 		$username = $database->getUsernameFromUserID($userID);
@@ -21,7 +22,6 @@
 
 <body>
 	<?php 
-		include('pageHeader.php');
 		displayHeader(); 
 	?>
 

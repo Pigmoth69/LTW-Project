@@ -4,7 +4,9 @@
 <head>
 	<?php 
 		include('head.php');
-		makeHead("My Events Page"); 
+		makeHead("My Events Page");
+		redirectToLogInIfLoggedOut($session);
+
 		$events = $database->getAllEvents();
 	?>
 
@@ -13,7 +15,6 @@
 
 <body>
 	<?php 
-		include('pageHeader.php');
 		displayHeader(); 
 	?>
 

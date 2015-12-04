@@ -6,7 +6,7 @@
 	<?php 
 		include 'head.php';
 		makeHead("Home Page");
-		redirectToHomePageIfLoggedIn();
+		redirectToLogInIfLoggedOut($session);
 
 	?>
 
@@ -14,15 +14,14 @@
 </head>
 
 <body>
-	<?php 
-		include('pageHeader.php');
+	<?php
 		displayHeader(); 
 	?>
 
 	<div id="page-wrapper">
 		<div id="welcome" class="container">
 			<div class="title">
-				<h2>Welcome, <?php echo $session->getUsername(); ?>!!!</h2>
+				<h2>Welcome <?php echo $session->getUsername(); ?>!!!</h2>
 			</div>
 			<p>Wild Bird is a web project developed by engineering students from Faculdade de Engenharia da Universidade do Porto.</p>
 			<p>In this website, any user is able to work on an event system, where he can join or be invited to any public event. Also, it is possible to create a new custom event, for any purpose, making it private or public, and inviting any user registered on the server! Also, everyone are able to cancel their own subscription to any event as well as cancel a event that they created!</p>

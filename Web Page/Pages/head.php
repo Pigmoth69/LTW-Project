@@ -4,8 +4,10 @@
 	include '../Server/session.php';
 	include 'pageHeader.php';
 
+	
 	$session = new Session;
 	$database = new Database;
+
 
  function makeHead($title){?>
 
@@ -19,9 +21,17 @@
 <?php } ?>
 
 <?php
-	function redirectToHomePageIfLoggedIn(){
+	function redirectToHomePageIfLoggedIn($session){
 		if($session->isLoggedIn()){
-			header('../Pages/HomePage.php');
+			header('Location: HomePage.php');
+			die();
+		}
+	}
+
+	function redirectToLogInIfLoggedOut($session){
+		if(!$session->isLoggedIn()){
+			header('Location: loginRegisterPage.php');
+			die();
 		}
 	}
 ?>
