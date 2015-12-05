@@ -8,6 +8,8 @@
 
 	?>
 	<link href="../Styles/loginRegisterPageStyle.css" rel="stylesheet" type="text/css" media="all" />
+	<script src="../Client/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../Client/loginRegister.js"></script>
 </head>
 
 <body>
@@ -17,7 +19,6 @@
 	<h1>Wild Bird</h1>
 	
 	<form id="validationForm" method="POST">
-		<input type="hidden" id="acessType" value="login" >
 
 		<div id="FormType">
 				<input type="button" id="LoginButton" value="Log In" >
@@ -40,14 +41,11 @@
 				<input type="text" value="" placeholder="Email" id="email" />
 			</div>
 
-			<input type="button" id="submitLog" value="Log In">
-			<input type="button" id="submitReg" value="Register">
+			<input type="submit" id="submit" value="Log In">
 
 			<div id="message"></div>
 		</form>
 </div>
 
-	<script src="../Client/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="../Client/loginRegister.js"></script>
 </body>
 </html>

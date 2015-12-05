@@ -6,10 +6,6 @@ function onReady() {
 	$('#LoginButton').click(function() {switchPanel('login');});
 	$('#RegisterButton').click(function() {switchPanel('register'); });
 
-	$('#submitLog').click(function() {onButtonClick('login'); });
-	$('#submitReg').click(function() {onButtonClick('register'); });
-
-	$('#validationForm').keypress(function( event ) {onKeyPressed(event) });
 
 	$('#validationForm').submit(
 		function(event) {
@@ -30,20 +26,19 @@ function startForms(){
 	$('#email').hide();
 	$('#email').next().hide();
 
-	$('#submitLog').show();
-	$('#submitReg').hide();
+	$('#submit').show()
 
 	$('#message').hide();
 }
 
 function switchPanel(button){
-
 	$('input#username').val("");
 	$('input#password').val("");
 
 	$('#message').hide();
 
 	if(button == 'login'){
+
 		$('#LoginButton').css('background-color','green');
 		$('#RegisterButton').css('background-color','#76A9C5');
 
@@ -54,8 +49,7 @@ function switchPanel(button){
 		$('#email').hide();
 		$('#email').next().hide();
 
-		$('#submitLog').show();
-		$('#submitReg').hide();
+		$('#submit').val('Log In');
 	}
 	else if (button == 'register'){
 		$('#RegisterButton').css('background-color','green');
@@ -69,28 +63,17 @@ function switchPanel(button){
 		$('#email').show();
 		$('#email').next().show();
 
-		$('#submitLog').hide();
-		$('#submitReg').show();
+		$('#submit').val('Register')
 	}
 
 }
 
-function onButtonClick(button) {
-	$('#acessType').val(button);
-
-	$('#validationForm').submit();
-}
-
-function onKeyPressed(event) {
-	if ( event.which == 13 ) 
-		$('#validationForm').submit();
-}
 
 function onFormSubmission(event) {
-	if ($('#acessType').val() == 'login')
+	if ($('#submit').val() == 'Log In')
 		logIn();
 
-	else if ($('#acessType').val() == 'register')
+	else if ($('#submit').val() == 'Register')
 		register();
 }
 
@@ -108,7 +91,8 @@ function logIn() {
 	function (data) {
 		showInputValidation(data);
 		if(data['error'] == null)
-			window.document.location.href = '../Pages/homePage.php';
+			setTimeout(function(){window.document.location.href = '../Pages/homePage.php';}, 1000);
+			
 	})
     .fail(function (error) {
         console.log("Error: " + error);
