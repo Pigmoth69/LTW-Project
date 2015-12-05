@@ -26,31 +26,63 @@
 	<div id="CancelEvent">
 		<input id="cancelButton" type="button" value="Cancel">
 	</div>
+
 	<div id="addEvent">
-		<form action="" method="post">
-			<h1>Create new Event</h1>
-			<form id="uploadImg">
-				<input type='file' id="eventImage" />
-				<img id="preview" src="../Resources/Images/empty.jpg" alt="your image" />
-			</form>
-			Name<input id="name" name="name" type="text">
-			Type
-			<select>
-				<option value="Birthday">Birthday</option>
-				<option value="Concert">Concert</option>
-				<ption value="Sports">Sports</option>
-				<option value="Meeting">Meeting</option>
-				<option value="Wedding">Wedding</option>
-				<option value="Party">Party</option>
-				<option value="Conference">Conference</option>
-				<option value="Misc Event">Misc Event</option>
-			</select>
-			Location<input id="name" name="name" type="text">
-			Descrição<textarea rows="10%" cols="20%" name="comment"></textarea>
-			Date<input type="date" name="eventdate">
-			Private<input type="checkbox" name="private" value="">
-			<input id="submit" type="submit" value="Submit">
-		</form>
+		<table>
+			<tr>
+				<td><span>New Event</span></td>
+			</tr>
+			<tr>
+				<td rowspan="9">
+					<figure>
+						<img style="width:256px;height:256px;"id="preview" src="../Resources/Images/empty.jpg" alt="your image" />
+						<figcaption>Event Image</figcaption>
+					</figure>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type='file' id="eventImage" /></td>
+			</tr>
+			<tr>
+				<td><span>Event Name:</span></td>
+				<td><input id="eventName" type="text"></td>
+			</tr>
+			<tr>
+				<td><span>Type:</span></td>
+				<td>
+				<select id="eventType">
+					<option value="Birthday">Birthday</option>
+					<option value="Concert">Concert</option> 
+					<option value="Sports">Sports</option>
+					<option value="Meeting">Meeting</option>
+					<option value="Wedding">Wedding</option>
+					<option value="Party">Party</option>
+					<option value="Conference">Conference</option>
+					<option value="Misc Event">Misc Event</option>
+				</select>
+				</td>
+			</tr>
+			<tr>
+				<td><span>Location:</span></td>
+				<td><input id="eventLocation" type="text"></td>
+			</tr>
+			<tr>
+				<td><span>Description:</span></td>
+				<td><textarea rows="10%" cols="20%" id="eventDescription"></textarea></td>
+			</tr>
+			<tr>
+				<td><span>Date:</span></td>
+				<td><input type="date" id="eventDate" name="eventdate"></td>
+			</tr>
+			<tr>
+				<td><span>Private</span></td>
+				<td><input type="checkbox" id="eventPrivacy"name="private" value=""></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input id="submit" type="submit" value="Submit"></td>
+			</tr>
+		</table>
+		<div id="message"></div>
 	</div>
 		
 	<div class="wrapper">
