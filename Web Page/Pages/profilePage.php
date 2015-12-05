@@ -7,6 +7,8 @@
 		makeHead("Profile Page");
 		redirectToLogInIfLoggedOut($session);
 
+
+		$database = new Database;
 		$userID = intval($_SESSION['userID']);
 		$username = $database->getUsernameFromUserID($userID);
 		$fullname = $database->getFullnameFromUserID($userID);
@@ -17,12 +19,14 @@
 		$ownedEvents = $database->getUserOwnedEvents($userID);
 		?>
 		<link href="../Styles/profilePageStyle.css" rel="stylesheet" type="text/css" media="all" />
+		<script src="../Client/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="../Client/editProfile.js"></script>
 
 </head>
 
 <body>
 	<?php 
-		displayHeader("Profile Page"); 
+		displayHeader("Wild Bird"); 
 	?>
 
 	<div id="profile" class="container">
@@ -72,11 +76,48 @@
 
 	<div class="editInfoDiv"><input type="button" id="editInfo" value="Edit Profile"></div> 
 
+	<form class="editInfoForm" method="POST">
+		<div id="user-fullname">
+			<span>Full Name: </span>
+			<input type="text" value="" placeholder="Full Name" id="fullname" size="30rem"/>
+		</div>
+
+		<div id="user-photo">
+			<span>Insert Profile Photo: </span>
+			<input type="file" value="" placeholder="Photo" id="photo" />
+		</div>
+
+		<div id="user-password">
+			<span>Insert New Password: </span>
+			<input type="password" value="" placeholder="New Password" id="password" size="30rem"/>
+		</div>
+
+		<div id="user-verifypassword">
+			<span>Repeat New Password: </span>
+			<input type="password" value="" placeholder="Verify New Password" id="verifyPassword" size="30rem"/>
+		</div>
+
+		<div id="user-email">
+			<span>New Email: </span>
+			<input type="text" value="" placeholder="New Email" id="email" size="30rem"/>
+		</div>
+
+		<div id="user-birthdate">
+			<span>Insert New Birth Date: </span>
+			<input type="date" value="" id="date" />
+		</div>
+
+		<div class="save"><input type="submit" id="saveButton" value="Save Changes"></div> 
+
+		<div id="message"></div>
+	</form>
 
 
 	<?php
 		include('pageFooter.php');
 		displayFooter();
 	?>
+
+	
 </body>
 </html>

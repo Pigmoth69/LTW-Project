@@ -47,7 +47,7 @@ class Database {
 	public function checkValidLogin($username,$password){
 		$user = $this->checkIfUserExists($username);
 		if($user!=null){
-			$dbPassword = $user[0]['password'];
+			$dbPassword = $user[0][3];
 			if(!password_verify($password, $dbPassword)) 
 				return false; // invalid password
 			else
@@ -197,9 +197,9 @@ class Database {
 		return $user[0][0];
 	}
 
-	public function getUserOwnedEvents($id) {
+	public function getUserOwnedEvents($userID) {
 		$stmt = $this->database->prepare('SELECT id FROM Event WHERE idHost = :id');
-		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		$stmt->bindParam(':id', $userID, PDO::PARAM_INT);
 		$stmt->execute();
 		$events = $stmt->fetchAll();
 		return $events;
@@ -232,17 +232,42 @@ class Database {
 	}
 
 
-	//Remove User From Event
-	public function removeUserFromEvent($userID, $eventID){
-		$stmt = $this->database->prepare('DELETE FROM EventUser Where idEvent = :eventID AND idUser = :userID');
-		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+	/***************EDIT USER INFO FROM ID************/
+
+	public function editUserFullnameFromUserID($userID, $fullname){
+		$stmt = $this->database->prepare('UPDATE User SET fullname = :fullname WHERE id = :userID');
+		$stmt->bindParam(':fullname', $fullname, PDO::PARAM_STR);
 		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
 		$stmt->execute();
+		return;
 	}
 
+	public function editUserPasswordFromUserID($userID, $password){
+		$dbPassword = password_hash($password, PASSWORD_BCRYPT);
+		$stmt = $this->database->prepare('UPDATE User SET password = :password WHERE id = :userID');
+		$stmt->bindParam(':password', $dbPassword, PDO::PARAM_STR);
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->execute();
+		return;
+	}
 
+	public function editUserEmailFromUserID($userID, $email){
+		$stmt = $this->database->prepare('UPDATE User SET email = :email WHERE id = :userID');
+		$stmt->bindParam(':email', $email, PDO::PARAM_STR);
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->execute();
+		return;
+	}
 
+	public function editUserBirthDateFromUserID($userID, $birth){
+		$stmt = $this->database->prepare('UPDATE User SET datanascimento = :birth WHERE id = :userID');
+		$stmt->bindParam(':birth', $birth, PDO::PARAM_STR);
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->execute();
+		return;
+	}
 }
+
 
 //ifaz o check de valid email da google da think
 function checkValidEmail($email){

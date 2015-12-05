@@ -7,6 +7,7 @@
 {
 	background-color: #445a88;
 	border-radius: 20px;
+    box-shadow: 5px 5px 10px #333;
 	overflow: hidden;
 	margin: 0px auto;
 	padding: 10px;
@@ -69,13 +70,70 @@ a
 
 .editInfoDiv #editInfo
 {	
-    width: 100%;
+    width: 120%;
     height: 42px;
     box-sizing: border-box;
     border-radius: 5px;
-    border: 1px solid #ccc;
     margin-bottom: 20px;
-    font-size: 14px;
+    border: 1px solid #ccc;
+    font-size: 20px;
+    font-weight: bold;
     font-family: Montserrat;
     outline: none;
+    background: #76A9C5;
+}
+
+
+.editInfoForm
+{
+    box-shadow: 5px 5px 8px #999;
+    width: 40%;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    background-color: #445a88;
+	border-radius: 20px;
+	overflow: hidden;
+	margin: 0px auto;
+	margin-bottom: 40px;
+}
+
+.editInfoForm div
+{
+	padding: 10px;
+	font-weight: bold;
+	font-size: 20px;
+	margin-left: 25%;
+}
+
+#saveButton
+{
+    height: 35px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Montserrat;
+    outline: none;
+    background: #76A9C5;
+}
+
+#message {
+    /* height: 35px; */
+    border-radius: 5px;
+    border: 3px solid #222;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Montserrat;
+    margin-left: 0%;
+    background: #ff6666;
+    text-align: center;
+    color: black;
+}
+
+
+.editInfoForm input
+{
+	font-size: 20px;
+	text-align: center;
 }
