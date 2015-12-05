@@ -23,6 +23,7 @@
 	?>
 	<div id="portfolio" class="container">
 
+		<input id='eventID' value="<?php echo $eventID;?>" hidden/> 
 		<div class="box"> <a href="#"><img src="<?php echo $eventPhotoURL ?>" class="image" height="256" width="256"/></a>
 			<div id='eventName'><?php echo $eventInfo['name']; ?></div>
 			<div id='eventHost'><?php echo 'Event created by ' . $eventHostUsername; ?></div>
@@ -36,8 +37,13 @@
 				}?>
 			</div>
 
-			<input id="leave" class="button button-small" type="button" value="Leave" eventID="<?php echo $eventInfo['id']; ?>"/>	
+			<input id="leave" class="button button-small" type="button" value="Leave"/>
+			<input id="edit" class="button button-small" type="button" value="Edit"/>
+			<input id="delete" class="button button-small" type="button" value="Delete"/>
+			
 		</div>
+		
+		<div id="message"></div>
 
 	</div>
 

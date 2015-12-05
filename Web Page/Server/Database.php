@@ -273,11 +273,23 @@ class Database {
 		return $events;
 	}
 
+	///////////////////////////////////////
+	////////////EDIT EVENT INFO////////////
+	///////////////////////////////////////
+
+	public function removeUserFromEvent($userID, $eventID) {
+		$stmt = $this->database->prepare('DELETE FROM EventUser Where idUser = :userID AND idEvent = :eventID');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+	}
+
+
 
 }
 
 
-//ifaz o check de valid email da google da think
+//faz o check de valid email
 function checkValidEmail($email){
 	if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
         return true;

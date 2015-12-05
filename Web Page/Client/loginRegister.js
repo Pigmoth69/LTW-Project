@@ -95,7 +95,7 @@ function logIn() {
 			
 	})
     .fail(function (error) {
-        console.log("Error: " + error);
+        console.error("Error: " + error);
     });
 
 }
@@ -119,7 +119,7 @@ function register() {
 		showInputValidation(data);
 	})
     .fail(function (error) {
-        console.log("Error: " + error);
+        console.error("Error: " + error);
     });
 }
 
