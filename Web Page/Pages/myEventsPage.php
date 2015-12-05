@@ -61,9 +61,9 @@
 						if($database->userIsFollowing($session->getUserID(), $row['id'])) {
 							?>
 						<div class="column">
-							<div class="box"> <a href="#"><img src="../Resources/Images/scr01.jpg" alt="" class="image image-full" /></a>
+							<div class="box"> <a href="#"><img src=" <?php echo $database->getPhotoURLFromEventID($row['id']); ?> " alt="" class="image image-full" height="200"/></a>
 								<p><?php echo $row['description']; ?></p>
-								<input id="Checkout<?php echo $row['id']; ?>" class="button button-small" type="button" value="Checkout" eventID="<?php echo $row['id'] ?>"/>	
+								<input id="Checkout<?php echo $row['id']; ?>" class="button" type="button" value="Checkout" eventID="<?php echo $row['id'] ?>"/>	
 							</div>
 						</div>
 					<?php } }?>

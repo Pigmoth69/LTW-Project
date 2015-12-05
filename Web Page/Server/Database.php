@@ -71,22 +71,8 @@ class Database {
 		return true;
 	}
 
-	public function getAllEvents(){
-		$stmt = $this->database->prepare('SELECT * FROM Event');
-		$stmt->execute();
-		$events = $stmt->fetchAll();
-		return $events;
-	}
 
-	//gets all events that the user has access to.
-	public function getUserEvents($userID) {
-		$stmt = $this->database->prepare('SELECT * FROM Event JOIN EventUser on EventUser.idEvent = Event.id WHERE EventUser.idUser = :userID');
-		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
-		$stmt->execute();
-		$userEvents = $stmt->fetchAll();
-
-		return $userEvents;
-	}
+	
 
 	//checks if a user is the host of the event
 	public function isHost($hostID, $eventID) {
@@ -125,16 +111,6 @@ class Database {
 		else return false;
 	}
 
-	public function getUserID($username) {
-		$stmt = $this->database->prepare('SELECT id FROM User WHERE username = :username');
-		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
-		$stmt->execute();
-		$id = $stmt->fetchAll();
-		if(empty($id[0]))
-			return false;
-
-		return intval($id[0][0]);
-	}
 	
 
 	public function addUserToEvent($userID, $eventID){
@@ -155,8 +131,20 @@ class Database {
 	}
 
 
+	///////////////////////////////////////
+	////////////GET USER INFO//////////////
+	///////////////////////////////////////
+	public function getUserID($username) {
+		$stmt = $this->database->prepare('SELECT id FROM User WHERE username = :username');
+		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
+		$stmt->execute();
+		$id = $stmt->fetchAll();
+		if(empty($id[0]))
+			return false;
 
-	/***********GET USERS INFO FROM ID PARAM************/
+		return intval($id[0][0]);
+	}
+
 	public function getPhotoURLFromUserID($userID) {
 		$stmt = $this->database->prepare('SELECT url FROM Photo, User WHERE User.id = :userID and User.idphoto = Photo.id');
 		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
@@ -205,35 +193,19 @@ class Database {
 		return $events;
 	}
 
-
-	// GET EVENT INFORMATION
-	public function getPhotoURLFromEventID($eventID) {
-		$stmt = $this->database->prepare('SELECT url FROM Photo, Event WHERE Event.id = :eventID AND Event.idPhoto = Photo.id');
-		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+	//gets all events that the user has access to.
+	public function getUserEvents($userID) {
+		$stmt = $this->database->prepare('SELECT * FROM Event JOIN EventUser on EventUser.idEvent = Event.id WHERE EventUser.idUser = :userID');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
 		$stmt->execute();
-		$event = $stmt->fetchAll();
-		return $event[0][0];
+		$userEvents = $stmt->fetchAll();
+
+		return $userEvents;
 	}
 
-	public function getEventFromEventID($eventID) {
-		$stmt = $this->database->prepare('SELECT * FROM Event WHERE Event.id = :eventID');
-		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
-		$stmt->execute();
-		$event = $stmt->fetchAll();
-		return $event[0];
-	}
-
-	public function getUsernamesInEventFromEventID($eventID) {
-		$stmt = $this->database->prepare('SELECT username FROM User JOIN EventUser on User.id = EventUser.idUser Where EventUser.idEvent = :eventID');
-		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
-		$stmt->execute();
-		$usernames = $stmt->fetchAll();
-		return $usernames;
-	}
-
-
-	/***************EDIT USER INFO FROM ID************/
-
+	///////////////////////////////////////
+	////////////EDIT USER INFO/////////////
+	///////////////////////////////////////
 	public function editUserFullnameFromUserID($userID, $fullname){
 		$stmt = $this->database->prepare('UPDATE User SET fullname = :fullname WHERE id = :userID');
 		$stmt->bindParam(':fullname', $fullname, PDO::PARAM_STR);
@@ -266,6 +238,42 @@ class Database {
 		$stmt->execute();
 		return;
 	}
+
+	///////////////////////////////////////
+	////////////GET EVENT INFO/////////////
+	///////////////////////////////////////
+	public function getPhotoURLFromEventID($eventID) {
+		$stmt = $this->database->prepare('SELECT url FROM Photo, Event WHERE Event.id = :eventID AND Event.idPhoto = Photo.id');
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+		$event = $stmt->fetchAll();
+		return $event[0][0];
+	}
+
+	public function getEventFromEventID($eventID) {
+		$stmt = $this->database->prepare('SELECT * FROM Event WHERE Event.id = :eventID');
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+		$event = $stmt->fetchAll();
+		return $event[0];
+	}
+
+	public function getUsernamesInEventFromEventID($eventID) {
+		$stmt = $this->database->prepare('SELECT username FROM User JOIN EventUser on User.id = EventUser.idUser Where EventUser.idEvent = :eventID');
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+		$usernames = $stmt->fetchAll();
+		return $usernames;
+	}
+
+	public function getAllEvents(){
+		$stmt = $this->database->prepare('SELECT * FROM Event');
+		$stmt->execute();
+		$events = $stmt->fetchAll();
+		return $events;
+	}
+
+
 }
 
 

@@ -63,15 +63,13 @@ a:hover
 
 .button
 {
-	display: inline-block;
-	margin-top: 2em;
-	padding: 0.8em 2em;
-	background: #3E5A99;
-	line-height: 1.8em;
-	letter-spacing: 1px;
-	text-decoration: none;
-	font-size: 1em;
-	color: #FFF;
+    display: inline-block;
+    margin-bottom: 2em;
+    padding: 0.8em 2em;
+    background: #3E5A99;
+    letter-spacing: 1px;
+    color: #FFF;
+
 }
 
 .button:before
