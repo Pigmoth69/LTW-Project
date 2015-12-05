@@ -77,37 +77,27 @@
 	<div class="editInfoDiv"><input type="button" id="editInfo" value="Edit Profile"></div> 
 
 	<form class="editInfoForm" method="POST">
-		<div id="user-fullname">
-			<span>Full Name: </span>
-			<input type="text" value="" placeholder="Full Name" id="fullname" size="30rem"/>
+		<div id="description">
+			<p>Full Name: </p>
+			<p>Insert Profile Photo: </p>
+			<p>Insert New Password: </p>
+			<p>Repeat New Password: </p>
+			<p>New Email: </p>
+			<p>Insert New Birth Date: </p>
+			
 		</div>
 
-		<div id="user-photo">
-			<span>Insert Profile Photo: </span>
-			<input type="file" value="" placeholder="Photo" id="photo" />
+		<div id="inputsDiv">
+			<div><input type="text" value="" placeholder="Full Name" id="fullname" class="profileInput" size="30rem"/></div>
+			<div><input type="file" value="" placeholder="Photo" id="photo" /></div>
+			<div><input type="password" value="" placeholder="New Password" id="password" class="profileInput" size="30rem"/></div>
+			<div><input type="password" value="" placeholder="Verify New Password" id="verifyPassword" class="profileInput" size="30rem"/></div>
+			<div><input type="text" value="" placeholder="New Email" id="email" class="profileInput" size="30rem"/></div>
+			<div><input type="date" value="" class="profileInput" id="date" /></div>
 		</div>
 
-		<div id="user-password">
-			<span>Insert New Password: </span>
-			<input type="password" value="" placeholder="New Password" id="password" size="30rem"/>
-		</div>
 
-		<div id="user-verifypassword">
-			<span>Repeat New Password: </span>
-			<input type="password" value="" placeholder="Verify New Password" id="verifyPassword" size="30rem"/>
-		</div>
-
-		<div id="user-email">
-			<span>New Email: </span>
-			<input type="text" value="" placeholder="New Email" id="email" size="30rem"/>
-		</div>
-
-		<div id="user-birthdate">
-			<span>Insert New Birth Date: </span>
-			<input type="date" value="" id="date" />
-		</div>
-
-		<div class="save"><input type="submit" id="saveButton" value="Save Changes"></div> 
+		<span id="save"><input type="submit" id="saveButton" value="Save Changes"></span>
 
 		<div id="message"></div>
 	</form>

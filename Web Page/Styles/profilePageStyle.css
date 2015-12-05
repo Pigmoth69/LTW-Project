@@ -129,11 +129,33 @@ a
     background: #ff6666;
     text-align: center;
     color: black;
+
+    margin-top: 15px;
 }
 
+#description{
+    display: inline-block;
+    float: left;
+}
 
-.editInfoForm input
-{
-	font-size: 20px;
-	text-align: center;
+#description p{
+    padding-top:3px;
+}
+
+#inputsDiv div {
+    margin-top: 0px;
+    margin-bottom: 11px;
+}
+
+input {
+    font-size: 20px;
+    text-align: center;
+}
+
+#save {
+    margin: auto;
+    text-align: center;
+    padding-left: 45%;
+    padding-right: 45%;
+    width: 10%;
 }
