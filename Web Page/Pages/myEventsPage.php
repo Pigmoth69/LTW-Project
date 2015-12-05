@@ -38,7 +38,7 @@
 			<select>
 				<option value="Birthday">Birthday</option>
 				<option value="Concert">Concert</option>
-				<option value="Sports">Sports</option>
+				<ption value="Sports">Sports</option>
 				<option value="Meeting">Meeting</option>
 				<option value="Wedding">Wedding</option>
 				<option value="Party">Party</option>
@@ -52,8 +52,7 @@
 			<input id="submit" type="submit" value="Submit">
 		</form>
 	</div>
-	</div>
-	
+		
 	<div class="wrapper">
 		<div id="portfolio" class="container">
 				<?php

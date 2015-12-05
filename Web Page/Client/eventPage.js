@@ -8,6 +8,7 @@ function onReady() {
 	$('#leave').click(onLeaveClick);
 	$('#edit').click(onEditClick);
 	$('#delete').click(onDeleteClick);
+	$('#join').click(onJoinClick);
 };
 
 function onLeaveClick(event) {
@@ -29,7 +30,7 @@ function onLeaveClick(event) {
 			
 	})
     .fail(function (error) {
-        console.log("Error: " + error);
+        console.error("Error: " + error);
     });
 }
 
@@ -49,7 +50,7 @@ function onEditClick(event) {
 		}			
 	})
     .fail(function (error) {
-        console.log("Error: " + error);
+        console.error("Error: " + error);
     });
 }
 
@@ -72,7 +73,30 @@ function onDeleteClick(event) {
 			
 	})
     .fail(function (error) {
-        console.log("Error: " + error);
+        console.error("Error: " + error);
+    });
+}
+
+function onJoinClick(event) {
+	if(!confirm('Are you sure you wish to join the event?') )
+		return;
+
+	var eventID = $('#eventID').val();
+	
+	$.post(
+    '../Server/manageEvent.php',
+	{ 
+		"functionName" : 'join',
+		"eventID": eventID
+	}, 
+	function (data) {
+		showValidation(data);
+		if(data['error'] == null)
+			setTimeout(function(){window.document.location.href = '../Pages/myEventsPage.php';}, 1000);
+			
+	})
+    .fail(function (error) {
+        console.error("Error: " + error);
     });
 }
 
@@ -94,6 +118,39 @@ function showValidation(data) {
 function startButtons() {
 	var eventID = $('#eventID').val();
 	
+	//Check if user is following event and can leave or if is a stranger and can join
+	$.post(
+    '../Server/checkIfFollowing.php',
+	{ 
+		"eventID": eventID
+	}, 
+	function (data) {
+		if(data['error'] != null){
+			alert(data['error']);
+			return;
+		}
+
+		if(data['message'] == null || data['message'] == ""){
+			alert('Oops, something went wrong!! Going back to your events.');
+			setTimeout(function(){window.document.location.href = '../Pages/myEventsPage.php';}, 100);
+			return;
+		}
+
+		if(data['message'] == 'Follower'){
+			$('#leave').show();
+			$('#join').hide();
+		}
+		else if(data['message'] == 'Stranger'){
+			$('#leave').hide();
+			$('#join').show();
+		}
+	})
+    .fail(function (error) {
+        console.error("Error: " + error);
+    });
+
+
+    //Check if user is host and can edit/delete or if is guest and can leave
 	$.post(
     '../Server/checkIfHost.php',
 	{ 
@@ -112,12 +169,12 @@ function startButtons() {
 		}
 
 		if(data['message'] == 'Host'){
+			$('#join').hide();
 			$('#leave').hide();
 			$('#edit').show();
 			$('#delete').show();
 		}
 		else if(data['message'] == 'Guest'){
-			$('#leave').show();
 			$('#edit').hide();
 			$('#delete').hide();
 		}
@@ -125,4 +182,5 @@ function startButtons() {
     .fail(function (error) {
         console.error("Error: " + error);
     });
+
 }

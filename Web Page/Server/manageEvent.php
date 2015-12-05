@@ -62,6 +62,17 @@
       $response['message'] = 'You have edited the event';
   
       break;
+
+    case 'join':
+      if($database->userIsFollowing($userID, $eventID)){
+        printErrorMessage($response, 'You cannot join an event you are already following!');
+        return;
+      }
+
+      $database->addUserToEvent($userID, $eventID);
+      $response['message'] = 'You have joined the event!';
+  
+      break;
     }
 
   echo json_encode($response);

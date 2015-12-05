@@ -40,6 +40,8 @@
 			<input id="leave" class="button button-small" type="button" value="Leave"/>
 			<input id="edit" class="button button-small" type="button" value="Edit"/>
 			<input id="delete" class="button button-small" type="button" value="Delete"/>
+
+			<input id="join" class="button button-small" type="button" value="Join"/>
 			
 		</div>
 		
