@@ -6,12 +6,28 @@ function onReady() {
 
 	$('input#editInfo').click(function() {onButtonClick(); });
 
-	$('.editInfoForm').submit(
+/*	$('#editInfoForm').submit(
 		function(event) {
 		event.preventDefault();
 		onFormSubmission(event); 
 	}
 	);
+*/
+
+	$('#editInfoForm').submit( function( e ) {
+    $.ajax( {
+      url: '../Server/editUserInfo.php',
+      type: 'POST',
+      data: new FormData( this ),
+      processData: false,
+      contentType: false,
+      success: function(response) {
+      			showInputValidation(response);
+            }
+
+    } );
+    e.preventDefault();
+  } );
 
 };
 
@@ -47,27 +63,38 @@ function clearForm() {
 }
 
 function onFormSubmission(event) {
-	var fullname = $('#fullname').val()
-	var photo = $('#photo').val();
-	var password = $('#password').val();
-	var verifyPassword = $('#verifyPassword').val();
-	var email = $('#email').val();
-	var date = $('#date').val();
+    
 
-	$.post(
-    '../Server/editUserInfo.php',
-    {
-		'fullname': fullname, 
-		'photo': photo,
-		'password': password,
-		'verifyPassword': verifyPassword,
-		'email': email,
-		'date': date,
-	}, 
-	function (data) {
-		showInputValidation(data);
-		console.log(data);
-	})
+    //var filedata = $("form#editInfoForm")[0];
+    //formData = new FormData();
+    //formData.append("fullname", $('fullname')[0]);
+    //formData.append("photo", $("#photo")[0].files[0]);
+    //console.log(formData);
+
+    /*
+    var i = 0, len = filedata.files.length;
+    
+    for (var i = 0; i < len; i++) {
+        var file = filedata.files[i];
+        formData.append("file" + i, file);
+    }
+    formData.append('nrfiles', filedata.files.length);
+    formData.append('eventId', parseInt(getUrlParameter("id")));
+    */
+    
+    /*$.ajax({
+        type: "post",
+        url: "../Server/editUserInfo.php",
+        data: {'fullname' : 1},
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            showInputValidation(response);
+        },
+        error: function(errResponse) {
+            console.log(errResponse);
+        }
+    });*/
 }
 
 

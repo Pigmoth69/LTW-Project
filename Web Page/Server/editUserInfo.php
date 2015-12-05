@@ -7,15 +7,18 @@
     $database = new Database;
     $session = new Session;
 
+
     $username = $session->getUsername();
     $userID = $session->getUserID();
     $fullname = $_POST['fullname'];
-    $photo = $_POST['photo'];
     $password = $_POST['password'];
     $passwordLength = strlen($password);
     $verifyPassword = $_POST['verifyPassword'];
     $email = $_POST['email'];
     $date = $_POST['date'];
+
+    $outputdir = "../Resources/ProfilePics/";
+    $ImageName = str_replace(' ', '-', strtolower($_FILES['photo']['name']));
 
     $fullnameEdit = false;
     $photoEdit = false;
@@ -26,9 +29,32 @@
     if($fullname != "")
       $fullnameEdit = true;
 
-    if($photo != "")
-      $photoEdit = true;
+    if($ImageName != ""){
 
+      $ImageExt = substr($ImageName, strrpos($ImageName, '.'));
+      $ImageExt = str_replace('.', '', $ImageExt);
+      $extensions = array("jpeg", "jpg", "png");
+
+
+      if((($_FILES["photo"]["type"] == "image/png") || ($_FILES["photo"]["type"] == "image/jpg") || ($_FILES["photo"]["type"] == "image/jpeg")) && in_array($ImageExt, $extensions))
+      {
+        if(file_exists("../Resources/ProfilePics/" . $ImageName))
+        {
+          printErrorMessage($response, 'There is already an image with this name!!!');
+          return;
+        }
+        else{
+          move_uploaded_file($_FILES["photo"]["tmp_name"], $outputdir . $ImageName);
+          $photoEdit = true;
+        }
+      }
+      else {
+        printErrorMessage($response, 'Invalid image extension! Required .png, .jpeg or .jpg');
+        return;
+      }
+    }      
+
+   
     if($passwordLength > 0)
     {
       if($passwordLength < 4 || $passwordLength > 32)
@@ -58,8 +84,8 @@
     {
       if($fullnameEdit)
         $database->editUserFullnameFromUserID($userID, $fullname);
-   //   if($photoEdit)
-   //     $database->editUserPhotoFromUserID($userID, $photo);
+      if($photoEdit)
+        $result = $database->editUserPhotoFromUserID($userID, $outputdir . $ImageName);
       if($passwordEdit)
         $database->editUserPasswordFromUserID($userID, $password);
       if($emailEdit)
@@ -69,7 +95,6 @@
    
       $response['success'] = 'Profile Updated!!! Refresh the page to check the modifications!';
       echo json_encode($response);
-      return;
     }
 
   function printErrorMessage($responseArray, $message) {

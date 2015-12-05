@@ -76,7 +76,7 @@
 
 	<div class="editInfoDiv"><input type="button" id="editInfo" value="Edit Profile"></div> 
 
-	<form class="editInfoForm" method="POST">
+	<form class="editInfoForm" id="editInfoForm" action="../Server/editUserInfo.php" method="post" enctype="multipart/form-data">
 		<div id="description">
 			<p>Full Name: </p>
 			<p>Insert Profile Photo: </p>
@@ -88,12 +88,12 @@
 		</div>
 
 		<div id="inputsDiv">
-			<div><input type="text" value="" placeholder="Full Name" id="fullname" class="profileInput" size="30rem"/></div>
-			<div><input type="file" value="" placeholder="Photo" id="photo" /></div>
-			<div><input type="password" value="" placeholder="New Password" id="password" class="profileInput" size="30rem"/></div>
-			<div><input type="password" value="" placeholder="Verify New Password" id="verifyPassword" class="profileInput" size="30rem"/></div>
-			<div><input type="text" value="" placeholder="New Email" id="email" class="profileInput" size="30rem"/></div>
-			<div><input type="date" value="" class="profileInput" id="date" /></div>
+			<div><input type="text" value="" placeholder="Full Name" id="fullname" name="fullname" class="profileInput" size="30%"/></div>
+			<div><input type="file" id="photo" name="photo"/></div>
+			<div><input type="password" value="" placeholder="New Password" id="password" name="password" class="profileInput" size="30%"/></div>
+			<div><input type="password" value="" placeholder="Verify New Password" id="verifyPassword" name="verifyPassword" class="profileInput" size="30%"/></div>
+			<div><input type="text" value="" placeholder="New Email" id="email" name="email" class="profileInput" size="30%"/></div>
+			<div><input type="date" value="" class="profileInput" id="date" name="date"/></div>
 		</div>
 
 

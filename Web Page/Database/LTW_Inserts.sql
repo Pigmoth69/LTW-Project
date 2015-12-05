@@ -18,14 +18,11 @@ CREATE TRIGGER connectEventUser
 /*******INSERTS*********/
 /*passwords: qwerty, 12345, asdasd*/
 INSERT INTO Photo(URL) VALUES('../Resources/ProfilePics/defaultProfilePic.png');
-INSERT INTO Photo(URL) VALUES('../Resources/ProfilePics/gustavo.jpg');
-INSERT INTO Photo(URL) VALUES('../Resources/ProfilePics/eunasciaqui.png');
-INSERT INTO Photo(URL) VALUES('../Resources/ProfilePics/carreira.png');
 
 /*passwords: qwerty, 12345, asdasd*/
-INSERT INTO User(USERNAME, FULLNAME, EMAIL, PASSWORD, DATANASCIMENTO, IDPHOTO) VALUES('Pigmoth', 'Daniel Silva Reis', 'pigmoth@gmail.com', '$2y$10$Pjnde6rRKvo4mDaQmWNYme1K6wqWbeoM/Asq6uGLMvqm4ms1eOqyq', '1995-01-03', 2); 
-INSERT INTO User(USERNAME, FULLNAME, EMAIL, PASSWORD, DATANASCIMENTO, IDPHOTO) VALUES('guilhermevpinto', 'Guilherme Vieira Pinto', 'guilhermevpinto@gmail.com', '$2y$10$x7HX5nnwJaOhNfmEL5irx.dEnhmapRMzcS.76hC2H.dDTXmW8EpSG', '1994-12-13', 3);
-INSERT INTO User(USERNAME, FULLNAME, EMAIL, PASSWORD, DATANASCIMENTO, IDPHOTO) VALUES('Nutil', 'Luis Ramos Pinto de Figueiredo', 'luisfigueiredos@hotmail.com', '$2y$10$ZOAtLO0TM04rgulbkuXcJO3AciQSc7blNs.ThNs81jUPm.uUuGNAu', '1995-04-20', 4);
+INSERT INTO User(USERNAME, FULLNAME, EMAIL, PASSWORD, DATANASCIMENTO, IDPHOTO) VALUES('Pigmoth', 'Daniel Silva Reis', 'pigmoth@gmail.com', '$2y$10$Pjnde6rRKvo4mDaQmWNYme1K6wqWbeoM/Asq6uGLMvqm4ms1eOqyq', '1995-01-03', 1); 
+INSERT INTO User(USERNAME, FULLNAME, EMAIL, PASSWORD, DATANASCIMENTO, IDPHOTO) VALUES('guilhermevpinto', 'Guilherme Vieira Pinto', 'guilhermevpinto@gmail.com', '$2y$10$x7HX5nnwJaOhNfmEL5irx.dEnhmapRMzcS.76hC2H.dDTXmW8EpSG', '1994-12-13', 1);
+INSERT INTO User(USERNAME, FULLNAME, EMAIL, PASSWORD, DATANASCIMENTO, IDPHOTO) VALUES('Nutil', 'Luis Ramos Pinto de Figueiredo', 'luisfigueiredos@hotmail.com', '$2y$10$ZOAtLO0TM04rgulbkuXcJO3AciQSc7blNs.ThNs81jUPm.uUuGNAu', '1995-04-20', 1);
 
 INSERT INTO Location(NAME, ADDRESS, DESCRIPTION) VALUES('FEUP', 'Roberto Frias', 'FEUPCaffe Spot');
 INSERT INTO Location(NAME, ADDRESS, DESCRIPTION) VALUES('Estacao de Comboio S. Bento', 'Aliados', 'Pouca Terra');

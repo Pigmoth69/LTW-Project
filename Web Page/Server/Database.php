@@ -94,8 +94,7 @@ class Database {
 		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
 		$stmt->execute();
 		$events = $stmt->fetchAll();
-
-		if($events[0]['private'])
+		if($events[0][5])
 			return true;
 		else return false;
 	}
@@ -112,6 +111,25 @@ class Database {
 		else return false;
 	}
 
+	
+
+	public function addUserToEvent($userID, $eventID){
+		//Verify if for some reason user already exists
+		$stmt = $this->database->prepare('SELECT * FROM EventUser Where idEvent = :eventID AND idUser = :userID');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+		$existingUserEvents = $stmt->fetchAll();
+		if(!empty($existingUserEvents))
+			return false;
+
+		$stmt = $this->database->prepare('INSERT INTO EventUser(idEvent, idUser) VALUES(:eventID, :userID)');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+		return true;
+	}
+
 
 	///////////////////////////////////////
 	////////////GET USER INFO//////////////
@@ -124,7 +142,7 @@ class Database {
 		if(empty($id[0]))
 			return false;
 
-		return intval($id[0]['id']);
+		return intval($id[0][0]);
 	}
 
 	public function getPhotoURLFromUserID($userID) {
@@ -132,7 +150,7 @@ class Database {
 		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
 		$stmt->execute();
 		$user = $stmt->fetchAll();
-		return $user[0]['url'];
+		return $user[0][0];
 	}
 
 	public function getUsernameFromUserID($userID) {
@@ -148,7 +166,7 @@ class Database {
 		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
 		$stmt->execute();
 		$user = $stmt->fetchAll();
-		return $user[0]['fullname'];
+		return $user[0][0];
 	}
 
 	public function getBirthFromUserID($userID) {
@@ -156,7 +174,7 @@ class Database {
 		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
 		$stmt->execute();
 		$user = $stmt->fetchAll();
-		return $user[0]['datanascimento'];
+		return $user[0][0];
 	}
 
 	public function getEmailFromUserID($userID) {
@@ -164,7 +182,7 @@ class Database {
 		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
 		$stmt->execute();
 		$user = $stmt->fetchAll();
-		return $user[0]['email'];
+		return $user[0][0];
 	}
 
 	public function getUserOwnedEvents($userID) {
@@ -181,7 +199,6 @@ class Database {
 		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
 		$stmt->execute();
 		$userEvents = $stmt->fetchAll();
-
 		return $userEvents;
 	}
 
@@ -201,6 +218,21 @@ class Database {
 		$stmt = $this->database->prepare('UPDATE User SET password = :password WHERE id = :userID');
 		$stmt->bindParam(':password', $dbPassword, PDO::PARAM_STR);
 		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->execute();
+		return;
+	}
+
+	public function editUserPhotoFromUserID($userID, $photoURL){
+		$stmt = $this->database->prepare('INSERT INTO Photo(URL) VALUES(:photoURL)');
+		$stmt->bindParam(':photoURL', $photoURL, PDO::PARAM_STR);
+		$stmt->execute();
+		$stmt = $this->database->prepare('SELECT id FROM photo WHERE url = :photoURL');
+		$stmt->bindParam(':photoURL', $photoURL, PDO::PARAM_STR);
+		$stmt->execute();
+		$id = $stmt->fetchAll()[0][0];
+		$stmt = $this->database->prepare('UPDATE User SET idphoto = :id WHERE id = :userID');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_STR);
+		$stmt->bindParam(':id', $id, PDO::PARAM_STR);
 		$stmt->execute();
 		return;
 	}
@@ -229,7 +261,7 @@ class Database {
 		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
 		$stmt->execute();
 		$event = $stmt->fetchAll();
-		return $event[0]['url'];
+		return $event[0][0];
 	}
 
 	public function getEventFromEventID($eventID) {
@@ -255,49 +287,11 @@ class Database {
 		return $events;
 	}
 
-	///////////////////////////////////////
-	////////////EDIT EVENT INFO////////////
-	///////////////////////////////////////
 
-	public function removeUserFromEvent($userID, $eventID) {
-		$stmt = $this->database->prepare('DELETE FROM EventUser Where idUser = :userID AND idEvent = :eventID');
-		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
-		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
-		$stmt->execute();
-	}
-
-	public function deleteEvent($eventID) {
-		//Remove every user from the event to be deleted
-		$stmt = $this->database->prepare('DELETE FROM EventUser Where idEvent = :eventID');
-		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
-		$stmt->execute();
-
-		//Delete the event
-		$stmt = $this->database->prepare('DELETE FROM Event Where id = :eventID');
-		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
-		$stmt->execute();
-	}
-
-	public function addUserToEvent($userID, $eventID){
-		//Verify if for some reason user already exists in Event
-		$stmt = $this->database->prepare('SELECT * FROM EventUser Where idEvent = :eventID AND idUser = :userID');
-		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
-		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
-		$stmt->execute();
-		$existingUserEvents = $stmt->fetchAll();
-		if(!empty($existingUserEvents))
-			return false;
-
-		$stmt = $this->database->prepare('INSERT INTO EventUser(idEvent, idUser) VALUES(:eventID, :userID)');
-		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
-		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
-		$stmt->execute();
-		return true;
-	}
 }
 
 
-//faz o check de valid email
+//ifaz o check de valid email da google da think
 function checkValidEmail($email){
 	if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
         return true;
