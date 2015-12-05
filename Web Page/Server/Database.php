@@ -284,6 +284,18 @@ class Database {
 		$stmt->execute();
 	}
 
+	public function deleteEvent($eventID) {
+		//Remove every user from the event to be deleted
+		$stmt = $this->database->prepare('DELETE FROM EventUser Where idEvent = :eventID');
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+
+		//Delete the event
+		$stmt = $this->database->prepare('DELETE FROM Event Where id = :eventID');
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+	}
+
 
 
 }

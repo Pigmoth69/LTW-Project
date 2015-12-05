@@ -28,6 +28,7 @@
   if($database->isHost($userID, $eventID)){
     $response['message'] = 'Host';
   }
+  
   else {
     $response['message'] = 'Guest';
   }

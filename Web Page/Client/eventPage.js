@@ -3,9 +3,11 @@ $(document).ready(onReady);
 function onReady() {
 	$('#message').hide();
 
-	$('#leave').click(onLeaveClick);
-
 	startButtons();
+
+	$('#leave').click(onLeaveClick);
+	$('#edit').click(onEditClick);
+	$('#delete').click(onDeleteClick);
 };
 
 function onLeaveClick(event) {
@@ -15,8 +17,9 @@ function onLeaveClick(event) {
 	var eventID = $('#eventID').val();
 	
 	$.post(
-    '../Server/leaveEvent.php',
+    '../Server/manageEvent.php',
 	{ 
+		"functionName" : 'leave',
 		"eventID": eventID
 	}, 
 	function (data) {
@@ -28,7 +31,49 @@ function onLeaveClick(event) {
     .fail(function (error) {
         console.log("Error: " + error);
     });
+}
+
+function onEditClick(event) {
+	var eventID = $('#eventID').val();
 	
+	$.post(
+    '../Server/manageEvent.php',
+	{ 
+		"functionName" : 'edit',
+		"eventID": eventID
+	}, 
+	function (data) {
+		showValidation(data);
+		if(data['error'] == null){
+			return;
+		}			
+	})
+    .fail(function (error) {
+        console.log("Error: " + error);
+    });
+}
+
+function onDeleteClick(event) {
+	if(!confirm('Deleting an event is irreversible. Are you sure you wish to delete this event?') )
+		return;
+
+	var eventID = $('#eventID').val();
+	
+	$.post(
+    '../Server/manageEvent.php',
+	{ 
+		"functionName" : 'delete',
+		"eventID": eventID
+	}, 
+	function (data) {
+		showValidation(data);
+		if(data['error'] == null)
+			setTimeout(function(){window.document.location.href = '../Pages/myEventsPage.php';}, 1000);
+			
+	})
+    .fail(function (error) {
+        console.log("Error: " + error);
+    });
 }
 
 function showValidation(data) {
