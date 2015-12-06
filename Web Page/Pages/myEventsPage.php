@@ -96,7 +96,7 @@
 							?>
 						<div class="column">
 							<div class="box"> <a href="#"><img src=" <?php echo $database->getPhotoURLFromEventID($row['id']); ?> " alt="" class="image image-full" height="200"/></a>
-								<p><?php echo $row['description']; ?></p>
+								<p><?php echo $row['name']; ?></p>
 								<input id="Checkout<?php echo $row['id']; ?>" class="button" type="button" value="Checkout" eventID="<?php echo $row['id'] ?>"/>	
 							</div>
 						</div>

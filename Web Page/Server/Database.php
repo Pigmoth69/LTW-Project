@@ -13,7 +13,6 @@ class Database {
 		}
 	}
 
-
 	public function checkIfUserExists($username){
 		$stmt = $this->database->prepare('SELECT * FROM User WHERE username = :username');
 		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
