@@ -142,11 +142,13 @@
 			$userPhotoURL = $database->getPhotoURLFromUserID($comments['idUser']);
 			$username = $database->getUsernameFromUserID($comments['idUser']);
 			$comment = $comments['commentary'];
+			$date = $comments['commentDate']; 
 			?>
 			<table>
 				<tr>
-					<td rowspan="2"><img src="<?php echo $userPhotoURL ?>" class="image" height="128" width="128"/></td>
-					<td><h3><?php echo $username . " commented: "?></h3></td>
+					<td rowspan="3"><img src="<?php echo $userPhotoURL ?>" class="image" height="128" width="128"/></td>
+					<td><h3><?php echo $username . " commented on  "?></h3></td>
+					<td><h3><?php echo $date ?></h3></td>
 				</tr>
 				<tr>
 					<td><p><?php echo $comment ?></p></td>
