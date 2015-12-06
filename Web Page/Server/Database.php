@@ -427,6 +427,15 @@ class Database {
 		$comments = $stmt->fetchAll();
 		return $comments;
 	}
+	
+	public function addComment($userID,$eventID,$commentDate,$comment){
+		$stmt = $this->database->prepare('INSERT INTO Commentary(idUser,idEvent,commentDate,commentary) VALUES(:idUser, :idEvent,:commentDate,:commentary');
+		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
+		$stmt->bindParam(':commentDate', $commentDate, PDO::STR);
+		$stmt->bindParam(':commentary', $commentary, PDO::PARAM_STR);
+		return $stmt->execute();
+	}
 
 }
 
