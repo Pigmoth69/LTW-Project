@@ -38,7 +38,7 @@ function onReady() {
 		onInviteSubmit(event); 
 	});
 
-	onComment();
+	$('#addComment').click(onComment);
 	$('#editInfoForm').submit( function( e ) {
 	    $.ajax( {
 	      url: '../Server/editEventInfo.php',
@@ -57,29 +57,23 @@ function onReady() {
 };
 
 function onComment(event){
-	var userID = $('#userID').val();
 	var eventID = $('#eventID').val();
-	var commentDate = new Date(); //isto pode ser um problema...
 	var commentary = $('#userComment').val();
 
-	$('#addComment').click(function(e){
-		$.post(
-			'../Server/addComment.php',
-			{ 
-				"userID" : 'userID',
-				"eventID": eventID,
-				"commentDate": commentDate,
-				"commentary": commentary
-			}, 
-			function (data) {
-				showInputValidation1(data);
-				if(data['error'] == null)
-					setTimeout(function(){window.document.location.href = '../Pages/myEventsPage.php';}, 1000);
+	$.post(
+		'../Server/addComment.php',
+		{ 
+			"eventID": eventID,
+			"commentary": commentary
+		}, 
+		function (data) {
+			showInputValidation1(data);
+			if(data['error'] == null)
+				setTimeout(function(){window.document.location.href = '../Pages/eventPage.php?id=' + eventID;}, 1000);
 
-			})
-		.fail(function (error) {
-			console.error("Error: " + error);
-		});
+		})
+	.fail(function (error) {
+		console.error("Error: " + error);
 	});
 }
 

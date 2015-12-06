@@ -10,7 +10,6 @@
 	$eventID = intval($_GET['id']);
 	$userID = intval($_SESSION['userID']);
 
-	//$_SESSION['eventID'] = $eventID;
 	$eventInfo = $database->getEventFromEventID($eventID);
 	$eventPhotoURL = $database->getPhotoURLFromEventID($eventID);
 	$eventHostUsername = $database->getUsernameFromUserID($eventInfo['idHost']);
@@ -167,7 +166,7 @@
 					<td><h3><?php echo $username . " says: "?></h3></td>
 				</tr>
 				<tr>
-					<td><textarea rows="7%" cols="100%" id="userComment" name="userComment"></textarea></td>
+					<td><textarea rows="7%" cols="100%" id="userComment" value="" name="userComment"></textarea></td>
 				</tr>
 				<tr>
 					<td colspan="2">

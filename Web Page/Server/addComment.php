@@ -9,15 +9,17 @@
 
     $eventID = $_POST['eventID'];
     $userID = $session->getUserID();
-  	$commentDate = $_POST['commentDate'];
-    $commentary = $_POST['editdescription'];
+  	$commentDate = date("Y-m-d");
+    $commentary = $_POST['commentary'];
 
-    if($commentary ==""){
+
+
+    if($commentary == ""){
     	printErrorMessage($response, 'You neeed to write something on the comment!');
         return;
     }
 
-    $database->addComment($userID,$eventID,$commentDate,$comment);
+    $database->addComment($userID,$eventID,$commentDate,$commentary);
 
     $response['success'] = 'Event Updated!!! Refresh the page to check the modifications!';
     echo json_encode($response);
@@ -25,7 +27,7 @@
 
 
   function printErrorMessage($responseArray, $message) {
-    $responseArray['error'] = $message . ' Profile information remains the same!';
+    $responseArray['error'] = $message . ' Event information remains the same!';
     echo json_encode($responseArray);
     return;
   }

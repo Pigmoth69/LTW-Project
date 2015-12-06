@@ -16,8 +16,6 @@ CREATE TABLE Commentary (
 	commentDate DATE NOT NULL,
 	commentary TEXT, 
 	
-
-
 	CONSTRAINT 	fk_idEvent FOREIGN KEY (idEvent) REFERENCES Event(id),
 	CONSTRAINT fk_idUser FOREIGN KEY (idUser) REFERENCES User(id)
 );

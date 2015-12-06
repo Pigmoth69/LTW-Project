@@ -106,7 +106,7 @@ class Database {
 		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
 		$stmt->execute();
 		$eventUsers = $stmt->fetchAll();
-		if(!empty($eventUsers))
+		if(empty($eventUsers))
 			return false;
 		else return true;
 	}
@@ -428,17 +428,15 @@ class Database {
 		return $comments;
 	}
 	
-	public function addComment($userID,$eventID,$commentDate,$comment){
-		$stmt = $this->database->prepare('INSERT INTO Commentary(idUser,idEvent,commentDate,commentary) VALUES(:idUser, :idEvent,:commentDate,:commentary');
+	public function addComment($idUser,$idEvent,$commentDate,$comment){
+		$stmt = $this->database->prepare('INSERT INTO Commentary(idUser,idEvent,commentDate,commentary) VALUES(:idUser,:idEvent,:commentDate,:comment)');
 		$stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
 		$stmt->bindParam(':idEvent', $idEvent, PDO::PARAM_INT);
-		$stmt->bindParam(':commentDate', $commentDate, PDO::STR);
-		$stmt->bindParam(':commentary', $commentary, PDO::PARAM_STR);
-		return $stmt->execute();
+		$stmt->bindParam(':commentDate', $commentDate, PDO::PARAM_STR);
+		$stmt->bindParam(':comment', $comment, PDO::PARAM_STR);
+		$stmt->execute();
 	}
-
 }
-
 
 //faz o check de valid email
 function checkValidEmail($email){
