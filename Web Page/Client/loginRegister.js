@@ -90,8 +90,10 @@ function logIn() {
 	}, 
 	function (data) {
 		showInputValidation(data);
-		if(data['error'] == null)
+		if(data['error'] == null){
 			setTimeout(function(){window.document.location.href = '../Pages/homePage.php';}, 1000);
+			return;
+		}
 			
 	})
     .fail(function (error) {
