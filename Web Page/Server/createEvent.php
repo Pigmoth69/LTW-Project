@@ -67,7 +67,7 @@
 
     if($database->createEvent($userID,$eventDescription,$eventName,$imageURL,$eventLocation,$eventPrivacy,$eventType,$currentDate,$eventDate))
     {
-      $response['success'] = 'Event created!!! Refresh the page to check the modifications!';
+      $response['success'] = 'Event created successfully!';
       echo json_encode($response);
       return;
     }
@@ -75,7 +75,7 @@
 
 
   function printErrorMessage($responseArray, $message) {
-    $responseArray['error'] = $message . ' Events information need to be complete!';
+    $responseArray['error'] = $message;
     echo json_encode($responseArray);
     return;
   }

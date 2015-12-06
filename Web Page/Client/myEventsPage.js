@@ -20,7 +20,9 @@ function onReady() {
 			contentType: false,
 			success: function(response) {
 				showInputValidation(response);
-			}
+				if(response['error'] == null)
+					setTimeout(function(){ location.reload(); }, 2500);
+				}
 
 		} );
 		e.preventDefault();
