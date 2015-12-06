@@ -23,9 +23,9 @@ INSERT INTO Photo(URL) VALUES('../Resources/ProfilePics/eunasciaqui.png');
 INSERT INTO Photo(URL) VALUES('../Resources/ProfilePics/carreira.png');
 
 /*passwords: qwerty, 12345, asdasd*/
-INSERT INTO User(USERNAME, FULLNAME, EMAIL, PASSWORD, DATANASCIMENTO, IDPHOTO) VALUES('Pigmoth', 'Daniel Silva Reis', 'pigmoth@gmail.com', '$2y$10$Pjnde6rRKvo4mDaQmWNYme1K6wqWbeoM/Asq6uGLMvqm4ms1eOqyq', '1995-01-03', 2); 
-INSERT INTO User(USERNAME, FULLNAME, EMAIL, PASSWORD, DATANASCIMENTO, IDPHOTO) VALUES('guilhermevpinto', 'Guilherme Vieira Pinto', 'guilhermevpinto@gmail.com', '$2y$10$x7HX5nnwJaOhNfmEL5irx.dEnhmapRMzcS.76hC2H.dDTXmW8EpSG', '1994-12-13', 3);
-INSERT INTO User(USERNAME, FULLNAME, EMAIL, PASSWORD, DATANASCIMENTO, IDPHOTO) VALUES('Nutil', 'Luis Ramos Pinto de Figueiredo', 'luisfigueiredos@hotmail.com', '$2y$10$ZOAtLO0TM04rgulbkuXcJO3AciQSc7blNs.ThNs81jUPm.uUuGNAu', '1995-04-20', 4);
+INSERT INTO User(USERNAME, FULLNAME, EMAIL, PASSWORD, DATANASCIMENTO, IDPHOTO) VALUES('Pigmoth', 'Daniel Silva Reis', 'pigmoth@gmail.com', '$2y$10$Pjnde6rRKvo4mDaQmWNYme1K6wqWbeoM/Asq6uGLMvqm4ms1eOqyq', '1995-01-03', 1); 
+INSERT INTO User(USERNAME, FULLNAME, EMAIL, PASSWORD, DATANASCIMENTO, IDPHOTO) VALUES('guilhermevpinto', 'Guilherme Vieira Pinto', 'guilhermevpinto@gmail.com', '$2y$10$x7HX5nnwJaOhNfmEL5irx.dEnhmapRMzcS.76hC2H.dDTXmW8EpSG', '1994-12-13', 2);
+INSERT INTO User(USERNAME, FULLNAME, EMAIL, PASSWORD, DATANASCIMENTO, IDPHOTO) VALUES('Nutil', 'Luis Ramos Pinto de Figueiredo', 'luisfigueiredos@hotmail.com', '$2y$10$ZOAtLO0TM04rgulbkuXcJO3AciQSc7blNs.ThNs81jUPm.uUuGNAu', '1995-04-20', 3);
 
 
 
@@ -59,3 +59,15 @@ INSERT INTO EventUser(IDEVENT, IDUSER) VALUES(1, 3);
 INSERT INTO EventUser(IDEVENT, IDUSER) VALUES(5, 3);
 INSERT INTO EventUser(IDEVENT, IDUSER) VALUES(9, 3);
 INSERT INTO EventUser(IDEVENT, IDUSER) VALUES(10, 3);
+
+/*Comentarios*/
+INSERT INTO Commentary(IDUSER, IDEVENT, COMMENTDATE, COMMENTARY) VALUES(1,2,'2015-01-01 10:07:00',"Um comentario fagotinho4!");
+INSERT INTO Commentary(IDUSER, IDEVENT, COMMENTDATE, COMMENTARY) VALUES(2,2,'2015-01-01 10:01:00',"Um comentario fagotinho1!");
+INSERT INTO Commentary(IDUSER, IDEVENT, COMMENTDATE, COMMENTARY) VALUES(3,2,'2015-01-01 10:03:00',"Um comentario fagotinho2!");
+INSERT INTO Commentary(IDUSER, IDEVENT, COMMENTDATE, COMMENTARY) VALUES(1,2,'2015-01-01 10:15:00',"Um comentario fagotinho8!");
+INSERT INTO Commentary(IDUSER, IDEVENT, COMMENTDATE, COMMENTARY) VALUES(2,2,'2015-01-01 10:11:00',"Um comentario fagotinho6!");
+INSERT INTO Commentary(IDUSER, IDEVENT, COMMENTDATE, COMMENTARY) VALUES(3,2,'2015-01-01 10:09:00',"Um comentario fagotinho5!");
+INSERT INTO Commentary(IDUSER, IDEVENT, COMMENTDATE, COMMENTARY) VALUES(1,2,'2015-01-01 10:13:00',"Um comentario fagotinho7!");
+INSERT INTO Commentary(IDUSER, IDEVENT, COMMENTDATE, COMMENTARY) VALUES(2,2,'2015-01-01 10:19:00',"Um comentario fagotinho10!");
+INSERT INTO Commentary(IDUSER, IDEVENT, COMMENTDATE, COMMENTARY) VALUES(3,2,'2015-01-01 10:17:00',"Um comentario fagotinho9!");
+INSERT INTO Commentary(IDUSER, IDEVENT, COMMENTDATE, COMMENTARY) VALUES(1,2,'2015-01-01 10:05:00',"Um comentario fagotinho3!");

@@ -13,12 +13,13 @@
 		$eventPhotoURL = $database->getPhotoURLFromEventID($eventID);
 		$eventHostUsername = $database->getUsernameFromUserID($eventInfo['idHost']);
 		$participants = $database->getUsernamesInEventFromEventID($eventID);
+		$comments = $database->getComments($eventID);
 		$hostID = $database->getUserID($eventHostUsername);
 		$following = $database->userIsFollowing($userID, $eventID);
 	?>
-	<link href="../styles/myEventsPageStyle.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="../styles/eventPage.css" rel="stylesheet" type="text/css" media="all" />
 	<script src="../Client/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="../Client/eventPage.js"></script>
+	<script type="text/javascript" src="../Client/eventPage.js"></script> 
 </head>
 <body>
 	<?php 
@@ -31,7 +32,8 @@
 		<input id='hostID' value="<?php echo $hostID;?>" hidden/>
 		<input id='following' value="<?php echo $following;?>" hidden/>
 
-		<div class="box"> <a href="#"><img src="<?php echo $eventPhotoURL ?>" class="image" height="256" width="256"/></a>
+		<div class="box">
+			<a href="#"><img src="<?php echo $eventPhotoURL ?>" class="image" height="256" width="256"/></a>
 			<div id='eventName'><?php echo $eventInfo['name']; ?></div>
 			<div id='eventHost'><?php echo 'Event created by ' . $eventHostUsername; ?></div>
 			<div id='eventDescription'><?php echo 'Description: ' . $eventInfo['description']; ?></div>
@@ -56,4 +58,31 @@
 
 	</div>
 
+	<div id="comments" class="container">
+		<div class="box" id="comment-box">
+			<?php
+			foreach($comments as $comments){?>
+			<div class="comment-box">
+				<?php 
+				$userPhotoURL = $database->getPhotoURLFromUserID($comments['idUser']);
+				$username = $database->getUsernameFromUserID($comments['idUser']);
+				$comment = $comments['commentary'];
+				?>
+				<table>
+					<tr>
+						<td rowspan="2"><img src="<?php echo $userPhotoURL ?>" class="image" height="128" width="128"/></td>
+						<td><h3><?php echo $username . " commented: "?></h3></td>
+					</tr>
+					<tr>
+						<td><p><?php echo $comment ?></p></td>
+					</tr>
+				</table>
+			</div>
+			<?php } ?>
+		</div>
+		<div class="addComment">
+		</div>
+	</div>
 </body>
+
+

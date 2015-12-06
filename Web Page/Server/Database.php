@@ -335,6 +335,14 @@ class Database {
 		$stmt->execute();
 		return true;
 	}
+
+	public function getComments($eventID){
+		$stmt = $this->database->prepare('SELECT * FROM Commentary WHERE idEvent = :eventID ORDER BY commentdate');
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+		$comments = $stmt->fetchAll();
+		return $comments;
+	}
 }
 
 
