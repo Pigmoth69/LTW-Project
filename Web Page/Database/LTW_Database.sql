@@ -19,20 +19,14 @@ CREATE TABLE User (
 	datanascimento	DATE
 );
 
-CREATE TABLE Location (
-	id 			INTEGER	NOT NULL PRIMARY KEY AUTOINCREMENT,
-	name 		VARCHAR(64),
-	address		VARCHAR(64) NOT NULL,
-	description TEXT
-);
 
 CREATE TABLE Event (
 	id 			INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-	idHost 		INTEGER NOT NULL REFERENCES User(id),
+	idHost 		INTEGER NOT NULL REFERENCES User(id), 
 	name		VARCHAR(32) NOT NULL,
 	description	TEXT,
 	idPhoto 	INTEGER NOT NULL REFERENCES Photo(id),
-	idLocation 	INTEGER NOT NULL REFERENCES Location(id),
+	location 	TEXT NOT NULL,
 	private		BOOLEAN	NOT NULL,
 	creationDate DATE NOT NULL,
 	eventDate 	DATE NOT NULL,

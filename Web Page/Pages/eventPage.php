@@ -8,22 +8,29 @@
 		redirectToLogInIfLoggedOut($session);
 
 		$eventID = intval($_GET['id']);
-
+		$userID = intval($_SESSION['userID']);
 		$eventInfo = $database->getEventFromEventID($eventID);
 		$eventPhotoURL = $database->getPhotoURLFromEventID($eventID);
 		$eventHostUsername = $database->getUsernameFromUserID($eventInfo['idHost']);
 		$participants = $database->getUsernamesInEventFromEventID($eventID);
+		$hostID = $database->getUserID($eventHostUsername);
+		$following = $database->userIsFollowing($userID, $eventID);
 	?>
-		<link href="../styles/myEventsPageStyle.css" rel="stylesheet" type="text/css" media="all" />
-
+	<link href="../styles/myEventsPageStyle.css" rel="stylesheet" type="text/css" media="all" />
+	<script src="../Client/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../Client/eventPage.js"></script>
 </head>
 <body>
 	<?php 
-		displayHeader("Event");
+		displayHeader("Event", $userID);
 	?>
 	<div id="portfolio" class="container">
 
 		<input id='eventID' value="<?php echo $eventID;?>" hidden/> 
+		<input id='userID' value="<?php echo $userID;?>" hidden/>
+		<input id='hostID' value="<?php echo $hostID;?>" hidden/>
+		<input id='following' value="<?php echo $following;?>" hidden/>
+
 		<div class="box"> <a href="#"><img src="<?php echo $eventPhotoURL ?>" class="image" height="256" width="256"/></a>
 			<div id='eventName'><?php echo $eventInfo['name']; ?></div>
 			<div id='eventHost'><?php echo 'Event created by ' . $eventHostUsername; ?></div>
@@ -49,6 +56,4 @@
 
 	</div>
 
-	<script src="../Client/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="../Client/eventPage.js"></script>
 </body>

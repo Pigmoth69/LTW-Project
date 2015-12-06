@@ -3,7 +3,23 @@ $(document).ready(onReady);
 function onReady() {
 	$('#message').hide();
 
-	startButtons();
+	//startButtons();
+	var following = $('#following').val();
+
+
+	if($('#userID').val() != $('#hostID').val())
+	{
+		$('#delete').hide();
+		$('#edit').hide();
+
+		if(following == "1")
+			$('#join').hide();
+		else $('#leave').hide();
+	}
+	else {
+		$('#join').hide();
+		$('#leave').hide();
+	}
 
 	$('#leave').click(onLeaveClick);
 	$('#edit').click(onEditClick);
