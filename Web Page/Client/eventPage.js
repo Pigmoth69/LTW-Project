@@ -24,7 +24,7 @@ function onReady() {
 	$('#leave').click(onLeaveClick);
 	$('#delete').click(onDeleteClick);
 	$('#join').click(onJoinClick);
-
+	onComment();
 	$('#editInfoForm').submit( function( e ) {
     $.ajax( {
       url: '../Server/editEventInfo.php',
@@ -38,8 +38,42 @@ function onReady() {
 
     } );
     e.preventDefault();
-  } );
+} );
 };
+
+function onComment(event){
+	var userID = $('#userID').val();
+	var eventID = $('#eventID').val();
+	var commentDate = new Date(); //isto pode ser um problema...
+	var commentary = $('#userComment').val();
+
+	console.log("User ID: "+ userID);
+	console.log("Event ID: "+ eventID);
+	console.log("Comment Data: "+ commentDate);
+	console.log("Commentary: "+ commentary);
+
+
+	$('#addComment').click(function(e){
+		$.post(
+			'../Server/addComment.php',
+			{ 
+				"userID" : 'userID',
+				"eventID": eventID,
+				"commentDate": commentDate,
+				"commentary": commentary
+			}, 
+			function (data) {
+				showInputValidation1(data);
+				if(data['error'] == null)
+					setTimeout(function(){window.document.location.href = '../Pages/myEventsPage.php';}, 1000);
+
+			})
+		.fail(function (error) {
+			console.error("Error: " + error);
+		});
+	});
+}
+
 
 function onLeaveClick(event) {
 	if(!confirm('Are you sure you wish to leave the event?') )
@@ -102,6 +136,7 @@ function onDeleteClick(event) {
         console.error("Error: " + error);
     });
 }
+
 
 function onJoinClick(event) {
 	if(!confirm('Are you sure you wish to join the event?') )

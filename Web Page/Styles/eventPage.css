@@ -494,3 +494,19 @@ input#saveButton
 .comment-box p{
 	text-align: left;
 }
+
+#userComment{
+	resize: none;
+	margin-bottom:0.5em;
+	margin-top:0.2em;
+	border-radius: 1em;
+}
+#addComment{
+	float:right;
+	margin-bottom: 0.2em;
+	border-radius: 1em;
+}
+#userComment{
+	width: 90%;
+	height: 90%;
+}
