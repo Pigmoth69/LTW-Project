@@ -52,17 +52,6 @@
   
       break;
 
-    case 'edit':
-      if(!$isHost){
-        printErrorMessage($response, 'You cannot edit an event you are not hosting!');
-        return;
-      }
-
-      //$database->deleteEvent($eventID);
-      $response['message'] = 'You have edited the event';
-  
-      break;
-
     case 'join':
       if($database->userIsFollowing($userID, $eventID)){
         printErrorMessage($response, 'You cannot join an event you are already following!');

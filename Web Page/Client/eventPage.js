@@ -1,16 +1,15 @@
 $(document).ready(onReady);
+this.editOpen = true;
 
 function onReady() {
 	$('#message').hide();
-
-	//startButtons();
+	$('.editInfoForm').hide();
 	var following = $('#following').val();
-
-
 	if($('#userID').val() != $('#hostID').val())
 	{
 		$('#delete').hide();
 		$('#edit').hide();
+
 
 		if(following == "1")
 			$('#join').hide();
@@ -21,10 +20,24 @@ function onReady() {
 		$('#leave').hide();
 	}
 
+		$('#edit').click(onEditClick);
 	$('#leave').click(onLeaveClick);
-	$('#edit').click(onEditClick);
 	$('#delete').click(onDeleteClick);
 	$('#join').click(onJoinClick);
+	$('#editInfoForm').submit( function( e ) {
+    $.ajax( {
+      url: '../Server/editEventInfo.php',
+      type: 'POST',
+      data: new FormData( this ),
+      processData: false,
+      contentType: false,
+      success: function(response) {
+      			showInputValidation(response);
+            }
+
+    } );
+    e.preventDefault();
+  } );
 };
 
 function onLeaveClick(event) {
@@ -51,23 +64,19 @@ function onLeaveClick(event) {
 }
 
 function onEditClick(event) {
-	var eventID = $('#eventID').val();
-	
-	$.post(
-    '../Server/manageEvent.php',
-	{ 
-		"functionName" : 'edit',
-		"eventID": eventID
-	}, 
-	function (data) {
-		showValidation(data);
-		if(data['error'] == null){
-			return;
-		}			
-	})
-    .fail(function (error) {
-        console.error("Error: " + error);
-    });
+	if(!this.open)
+	{
+		$('#edit').css('box-shadow', '0px 0px 10px #feff00');
+		$('.editInfoForm').show();
+		this.open = true;
+	}
+	else
+	{
+		$('#edit').css('box-shadow', 'none');
+		$('.editInfoForm').hide();
+		this.open = false;
+		clearForm();
+	}
 }
 
 function onDeleteClick(event) {
@@ -116,21 +125,40 @@ function onJoinClick(event) {
     });
 }
 
-function showValidation(data) {
+function showInputValidation(data) {
 	$('#message').show();
 
 	if (data['error'] != null)
-		{
-			$('#message').css('background-color','#ff6666');
-			$('#message').html(data['error']);
-		}
+	{
+		$('#message').css('background-color','#ff6666');
+		$('#message').html(data['error']);
+	}
 	else
-		{
-			$('#message').css('background-color','#99ff99');
-			$('#message').html(data['message']);
-		}
+	{
+		$('#message').css('background-color','#99ff99');
+		$('#message').html(data['success']);
+	}
 }
 
+
+
+
+function clearForm(){
+	$('#name').val("");
+	$('#photo').val("");
+	$('#editdescription').val("");
+	$('#location').val("");
+	$('#date').val("");
+}
+
+
+
+
+
+
+
+
+/*
 function startButtons() {
 	var eventID = $('#eventID').val();
 	
@@ -200,3 +228,4 @@ function startButtons() {
     });
 
 }
+*/

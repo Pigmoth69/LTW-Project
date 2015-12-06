@@ -29,10 +29,10 @@
     $ImageName = str_replace(' ', '-', strtolower($_FILES['eventImage']['name']));
       if($ImageName != ""){
  
-      $ImageExt = substr($ImageName, strrpos($ImageName, '.'));
-      $ImageExt = str_replace('.', '', $ImageExt);
-      $extensions = array("jpeg", "jpg", "png");
- 
+    $ImageExt = substr($ImageName, strrpos($ImageName, '.'));
+    $ImageExt = str_replace('.', '', $ImageExt);
+    $extensions = array("jpeg", "jpg", "png");
+
  
       if((($_FILES["eventImage"]["type"] == "image/png") || ($_FILES["eventImage"]["type"] == "image/jpg") || ($_FILES["eventImage"]["type"] == "image/jpeg")) && in_array($ImageExt, $extensions))
       {

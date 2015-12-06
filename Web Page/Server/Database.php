@@ -335,6 +335,61 @@ class Database {
 		$stmt->execute();
 		return true;
 	}
+
+	public function editEventNameFromEventID($eventID, $name)
+	{
+		$stmt = $this->database->prepare('UPDATE Event SET name = :name WHERE id = :eventID');
+		$stmt->bindParam(':name', $name, PDO::PARAM_STR);
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+	}
+
+	public function editEventPhotoFromEventID($eventID, $photoURL)
+	{
+		$stmt = $this->database->prepare('INSERT INTO Photo(URL) VALUES(:photoURL)');
+		$stmt->bindParam(':photoURL', $photoURL, PDO::PARAM_STR);
+		$stmt->execute();
+		$stmt = $this->database->prepare('SELECT id FROM photo WHERE url = :photoURL');
+		$stmt->bindParam(':photoURL', $photoURL, PDO::PARAM_STR);
+		$stmt->execute();
+		$id = $stmt->fetchAll()[0][0];
+		$stmt = $this->database->prepare('UPDATE Event SET idphoto = :id where id = :eventID');
+		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+	}
+
+	public function editEventDescriptionFromEventID($eventID, $description)
+	{
+		$stmt = $this->database->prepare('UPDATE Event SET description = :description WHERE id = :eventID');
+		$stmt->bindParam(':description', $description, PDO::PARAM_STR);
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+	}
+
+	public function editEventLocationFromEventID($eventID, $location)
+	{
+		$stmt = $this->database->prepare('UPDATE Event SET location = :location WHERE id = :eventID');
+		$stmt->bindParam(':location', $location, PDO::PARAM_STR);
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+	}
+
+	public function editEventDateFromEventID($eventID, $eventdate)
+	{
+		$stmt = $this->database->prepare('UPDATE Event SET eventDate = :eventdate WHERE id = :eventID');
+		$stmt->bindParam(':eventdate', $eventdate, PDO::PARAM_STR);
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+	}
+
+	public function editEventTypeFromEventID($eventID, $type)
+	{
+		$stmt = $this->database->prepare('UPDATE Event SET type = :type WHERE id = :eventID');
+		$stmt->bindParam(':type', $type, PDO::PARAM_STR);
+		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+		$stmt->execute();
+	}
 }
 
 
