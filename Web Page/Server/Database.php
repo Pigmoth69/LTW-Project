@@ -112,6 +112,11 @@ class Database {
 		else return false;
 	}
 
+	public function getAllUsers() {
+		$stmt = $this->database->prepare('SELECT * FROM User');
+		$stmt->execute();
+		return $stmt->fetchAll();
+	}
 
 	///////////////////////////////////////
 	////////////GET USER INFO//////////////
@@ -203,6 +208,21 @@ class Database {
 		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
 		$stmt->execute();
 		return;
+	}
+
+	public function editUserPhotoFromUserID($userID,$photoURL){
+		$stmt = $this->database->prepare('INSERT INTO Photo(URL) VALUES(:photoURL)');
+		$stmt->bindParam(':photoURL', $photoURL, PDO::PARAM_STR);
+		$stmt->execute();
+		$stmt = $this->database->prepare('SELECT id FROM photo WHERE url = :photoURL');
+		$stmt->bindParam(':photoURL', $photoURL, PDO::PARAM_STR);
+		$stmt->execute();
+		$id = $stmt->fetchAll()[0][0];
+		$stmt = $this->database->prepare('UPDATE User SET idphoto = :id where id = :userID');
+		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->execute();
+		return true;
 	}
 
 	public function editUserEmailFromUserID($userID, $email){
