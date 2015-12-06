@@ -8,8 +8,8 @@ function onReady() {
 		$('#editInfo').hide();
 
 	$('input#editInfo').click(function() {onButtonClick(); });
-
-
+	$('input#deleteProfile').click(function(){deleteUser();})
+ 
 	if($('#userID').val() == $('#userIDLink').val())
 	$('#editInfoForm').submit( function( e ) {
     $.ajax( {
@@ -73,3 +73,23 @@ function showInputValidation(data) {
 			$('#message').html(data['success']);
 		}
 }
+
+function deleteUser(){
+	if(!confirm('Are you sure you wish to delete your profile?') )
+		return;
+
+	$.post(
+    '../Server/deleteUser.php',
+	{ }, 
+	function (data) {
+		showValidation(data);
+		if(data['error'] == null)
+			setTimeout(function(){window.document.location.href = '../Pages/myEventsPage.php';}, 1000);
+			
+	})
+    .fail(function (error) {
+        console.error("Error: " + error);
+    });
+}
+
+
