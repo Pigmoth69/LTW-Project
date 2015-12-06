@@ -6,8 +6,11 @@ function onReady() {
 	$('#message1').hide();
 	var following = $('#following').val();
 	$('.editInfoForm').hide();
+	$('#inviteUser').hide();
+
 	if($('#userID').val() != $('#hostID').val())
 	{
+		$('#invite').hide();
 		$('#delete').hide();
 		$('#edit').hide();
 
@@ -24,6 +27,10 @@ function onReady() {
 	$('#leave').click(onLeaveClick);
 	$('#delete').click(onDeleteClick);
 	$('#join').click(onJoinClick);
+	$('#invite').click(onInviteClick);
+	$('#sendInvite').click(onSendInviteClick);
+	$('#cancelInvite').click(onCancelInviteClick);
+
 	onComment();
 	$('#editInfoForm').submit( function( e ) {
     $.ajax( {
@@ -162,6 +169,35 @@ function onJoinClick(event) {
     });
 }
 
+function onInviteClick(event) {
+	$('#inviteUser').show();
+}
+
+function onSendInviteClick(event) {
+	var eventID = $('#eventID').val();
+
+	$.post(
+    '../Server/manageEvent.php',
+	{ 
+		"functionName" : 'invite',
+		"eventID": eventID
+	}, 
+	function (data) {
+		showInputValidation1(data);
+		if(data['error'] == null)
+			location.reload();
+			
+	})
+    .fail(function (error) {
+        console.error("Error: " + error);
+    });
+}
+
+function onCancelInviteClick(event){
+	location.reload();
+}
+
+
 function showInputValidation(data) {
 	$('#message').show();
 
@@ -201,6 +237,7 @@ function clearForm(){
 	$('#editdescription').val("");
 	$('#location').val("");
 	$('#date').val("");
+	$('#invitedUsername').val("");
 }
 
 

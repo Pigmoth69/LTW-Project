@@ -510,3 +510,43 @@ input#saveButton
 	width: 90%;
 	height: 90%;
 }
+
+/******************************/
+/*******Edit Modal	***********/
+/******************************/
+
+.modal {
+	height: 100%;
+	width: 100%;
+
+	background-color: rgba(24, 24, 24, 0.9);
+
+	margin: 0;
+	padding: 0;
+
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	display: none;
+	z-index: 99999;
+}
+
+.modal-form {
+	width: 25rem;
+
+	padding: 0rem 4rem;
+	background-color: #76A9C5;
+	box-sizing: border-box;
+
+	margin: 0rem auto;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+#invitedUsername {
+	width: 100%;
+}

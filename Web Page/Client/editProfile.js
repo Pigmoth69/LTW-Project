@@ -4,8 +4,10 @@ this.open = true;
 function onReady() {
 	startForm();
 
-	if($('#userID').val() != $('#userIDLink').val())
+	if($('#userID').val() != $('#userIDLink').val()){
 		$('#editInfo').hide();
+		$('#deleteAccount').hide();
+	}
 
 	$('input#editInfo').click(onButtonClick);
 	$('input#deleteAccount').click(deleteAccount);

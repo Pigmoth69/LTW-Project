@@ -62,6 +62,17 @@
       $response['success'] = 'You have joined the event!';
   
       break;
+
+    case 'invite':
+      if($database->userIsFollowing($userID, $eventID)){
+        printErrorMessage($response, 'You cannot inite a user who is already in the event!');
+        return;
+      }
+
+      $database->addUserToEvent($userID, $eventID);
+      $response['success'] = 'You have invited to the event!';
+  
+      break;
     }
 
   echo json_encode($response);

@@ -9,10 +9,12 @@
 
 	$eventID = intval($_GET['id']);
 	$userID = intval($_SESSION['userID']);
-	$_SESSION['eventID'] = $eventID;
+
+	//$_SESSION['eventID'] = $eventID;
 	$eventInfo = $database->getEventFromEventID($eventID);
 	$eventPhotoURL = $database->getPhotoURLFromEventID($eventID);
 	$eventHostUsername = $database->getUsernameFromUserID($eventInfo['idHost']);
+
 	$participants = $database->getUsernamesInEventFromEventID($eventID);
 	$comments = $database->getComments($eventID);
 	$hostID = $database->getUserID($eventHostUsername);
@@ -88,6 +90,7 @@
 			<td><input id="edit" class="button button-small" type="button" value="Edit"/></td>
 			<td><input id="delete" class="button button-small" type="button" value="Delete"/></td>
 			<td><input id="join" class="button button-small" type="button" value="Join"/></td>
+			<td><input id="invite" class="button button-small" type="button" value="Invite"/></td>
 		</tr>
 	</table>
 
@@ -174,6 +177,17 @@
 		</div>
 	</div>
 
+</div>
+
+<div id="inviteUser" class="modal">
+	<div class="modal-form">
+		<form id="inviteForm">
+			<input id="invitedUsername" type="text" placeholder="Invite user" value=""/>
+
+			<input id="sendInvite" class="button button-small" type="submit" value="Send"/>
+			<input id="cancelInvite" class="button button-small" type="button" value="Cancel"/>
+		</form> 
+	</div>
 </div>
 
 <?php
