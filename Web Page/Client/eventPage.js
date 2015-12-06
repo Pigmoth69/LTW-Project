@@ -1,12 +1,11 @@
 $(document).ready(onReady);
+this.editOpen = true;
 
 function onReady() {
 	$('#message').hide();
-
-	//startButtons();
+	$('#message1').hide();
 	var following = $('#following').val();
-
-
+	$('.editInfoForm').hide();
 	if($('#userID').val() != $('#hostID').val())
 	{
 		$('#delete').hide();
@@ -21,10 +20,25 @@ function onReady() {
 		$('#leave').hide();
 	}
 
-	$('#leave').click(onLeaveClick);
 	$('#edit').click(onEditClick);
+	$('#leave').click(onLeaveClick);
 	$('#delete').click(onDeleteClick);
 	$('#join').click(onJoinClick);
+
+	$('#editInfoForm').submit( function( e ) {
+    $.ajax( {
+      url: '../Server/editEventInfo.php',
+      type: 'POST',
+      data: new FormData( this ),
+      processData: false,
+      contentType: false,
+      success: function(response) {
+      			showInputValidation(response);
+            }
+
+    } );
+    e.preventDefault();
+  } );
 };
 
 function onLeaveClick(event) {
@@ -40,7 +54,7 @@ function onLeaveClick(event) {
 		"eventID": eventID
 	}, 
 	function (data) {
-		showValidation(data);
+		showInputValidation1(data);
 		if(data['error'] == null)
 			setTimeout(function(){window.document.location.href = '../Pages/myEventsPage.php';}, 1000);
 			
@@ -51,23 +65,19 @@ function onLeaveClick(event) {
 }
 
 function onEditClick(event) {
-	var eventID = $('#eventID').val();
-	
-	$.post(
-    '../Server/manageEvent.php',
-	{ 
-		"functionName" : 'edit',
-		"eventID": eventID
-	}, 
-	function (data) {
-		showValidation(data);
-		if(data['error'] == null){
-			return;
-		}			
-	})
-    .fail(function (error) {
-        console.error("Error: " + error);
-    });
+	if(!this.open)
+	{
+		$('#edit').css('box-shadow', '0px 0px 10px #feff00');
+		$('.editInfoForm').show();
+		this.open = true;
+	}
+	else
+	{
+		$('#edit').css('box-shadow', 'none');
+		$('.editInfoForm').hide();
+		this.open = false;
+		clearForm();
+	}
 }
 
 function onDeleteClick(event) {
@@ -75,7 +85,7 @@ function onDeleteClick(event) {
 		return;
 
 	var eventID = $('#eventID').val();
-	
+	console.log(eventID);
 	$.post(
     '../Server/manageEvent.php',
 	{ 
@@ -83,7 +93,7 @@ function onDeleteClick(event) {
 		"eventID": eventID
 	}, 
 	function (data) {
-		showValidation(data);
+		showInputValidation1(data);
 		if(data['error'] == null)
 			setTimeout(function(){window.document.location.href = '../Pages/myEventsPage.php';}, 1000);
 			
@@ -98,6 +108,7 @@ function onJoinClick(event) {
 		return;
 
 	var eventID = $('#eventID').val();
+
 	
 	$.post(
     '../Server/manageEvent.php',
@@ -106,7 +117,7 @@ function onJoinClick(event) {
 		"eventID": eventID
 	}, 
 	function (data) {
-		showValidation(data);
+		showInputValidation1(data);
 		if(data['error'] == null)
 			setTimeout(function(){window.document.location.href = '../Pages/myEventsPage.php';}, 1000);
 			
@@ -116,87 +127,45 @@ function onJoinClick(event) {
     });
 }
 
-function showValidation(data) {
+function showInputValidation(data) {
 	$('#message').show();
 
 	if (data['error'] != null)
-		{
-			$('#message').css('background-color','#ff6666');
-			$('#message').html(data['error']);
-		}
+	{
+		$('#message').css('background-color','#ff6666');
+		$('#message').html(data['error']);
+	}
 	else
-		{
-			$('#message').css('background-color','#99ff99');
-			$('#message').html(data['message']);
-		}
+	{
+		$('#message').css('background-color','#99ff99');
+		$('#message').html(data['success']);
+	}
 }
 
-function startButtons() {
-	var eventID = $('#eventID').val();
-	
-	//Check if user is following event and can leave or if is a stranger and can join
-	$.post(
-    '../Server/checkIfFollowing.php',
-	{ 
-		"eventID": eventID
-	}, 
-	function (data) {
-		if(data['error'] != null){
-			alert(data['error']);
-			return;
-		}
+function showInputValidation1(data) {
+	$('#message1').show();
 
-		if(data['message'] == null || data['message'] == ""){
-			alert('Oops, something went wrong!! Going back to your events.');
-			setTimeout(function(){window.document.location.href = '../Pages/myEventsPage.php';}, 100);
-			return;
-		}
-
-		if(data['message'] == 'Follower'){
-			$('#leave').show();
-			$('#join').hide();
-		}
-		else if(data['message'] == 'Stranger'){
-			$('#leave').hide();
-			$('#join').show();
-		}
-	})
-    .fail(function (error) {
-        console.error("Error: " + error);
-    });
-
-
-    //Check if user is host and can edit/delete or if is guest and can leave
-	$.post(
-    '../Server/checkIfHost.php',
-	{ 
-		"eventID": eventID
-	}, 
-	function (data) {
-		if(data['error'] != null){
-			alert(data['error']);
-			return;
-		}
-
-		if(data['message'] == null || data['message'] == ""){
-			alert('Oops, something went wrong!! Going back to your events.');
-			setTimeout(function(){window.document.location.href = '../Pages/myEventsPage.php';}, 100);
-			return;
-		}
-
-		if(data['message'] == 'Host'){
-			$('#join').hide();
-			$('#leave').hide();
-			$('#edit').show();
-			$('#delete').show();
-		}
-		else if(data['message'] == 'Guest'){
-			$('#edit').hide();
-			$('#delete').hide();
-		}
-	})
-    .fail(function (error) {
-        console.error("Error: " + error);
-    });
-
+	if (data['error'] != null)
+	{
+		$('#message1').css('background-color','#ff6666');
+		$('#message1').html(data['error']);
+	}
+	else
+	{
+		$('#message1').css('background-color','#99ff99');
+		$('#message1').html(data['success']);
+	}
 }
+
+
+
+
+function clearForm(){
+	$('#name').val("");
+	$('#photo').val("");
+	$('#editdescription').val("");
+	$('#location').val("");
+	$('#date').val("");
+}
+
+

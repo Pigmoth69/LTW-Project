@@ -37,7 +37,7 @@
       }
 
       $database->removeUserFromEvent($userID, $eventID);
-      $response['message'] = 'You have left the event';
+      $response['success'] = 'You have left the event';
       
       break;
 
@@ -48,18 +48,7 @@
       }
 
       $database->deleteEvent($eventID);
-      $response['message'] = 'You have deleted the event';
-  
-      break;
-
-    case 'edit':
-      if(!$isHost){
-        printErrorMessage($response, 'You cannot edit an event you are not hosting!');
-        return;
-      }
-
-      //$database->deleteEvent($eventID);
-      $response['message'] = 'You have edited the event';
+      $response['success'] = 'You have deleted the event';
   
       break;
 
@@ -70,7 +59,7 @@
       }
 
       $database->addUserToEvent($userID, $eventID);
-      $response['message'] = 'You have joined the event!';
+      $response['success'] = 'You have joined the event!';
   
       break;
     }

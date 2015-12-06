@@ -46,7 +46,6 @@ function changeStateCancel(){
 	$('#CancelEvent').hide();
 	$('#addEvent').hide();
 	clearForm();
-
 }
 
 
@@ -81,13 +80,13 @@ function showInputValidation(data) {
 	$('#message').show();
 
 	if (data['error'] != null)
-		{
-			$('#message').css('background-color','#ff6666');
-			$('#message').html(data['error']);
-		}
+	{
+		$('#message').css('background-color','#ff6666');
+		$('#message').html(data['error']);
+	}
 	else
-		{
-			$('#message').css('background-color','#99ff99');
-			$('#message').html(data['success']);
-		}
+	{
+		$('#message').css('background-color','#99ff99');
+		$('#message').html(data['success']);
+	}
 }
