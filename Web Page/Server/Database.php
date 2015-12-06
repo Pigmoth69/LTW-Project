@@ -338,30 +338,35 @@ class Database {
 		return true;
 	}
 
-	public function deleteProfile($userID) {
-		//Remove every user from the event to be deleted
-		/*$userEvents = getUserEvents($userID);
-		for($i = 0; $i < count($userEvents); $i=$i+1){
-			$eventID = $userEvents[$i]['id'];
-			if(istHost($userID,$eventID)){
-				//delete event
-				$stmt = $this->database->prepare('DELETE FROM EventUser Where idEvent = :eventID');
-				$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
-				$stmt->execute();
-			}
-
-		}
-
-		//delete user from events he is attending
-		$stmt = $this->database->prepare('DELETE FROM EventUser Where idUser = :userID');
-		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
-		$stmt->execute();*/
-
+	///////////////////////////////////////
+	////////////DELETING USER /////////////
+	///////////////////////////////////////
+	public function deleteUser($userID) {
 		//delete user
 		$stmt = $this->database->prepare('DELETE FROM User Where id = :userID');
 		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
 		$stmt->execute();
 	}
+
+	//Checks if user to be deleted hosts anything. if so, cannot delete profile
+	public function userHostedEvents($userID) {
+		$stmt = $this->database->prepare('SELECT name FROM Event Where idhost = :userID');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->execute();
+		$hostedEvents = $stmt->fetchAll();
+		return $hostedEvents;
+	}
+
+	//Remove user from all the events he's in
+	public function removeUserFromAllEvents($userID) {
+		$stmt = $this->database->prepare('DELETE FROM EventUser Where idUser = :userID');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->execute();
+	}
+
+
+
+
 }
 
 

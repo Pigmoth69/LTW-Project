@@ -7,8 +7,8 @@ function onReady() {
 	if($('#userID').val() != $('#userIDLink').val())
 		$('#editInfo').hide();
 
-	$('input#editInfo').click(function() {onButtonClick(); });
-	$('input#deleteProfile').click(function(){deleteUser();})
+	$('input#editInfo').click(onButtonClick);
+	$('input#deleteAccount').click(deleteAccount);
  
 	if($('#userID').val() == $('#userIDLink').val())
 	$('#editInfoForm').submit( function( e ) {
@@ -19,7 +19,7 @@ function onReady() {
       processData: false,
       contentType: false,
       success: function(response) {
-      			showInputValidation(response);
+      			showValidation(response);
             }
 
     } );
@@ -31,6 +31,7 @@ function onReady() {
 function startForm(){
 	$('.editInfoForm').hide();
 	$('div#message').hide();
+	$('div#deleteMessage').hide();
 };
 
 function onButtonClick() {
@@ -59,7 +60,7 @@ function clearForm() {
 	$('div#message').hide();
 }
 
-function showInputValidation(data) {
+function showValidation(data) {
 	$('#message').show();
 
 	if (data['error'] != null)
@@ -70,21 +71,23 @@ function showInputValidation(data) {
 	else
 		{
 			$('#message').css('background-color','#99ff99');
-			$('#message').html(data['success']);
+			$('#message').html(data['message']);
 		}
 }
 
-function deleteUser(){
-	if(!confirm('Are you sure you wish to delete your profile?') )
+function deleteAccount(){
+	if(!confirm('Deleting your account is irreversible. Are you sure you wish to delete your account?') )
 		return;
 
 	$.post(
-    '../Server/deleteUser.php',
+    '../Server/deleteAccount.php',
 	{ }, 
 	function (data) {
-		showValidation(data);
-		if(data['error'] == null)
-			setTimeout(function(){window.document.location.href = '../Pages/myEventsPage.php';}, 1000);
+		showDeleteValidation(data);
+		if(data['error'] == null){
+			setTimeout(function(){window.document.location.href = '../Pages/LoginRegisterPage.php';}, 1000);
+			return;
+		}
 			
 	})
     .fail(function (error) {
@@ -92,4 +95,18 @@ function deleteUser(){
     });
 }
 
+function showDeleteValidation(data) {
+	$('#deleteMessage').show();
+
+	if (data['error'] != null)
+		{
+			$('#deleteMessage').css('background-color','#ff6666');
+			$('#deleteMessage').html(data['error']);
+		}
+	else
+		{
+			$('#deleteMessage').css('background-color','#99ff99');
+			$('#deleteMessage').html(data['message']);
+		}
+}
 

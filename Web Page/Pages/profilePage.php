@@ -79,7 +79,7 @@
 		</div>
 		<div class="editInfoDiv">
 				<input type="button" id="editInfo" value="Edit Profile">
-				<input type="button" id="deleteProfile" value="Delete Profile">
+				<input type="button" id="deleteAccount" value="Delete Account">
 		</div> 
 
 		<form class="editInfoForm" id="editInfoForm" action="../Server/editUserInfo.php" method="post" enctype="multipart/form-data">
@@ -107,6 +107,7 @@
 
 		<div id="message"></div>
 	</form>
+	<div id="deleteMessage"></div>	
 
 
 	<?php
