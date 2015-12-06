@@ -4,14 +4,27 @@ this.open = true;
 function onReady() {
 	startForm();
 
+	if($('#userID').val() != $('#userIDLink').val())
+		$('#editInfo').hide();
+
 	$('input#editInfo').click(function() {onButtonClick(); });
 
-	$('.editInfoForm').submit(
-		function(event) {
-		event.preventDefault();
-		onFormSubmission(event); 
-	}
-	);
+
+	if($('#userID').val() == $('#userIDLink').val())
+	$('#editInfoForm').submit( function( e ) {
+    $.ajax( {
+      url: '../Server/editUserInfo.php',
+      type: 'POST',
+      data: new FormData( this ),
+      processData: false,
+      contentType: false,
+      success: function(response) {
+      			showInputValidation(response);
+            }
+
+    } );
+    e.preventDefault();
+  } );
 
 };
 
@@ -45,31 +58,6 @@ function clearForm() {
 	$('#date').val("");
 	$('div#message').hide();
 }
-
-function onFormSubmission(event) {
-	var fullname = $('#fullname').val()
-	var photo = $('#photo').val();
-	var password = $('#password').val();
-	var verifyPassword = $('#verifyPassword').val();
-	var email = $('#email').val();
-	var date = $('#date').val();
-
-	$.post(
-    '../Server/editUserInfo.php',
-    {
-		'fullname': fullname, 
-		'photo': photo,
-		'password': password,
-		'verifyPassword': verifyPassword,
-		'email': email,
-		'date': date,
-	}, 
-	function (data) {
-		showInputValidation(data);
-		console.log(data);
-	})
-}
-
 
 function showInputValidation(data) {
 	$('#message').show();

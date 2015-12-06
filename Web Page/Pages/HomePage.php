@@ -7,7 +7,7 @@
 		include 'head.php';
 		makeHead("Home Page");
 		redirectToLogInIfLoggedOut($session);
-
+		$userID = intval($_SESSION['userID']);
 	?>
 
 	<link href="../Styles/homePageStyle.css" rel="stylesheet" type="text/css" media="all" />
@@ -15,7 +15,7 @@
 
 <body>
 	<?php
-		displayHeader("Wild Bird"); 
+		displayHeader("Wild Bird", $userID); 
 	?>
 
 	<div id="page-wrapper">

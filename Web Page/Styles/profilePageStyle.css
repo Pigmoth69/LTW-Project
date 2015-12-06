@@ -136,6 +136,7 @@ a
 #description{
     display: inline-block;
     float: left;
+    margin-left: 10%;
 }
 
 #description p{

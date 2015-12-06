@@ -6,7 +6,7 @@
 		include('head.php');
 		makeHead("Search Page");
 		redirectToLogInIfLoggedOut($session);
-
+		$userID = intval($_SESSION['userID']);
 		$events = $database->getAllEvents();
 	?>
 
@@ -18,14 +18,14 @@
 
 <body>
 	<?php 
-		displayHeader("Search Events"); 
+		displayHeader("Search Events", $userID); 
 	?>
 
 	<div class="wrapper">
 		<div id="portfolio" class="container">
 				<?php
 					foreach($events as $row){
-						if(!$database->userIsFollowing($session->getUserID(), $row['id']) && !$database->eventIsPrivate($row['id'])) {
+						if(!$database->userIsFollowing($userID, $row['id']) && !$database->eventIsPrivate($row['id'])) {
 							?>
 						<div class="column">
 							<div class="box"> <a href="#"><img src=" <?php echo $database->getPhotoURLFromEventID($row['id']); ?> " alt="" class="image image-full" height="200"/></a>

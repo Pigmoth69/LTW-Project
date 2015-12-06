@@ -7,17 +7,18 @@
 		makeHead("Profile Page");
 		redirectToLogInIfLoggedOut($session);
 
+		$userIDLink = intval($_GET['id']);
 
 		$database = new Database;
 		$userID = intval($_SESSION['userID']);
-		$username = $database->getUsernameFromUserID($userID);
-		$fullname = $database->getFullnameFromUserID($userID);
-		$photourl = $database->getPhotoURLFromUserID($userID);
-		$birth = $database->getBirthFromUserID($userID);
-		$email = $database->getEmailFromUserID($userID);
-		$joinedEvents = $database->getUserEvents($userID);
-		$ownedEvents = $database->getUserOwnedEvents($userID);
-		?>
+		$username = $database->getUsernameFromUserID($userIDLink);
+		$fullname = $database->getFullnameFromUserID($userIDLink);
+		$photourl = $database->getPhotoURLFromUserID($userIDLink);
+		$birth = $database->getBirthFromUserID($userIDLink);
+		$email = $database->getEmailFromUserID($userIDLink);
+		$joinedEvents = $database->getUserEvents($userIDLink);
+		$ownedEvents = $database->getUserOwnedEvents($userIDLink);
+	?>
 		<link href="../Styles/profilePageStyle.css" rel="stylesheet" type="text/css" media="all" />
 		<script src="../Client/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript" src="../Client/editProfile.js"></script>
@@ -26,8 +27,11 @@
 
 <body>
 	<?php 
-		displayHeader("Wild Bird"); 
+		displayHeader("Wild Bird", $userID); 
 	?>
+
+	<input id='userID' value="<?php echo $userID;?>" hidden/> 
+	<input id='userIDLink' value="<?php echo $userIDLink;?>" hidden/> 
 
 	<div id="profile" class="container">
 		<div id="profileInfo">
@@ -76,7 +80,7 @@
 
 	<div class="editInfoDiv"><input type="button" id="editInfo" value="Edit Profile"></div> 
 
-	<form class="editInfoForm" method="POST">
+	<form class="editInfoForm" id="editInfoForm" action="../Server/editUserInfo.php" method="post" enctype="multipart/form-data">
 		<div id="description">
 			<p>Full Name: </p>
 			<p>Insert Profile Photo: </p>
@@ -88,12 +92,12 @@
 		</div>
 
 		<div id="inputsDiv">
-			<div><input type="text" value="" placeholder="Full Name" id="fullname" class="profileInput" size="30rem"/></div>
-			<div><input type="file" value="" placeholder="Photo" id="photo" /></div>
-			<div><input type="password" value="" placeholder="New Password" id="password" class="profileInput" size="30rem"/></div>
-			<div><input type="password" value="" placeholder="Verify New Password" id="verifyPassword" class="profileInput" size="30rem"/></div>
-			<div><input type="text" value="" placeholder="New Email" id="email" class="profileInput" size="30rem"/></div>
-			<div><input type="date" value="" class="profileInput" id="date" /></div>
+			<div><input type="text" value="" placeholder="Full Name" id="fullname" name="fullname" class="profileInput" size="30%"/></div>
+			<div><input type="file" id="photo" name="photo"/></div>
+			<div><input type="password" value="" placeholder="New Password" id="password" name="password" class="profileInput" size="30%"/></div>
+			<div><input type="password" value="" placeholder="Verify New Password" id="verifyPassword" name="verifyPassword" class="profileInput" size="30%"/></div>
+			<div><input type="text" value="" placeholder="New Email" id="email" name="email" class="profileInput" size="30%"/></div>
+			<div><input type="date" value="" class="profileInput" id="date" name="date"/></div>
 		</div>
 
 
