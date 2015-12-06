@@ -61,16 +61,18 @@ a
 
 .editInfoDiv
 {
-	margin: 0 auto;
-    width: 5%;
+    padding-left: 45%;
+    padding-right: 55%;
     padding-top: 20px;
     padding-bottom: 20px;
+    display: inline-block;
+    width:300px;
 }
 
 
-.editInfoDiv #editInfo
+.editInfoDiv #editInfo, #deleteProfile
 {	
-    width: 120%;
+    width: 50%;
     height: 42px;
     box-sizing: border-box;
     border-radius: 5px;
@@ -81,7 +83,12 @@ a
     font-family: Montserrat;
     outline: none;
     background: #76A9C5;
+    text-align: center;
 }
+#deleteProfile{
+    float:right;
+}
+
 
 
 .editInfoForm
@@ -160,3 +167,6 @@ input {
     padding-right: 45%;
     width: 10%;
 }
+
+
+

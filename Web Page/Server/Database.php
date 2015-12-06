@@ -275,6 +275,8 @@ class Database {
 		return $events;
 	}
 
+
+
 	///////////////////////////////////////
 	////////////EDIT EVENT INFO////////////
 	///////////////////////////////////////
@@ -334,6 +336,31 @@ class Database {
 		$stmt->bindParam(':eventdate', $eventDate, PDO::PARAM_STR);
 		$stmt->execute();
 		return true;
+	}
+
+	public function deleteProfile($userID) {
+		//Remove every user from the event to be deleted
+		/*$userEvents = getUserEvents($userID);
+		for($i = 0; $i < count($userEvents); $i=$i+1){
+			$eventID = $userEvents[$i]['id'];
+			if(istHost($userID,$eventID)){
+				//delete event
+				$stmt = $this->database->prepare('DELETE FROM EventUser Where idEvent = :eventID');
+				$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
+				$stmt->execute();
+			}
+
+		}
+
+		//delete user from events he is attending
+		$stmt = $this->database->prepare('DELETE FROM EventUser Where idUser = :userID');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->execute();*/
+
+		//delete user
+		$stmt = $this->database->prepare('DELETE FROM User Where id = :userID');
+		$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+		$stmt->execute();
 	}
 }
 
