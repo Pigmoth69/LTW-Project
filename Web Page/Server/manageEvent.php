@@ -23,7 +23,7 @@
   }
 
   $userID = $session->getUserID();
-  $eventID = $_POST['eventID'];
+  $eventID = intval($_POST['eventID']);
 
   $database = new Database;
 
@@ -64,15 +64,32 @@
       break;
 
     case 'invite':
-      if($database->userIsFollowing($userID, $eventID)){
-        printErrorMessage($response, 'You cannot inite a user who is already in the event!');
+
+      if($_POST['invitedUsername'] == NULL){
+        printErrorMessage($response, 'No Username!');
         return;
       }
 
-      $database->addUserToEvent($userID, $eventID);
-      $response['success'] = 'You have invited to the event!';
-  
+      $invitedUsername = $_POST['invitedUsername'];
+      if(!$database->checkIfUserExists($invitedUsername)){
+        printErrorMessage($response, 'The user you invited does not exist!');
+        return;
+      }
+
+      $invitedUserID = intval($database->getUserID($invitedUsername));
+
+      //add user already verifies that it's not duplicated
+      if(!$database->addUserToEvent($invitedUserID, $eventID)){
+        printErrorMessage($response, 'You cannot invite a user who is already in the event!');
+        return;
+      }
+
+      $response['success'] = 'You have invited ' . $invitedUsername . ' to the event!';
       break;
+
+    default: 
+      $response['error'] = 'No such function';
+      break;    
     }
 
   echo json_encode($response);

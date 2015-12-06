@@ -106,9 +106,9 @@ class Database {
 		$stmt->bindParam(':eventID', $eventID, PDO::PARAM_INT);
 		$stmt->execute();
 		$eventUsers = $stmt->fetchAll();
-		if($eventUsers != NULL)
-			return true;
-		else return false;
+		if(!empty($eventUsers))
+			return false;
+		else return true;
 	}
 
 	public function getAllUsers() {

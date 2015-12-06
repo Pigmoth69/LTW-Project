@@ -184,8 +184,10 @@
 		<form id="inviteForm">
 			<input id="invitedUsername" type="text" placeholder="Invite user" value=""/>
 
-			<input id="sendInvite" class="button button-small" type="submit" value="Send"/>
+			<input id="sendInvite" class="button button-small" type="button" value="Send"/>
 			<input id="cancelInvite" class="button button-small" type="button" value="Cancel"/>
+
+			<div id="inviteMessage"></div>
 		</form> 
 	</div>
 </div>

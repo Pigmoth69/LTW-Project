@@ -86,6 +86,10 @@
       $database->insertUser($username,$email,$password);
       $response['message'] = 'Registered successfully';
       break;
+      
+    default: 
+      $response['error'] = 'No such function';
+      break;
     }
 
   echo json_encode($response);

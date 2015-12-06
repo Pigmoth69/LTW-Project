@@ -4,6 +4,8 @@ this.editOpen = true;
 function onReady() {
 	$('#message').hide();
 	$('#message1').hide();
+	$('#inviteMessage').hide();
+
 	var following = $('#following').val();
 	$('.editInfoForm').hide();
 	$('#inviteUser').hide();
@@ -21,7 +23,7 @@ function onReady() {
 	else {
 		$('#join').hide();
 		$('#leave').hide();
-	}
+		}
 
 	$('#edit').click(onEditClick);
 	$('#leave').click(onLeaveClick);
@@ -30,22 +32,28 @@ function onReady() {
 	$('#invite').click(onInviteClick);
 	$('#sendInvite').click(onSendInviteClick);
 	$('#cancelInvite').click(onCancelInviteClick);
+	$('#inviteForm').submit(
+		function(event) {
+		event.preventDefault();
+		onInviteSubmit(event); 
+	});
 
 	onComment();
 	$('#editInfoForm').submit( function( e ) {
-    $.ajax( {
-      url: '../Server/editEventInfo.php',
-      type: 'POST',
-      data: new FormData( this ),
-      processData: false,
-      contentType: false,
-      success: function(response) {
-      			showInputValidation(response);
-            }
+	    $.ajax( {
+	      url: '../Server/editEventInfo.php',
+	      type: 'POST',
+	      data: new FormData( this ),
+	      processData: false,
+	      contentType: false,
+	      success: function(response) {
+	      			showInputValidation(response);
+	            }
 
-    } );
-    e.preventDefault();
-} );
+		} );
+	
+		e.preventDefault();
+	} );
 };
 
 function onComment(event){
@@ -53,12 +61,6 @@ function onComment(event){
 	var eventID = $('#eventID').val();
 	var commentDate = new Date(); //isto pode ser um problema...
 	var commentary = $('#userComment').val();
-
-	console.log("User ID: "+ userID);
-	console.log("Event ID: "+ eventID);
-	console.log("Comment Data: "+ commentDate);
-	console.log("Commentary: "+ commentary);
-
 
 	$('#addComment').click(function(e){
 		$.post(
@@ -176,21 +178,7 @@ function onInviteClick(event) {
 function onSendInviteClick(event) {
 	var eventID = $('#eventID').val();
 
-	$.post(
-    '../Server/manageEvent.php',
-	{ 
-		"functionName" : 'invite',
-		"eventID": eventID
-	}, 
-	function (data) {
-		showInputValidation1(data);
-		if(data['error'] == null)
-			location.reload();
-			
-	})
-    .fail(function (error) {
-        console.error("Error: " + error);
-    });
+	$('#inviteForm').submit();
 }
 
 function onCancelInviteClick(event){
@@ -228,8 +216,47 @@ function showInputValidation1(data) {
 	}
 }
 
+function showInviteValidation(data) {
+	$('#inviteMessage').show();
+
+	if (data['error'] != null)
+	{
+		$('#inviteMessage').css('background-color','#ff6666');
+		$('#inviteMessage').html(data['error']);
+	}
+	else
+	{
+		$('#inviteMessage').css('background-color','#99ff99');
+		$('#inviteMessage').html(data['success']);
+	}
+}
 
 
+function onInviteSubmit(event) {
+	var invitedUsername = $('#invitedUsername').val();
+	var eventID = $('#eventID').val();
+
+	$.post(
+    '../Server/manageEvent.php',
+	{ 
+		"functionName" : 'invite',
+		"invitedUsername" : invitedUsername,
+		"eventID": eventID
+	}, 
+	function (data) {
+		showInviteValidation(data);
+		$('#inviteMessage').fadeOut(1500);
+		if(data['error'] == null)
+			setTimeout(function() {location.reload();}, 1500);
+
+
+	})
+    .fail(function (error) {
+        console.error("Error: " + error);
+    });
+
+
+}
 
 function clearForm(){
 	$('#name').val("");
