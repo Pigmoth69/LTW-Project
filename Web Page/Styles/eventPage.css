@@ -548,5 +548,21 @@ input#saveButton
 }
 
 #invitedUsername {
-	width: 100%;
+	width: 104%;
+}
+
+#invitedUsernameDiv {
+	padding-top:10%;
+}
+
+#inviteTable input{
+	width: 140px;
+
+}
+
+#inviteMessage{
+	padding: 0;
+	margin: 0 auto;
+	margin-right: -5%;	
+	text-align: center;
 }

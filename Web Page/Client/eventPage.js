@@ -245,9 +245,9 @@ function onInviteSubmit(event) {
 	}, 
 	function (data) {
 		showInviteValidation(data);
-		$('#inviteMessage').fadeOut(1500);
+		$('#inviteMessage').fadeOut(2000);
 		if(data['error'] == null)
-			setTimeout(function() {location.reload();}, 1500);
+			setTimeout(function() {location.reload();}, 2000);
 
 
 	})

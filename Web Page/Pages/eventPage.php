@@ -182,10 +182,15 @@
 <div id="inviteUser" class="modal">
 	<div class="modal-form">
 		<form id="inviteForm">
-			<input id="invitedUsername" type="text" placeholder="Invite user" value=""/>
 
-			<input id="sendInvite" class="button button-small" type="button" value="Send"/>
-			<input id="cancelInvite" class="button button-small" type="button" value="Cancel"/>
+			<div id="invitedUsernameDiv"><input id="invitedUsername" type="text" placeholder="Invite user" value=""/></div>
+
+			<table id="inviteTable">
+				<tr id="inviteTableRow">
+					<td><input id="sendInvite" class="button button-small" type="button" value="Send"/></td>
+					<td><input id="cancelInvite" class="button button-small" type="button" value="Cancel"/></td>
+				</tr>
+			</table>
 
 			<div id="inviteMessage"></div>
 		</form> 
