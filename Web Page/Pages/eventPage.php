@@ -13,15 +13,17 @@
 		$eventPhotoURL = $database->getPhotoURLFromEventID($eventID);
 		$eventHostUsername = $database->getUsernameFromUserID($eventInfo['idHost']);
 		$participants = $database->getUsernamesInEventFromEventID($eventID);
+		$comments = $database->getComments($eventID);
 		$hostID = $database->getUserID($eventHostUsername);
 		$following = $database->userIsFollowing($userID, $eventID);
 	?>
-	<link href="../styles/eventPageStyle.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="../styles/eventPage.css" rel="stylesheet" type="text/css" media="all" />
 	<script src="../Client/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="../Client/eventPage.js"></script>
 	<input id='userID' value="<?php echo $userID;?>" hidden/> 
 	<input id='hostID' value="<?php echo $hostID;?>" hidden/> 
 	<input id='following' value="<?php echo $following;?>" hidden/> 
+
 </head>
 <body>
 	<?php 
@@ -127,10 +129,36 @@
 
 	<div id="message1"></div>
 
-
+	<div id="comments" class="container">
+		<div class="box" id="comment-box">
+			<?php
+			foreach($comments as $comments){?>
+			<div class="comment-box">
+				<?php 
+				$userPhotoURL = $database->getPhotoURLFromUserID($comments['idUser']);
+				$username = $database->getUsernameFromUserID($comments['idUser']);
+				$comment = $comments['commentary'];
+				?>
+				<table>
+					<tr>
+						<td rowspan="2"><img src="<?php echo $userPhotoURL ?>" class="image" height="128" width="128"/></td>
+						<td><h3><?php echo $username . " commented: "?></h3></td>
+					</tr>
+					<tr>
+						<td><p><?php echo $comment ?></p></td>
+					</tr>
+				</table>
+			</div>
+			<?php } ?>
+		</div>
+		<div class="addComment">
+		</div>
+	</div>
+	
 	<?php
 		include('pageFooter.php');
 		displayFooter();
 	?>
-
 </body>
+
+
