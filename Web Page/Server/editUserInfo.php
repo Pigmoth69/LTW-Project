@@ -93,7 +93,7 @@
       if($dateEdit)
         $database->editUserBirthDateFromUserID($userID, $date);
    
-      $response['success'] = 'Profile Updated!!! Refresh the page to check the modifications!';
+      $response['message'] = 'Profile Updated!!! Refresh the page to check the modifications!';
       echo json_encode($response);
     }
 

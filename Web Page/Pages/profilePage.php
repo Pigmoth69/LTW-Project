@@ -66,36 +66,38 @@
 				<a>
 					<?php 
 						echo count($joinedEvents);
-					?>
-				</a><br><br>
-				<a class="subTitle">Owned Events: </a>
-				<a>
-					<?php 
+						?>
+					</a><br><br>
+					<a class="subTitle">Owned Events: </a>
+					<a>
+						<?php 
 						echo count($ownedEvents);
-					?>
-				</a>
+						?>
+					</a>
+				</div>
 			</div>
 		</div>
-	</div>
+		<div class="editInfoDiv">
+				<input type="button" id="editInfo" value="Edit Profile">
+				<input type="button" id="deleteAccount" value="Delete Account">
+		</div> 
 
-	<div class="editInfoDiv"><input type="button" id="editInfo" value="Edit Profile"></div> 
+		<form class="editInfoForm" id="editInfoForm" action="../Server/editUserInfo.php" method="post" enctype="multipart/form-data">
+			<div id="description">
+				<p>Full Name: </p>
+				<p>Insert Profile Photo: </p>
+				<p>Insert New Password: </p>
+				<p>Repeat New Password: </p>
+				<p>New Email: </p>
+				<p>Insert New Birth Date: </p>
 
-	<form class="editInfoForm" id="editInfoForm" action="../Server/editUserInfo.php" method="post" enctype="multipart/form-data">
-		<div id="description">
-			<p>Full Name: </p>
-			<p>Insert Profile Photo: </p>
-			<p>Insert New Password: </p>
-			<p>Repeat New Password: </p>
-			<p>New Email: </p>
-			<p>Insert New Birth Date: </p>
-			
-		</div>
+			</div>
 
-		<div id="inputsDiv">
-			<div><input type="text" value="" placeholder="Full Name" id="fullname" name="fullname" class="profileInput" size="30%"/></div>
-			<div><input type="file" id="photo" name="photo"/></div>
-			<div><input type="password" value="" placeholder="New Password" id="password" name="password" class="profileInput" size="30%"/></div>
-			<div><input type="password" value="" placeholder="Verify New Password" id="verifyPassword" name="verifyPassword" class="profileInput" size="30%"/></div>
+			<div id="inputsDiv">
+				<div><input type="text" value="" placeholder="Full Name" id="fullname" name="fullname" class="profileInput" size="30%"/></div>
+				<div><input type="file" id="photo" name="photo"/></div>
+				<div><input type="password" value="" placeholder="New Password" id="password" name="password" class="profileInput" size="30%"/></div>
+				<div><input type="password" value="" placeholder="Verify New Password" id="verifyPassword" name="verifyPassword" class="profileInput" size="30%"/></div>
 			<div><input type="text" value="" placeholder="New Email" id="email" name="email" class="profileInput" size="30%"/></div>
 			<div><input type="date" value="" class="profileInput" id="date" name="date"/></div>
 		</div>
@@ -105,6 +107,7 @@
 
 		<div id="message"></div>
 	</form>
+	<div id="deleteMessage"></div>	
 
 
 	<?php
