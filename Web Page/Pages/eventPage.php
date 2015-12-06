@@ -19,6 +19,9 @@
 	<link href="../styles/eventPageStyle.css" rel="stylesheet" type="text/css" media="all" />
 	<script src="../Client/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="../Client/eventPage.js"></script>
+	<input id='userID' value="<?php echo $userID;?>" hidden/> 
+	<input id='hostID' value="<?php echo $hostID;?>" hidden/> 
+	<input id='following' value="<?php echo $following;?>" hidden/> 
 </head>
 <body>
 	<?php 
@@ -122,6 +125,7 @@
 		<div id="message"></div>
 	</form>
 
+	<div id="message1"></div>
 
 
 	<?php

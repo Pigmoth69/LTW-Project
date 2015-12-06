@@ -41,10 +41,7 @@
           printErrorMessage($response, 'There is already an image with this name!!!');
           return;
         }
-        else{
-          move_uploaded_file($_FILES["eventImage"]["tmp_name"], $outputdir . $ImageName);
-          $photoEdit = true;
-        }
+        else move_uploaded_file($_FILES["eventImage"]["tmp_name"], $outputdir . $ImageName);
       }
       else {
         printErrorMessage($response, 'Invalid image extension! Required .png, .jpeg or .jpg');
@@ -68,12 +65,13 @@
     }
 
 
-    $database->createEvent($userID,$eventDescription,$eventName,$imageURL,$eventLocation,$eventPrivacy,$currentDate,$eventDate);
-
-    $response['success'] = 'Event created!!! Refresh the page to check the modifications!';
-    echo json_encode($response);
-    return;
-
+    if($database->createEvent($userID,$eventDescription,$eventName,$imageURL,$eventLocation,$eventPrivacy,$eventType,$currentDate,$eventDate))
+    {
+      $response['success'] = 'Event created!!! Refresh the page to check the modifications!';
+      echo json_encode($response);
+      return;
+    }
+      else printErrorMessage($response, 'Error');
 
 
   function printErrorMessage($responseArray, $message) {

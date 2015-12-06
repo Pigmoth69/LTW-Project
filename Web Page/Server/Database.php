@@ -315,7 +315,7 @@ class Database {
 		return true;
 	}
 	//(IDHOST,DESCRIPTION, NAME, IDPHOTO, IDLOCATION, PRIVATE, CREATIONDATE, EVENTDATE)
-	public function createEvent($userID,$eventDecription,$eventName,$photoURL,$location,$eventPrivacy,$creationDate,$eventDate){
+	public function createEvent($userID,$eventDescription,$eventName,$photoURL,$location,$eventPrivacy,$type,$creationDate,$eventDate){
 		$stmt = $this->database->prepare('INSERT INTO Photo(URL) VALUES(:photoURL)');
 		$stmt->bindParam(':photoURL', $photoURL, PDO::PARAM_STR);
 		$stmt->execute();
@@ -323,17 +323,17 @@ class Database {
 		$stmt->bindParam(':photoURL', $photoURL, PDO::PARAM_STR);
 		$stmt->execute();
 		$id = $stmt->fetchAll()[0][0];
-		$stmt = $this->database->prepare('INSERT INTO Event(idhost, description,name,idphoto,location,private,creationdate,eventdate) VALUES(:idhost, :description,:name,:idphoto,:location,:private,:creationdate,:eventdate)');
+		$stmt = $this->database->prepare('INSERT INTO Event(idhost,description,name,idphoto,location,private,type,creationdate,eventdate) VALUES(:idhost, :description,:name,:idphoto,:location,:private,:type,:creationdate,:eventdate)');
 		$stmt->bindParam(':idhost', $userID, PDO::PARAM_INT);
-		$stmt->bindParam(':description', $eventDecription, PDO::PARAM_STR);
+		$stmt->bindParam(':description', $eventDescription, PDO::PARAM_STR);
 		$stmt->bindParam(':name', $eventName, PDO::PARAM_STR);
 		$stmt->bindParam(':idphoto', $id, PDO::PARAM_INT);
 		$stmt->bindParam(':location', $location, PDO::PARAM_STR);
 		$stmt->bindParam(':private', $eventPrivacy, PDO::PARAM_INT);
+		$stmt->bindParam(':type', $type, PDO::PARAM_STR);
 		$stmt->bindParam(':creationdate', $creationDate, PDO::PARAM_STR);
 		$stmt->bindParam(':eventdate', $eventDate, PDO::PARAM_STR);
-		$stmt->execute();
-		return true;
+		return $stmt->execute();
 	}
 
 	public function editEventNameFromEventID($eventID, $name)
